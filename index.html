@@ -1109,11 +1109,13 @@ function uuidv4() {
 }
 
   // URL untuk mendapatkan proxy list
-  fetch("https://ndeso.web.id/bot/proxy_list.txt")
-    .then(response => response.text())
-    .then(data => {
-      const allProxies = data.split("\n").filter(line => line.trim() !== "");
+  
+          fetch("https://ndeso.web.id/bot/proxy_list.txt")
+  .then(response => response.text())
+  .then(data => {
+    const allProxies = data.split("\n").filter(line => line.trim() !== "");
     let filteredProxies = [...allProxies]; // Salin array asli untuk filtering
+    
     const proxyList = document.getElementById('proxy-list');
     const pagination = document.getElementById('pagination');
     const perPageSelect = document.getElementById('items-per-page');
@@ -1123,33 +1125,18 @@ function uuidv4() {
     const flagContainer = document.getElementById('flag-container'); // Tempatkan container untuk bendera
     
     // Tampilkan total proxy keseluruhan
-    totalProxyElement.innerHTML = `<strong></strong> ${allProxies.length}`;
+    totalProxyElement.innerHTML = `<strong>Total Proxies:</strong> ${allProxies.length}`;
 
-    // Fungsi untuk memperbarui jumlah proxy yang difilter
     // Fungsi untuk memperbarui jumlah proxy yang difilter dan menampilkan ID serta bendera
-// Fungsi untuk memperbarui jumlah proxy yang difilter dan menampilkan ID serta bendera
-const updateFilteredProxies = () => {
-  const id = filteredProxies.length > 0 ? filteredProxies[0].split(',')[2] : ''; // Ambil ID dari proxy pertama, asumsikan format 'ip,port,id,isp'
-  filteredProxyElement.innerHTML = `
-    <strong>Total Proxy ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span>:</strong> ${filteredProxies.length}
-  `;
-};
+    const updateFilteredProxies = () => {
+      const id = filteredProxies.length > 0 ? filteredProxies[0].split(',')[2] : ''; // Ambil ID dari proxy pertama, asumsikan format 'ip,port,id,isp'
+      filteredProxyElement.innerHTML = `
+        <strong>Total Proxy ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span>:</strong> ${filteredProxies.length}
+      `;
+    };
 
-// Panggil fungsi untuk memperbarui setiap kali data difilter
-updateFilteredProxies();
-
-
-      // Set default items per page
-      let itemsPerPage = parseInt(perPageSelect.value, 15);
-
-      // Fungsi untuk memperbarui jumlah item per halaman
-      perPageSelect.addEventListener('change', () => {
-        itemsPerPage = parseInt(perPageSelect.value, 15);
-        renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
-      });
-
-
-const renderProxies = (proxies) => {
+    // Fungsi untuk merender proxy
+    const renderProxies = (proxies) => {
       proxyList.innerHTML = proxies.map(proxy => {
         const [ip, port, id, isp] = proxy.split(',');
         return `<p>${ip}:${port} (${id}) - ${isp}</p>`;
@@ -1158,7 +1145,6 @@ const renderProxies = (proxies) => {
     
     // Fungsi untuk menampilkan bendera negara
     const displayFlags = () => {
-      // Ambil daftar kode negara yang unik dari data proxy
       const countries = [...new Set(allProxies.map(proxy => proxy.split(',')[2]))];  // Ambil ID negara (kolom ketiga)
       
       countries.forEach(country => {
@@ -1170,39 +1156,41 @@ const renderProxies = (proxies) => {
         // Ketika bendera diklik, filter proxy berdasarkan ID negara
         flagElement.addEventListener('click', () => {
           filteredProxies = allProxies.filter(proxy => proxy.split(',')[2] === country);
-          updateFilteredProxies();
-          renderProxies(filteredProxies);
+          updateFilteredProxies(); // Update jumlah proxy setelah filter
+          renderProxies(filteredProxies); // Render proxy yang telah difilter
         });
         
         flagContainer.appendChild(flagElement);
       });
     };
+    
     // Panggil fungsi untuk menampilkan bendera dan proxy
     displayFlags();
-    updateFilteredProxies();
-    renderProxies(filteredProxies);
+    updateFilteredProxies(); // Update jumlah proxy setelah filter pertama kali
+    renderProxies(filteredProxies); // Render proxy pertama kali
     
     // Fungsi untuk memperbarui jumlah item per halaman
     let itemsPerPage = parseInt(perPageSelect.value, 15);
     perPageSelect.addEventListener('change', () => {
       itemsPerPage = parseInt(perPageSelect.value, 15);
-      renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+      renderProxies(filteredProxies); // Render proxy setelah memilih item per page
     });
-      // Fungsi untuk pencarian
-      searchInput.addEventListener('input', () => {
-        const query = searchInput.value.toLowerCase();
-        filteredProxies = allProxies.filter(proxy => {
-          const [ip, port, id, isp] = proxy.split(',');
-          return id.toLowerCase().includes(query);
-        });
-        updateFilteredProxies();
-        renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+    
+    // Fungsi untuk pencarian
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      filteredProxies = allProxies.filter(proxy => {
+        const [ip, port, id, isp] = proxy.split(',');
+        return id.toLowerCase().includes(query);
       });
+      updateFilteredProxies(); // Update jumlah proxy setelah pencarian
+      renderProxies(filteredProxies); // Render proxy yang telah difilter
+    });
 
-      // Render proxies dengan pagination
-      renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
-    })
-    .catch(error => console.error("Error fetching proxy data:", error));
+    // Render proxies dengan pagination
+    renderProxies(filteredProxies);
+  })
+  .catch(error => console.error("Error fetching proxy data:", error));
 
   // Fungsi untuk mengecek status proxy
   function checkProxyStatus(ip, port, statusElement) {
