@@ -1135,14 +1135,6 @@ function uuidv4() {
       `;
     };
 
-    // Fungsi untuk merender proxy
-    const renderProxies = (proxies) => {
-      proxyListt.innerHTML = proxies.map(proxy => {
-        const [ip, port, id, isp] = proxy.split(',');
-        return `<p>${ip}:${port} (${id}) - ${isp}</p>`;
-      }).join('');
-    };
-    
     // Fungsi untuk menampilkan bendera negara
     const displayFlags = () => {
       const countries = [...new Set(allProxies.map(proxy => proxy.split(',')[2]))];  // Ambil ID negara (kolom ketiga)
