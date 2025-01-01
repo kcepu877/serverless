@@ -1149,7 +1149,7 @@ function uuidv4() {
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase();
       filteredProxies = allProxies.filter(proxy => {
-        const [id] = proxy.split(',');
+        const [ip, port, id, isp] = proxy.split(',');
         return id.toLowerCase().includes(query);
       });
       updateFilteredProxies(); // Update jumlah proxy setelah pencarian
