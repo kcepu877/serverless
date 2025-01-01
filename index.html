@@ -1176,11 +1176,13 @@ function uuidv4() {
         return id.toLowerCase().includes(query);
       });
       updateFilteredProxies(); // Update jumlah proxy setelah pencarian
-      renderProxies(filteredProxies); // Render proxy yang telah difilter
+      renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+ // Render proxy yang telah difilter
     });
 
     // Render proxies dengan pagination
-    renderProxies(filteredProxies);
+    renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+
   })
   .catch(error => console.error("Error fetching proxy data:", error));
 
