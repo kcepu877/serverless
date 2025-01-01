@@ -181,7 +181,7 @@ export default {
           return new Response(await handleSubRequest(url.hostname), { headers: { 'Content-Type': 'text/html' } })
           break;
         default:
-          const targetReverseProxy = "kere.us.kg";
+          const targetReverseProxy = "cf.cepu.us.kg";
           return await reverseProxy(request, targetReverseProxy);
       }
 
