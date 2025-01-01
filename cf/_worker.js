@@ -886,7 +886,8 @@ async function handleWebRequest(request) {
                 <tr class="config-row">
 
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-
+                    <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
+                       
                     
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
@@ -909,7 +910,8 @@ async function handleWebRequest(request) {
                 <tr class="config-row">
                    
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-
+                    <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
+                       
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
                              VLESS
@@ -1467,6 +1469,7 @@ async function handleWebRequest(request) {
                 <thead>
                     <tr>
                         <th>ISP || COUNTRY</th>
+                        <th>STATUS</th>
                         <th>VLESS</th>
                         <th>TROJAN</th>
                         <th>SHADOWSOCKS</th>
@@ -1489,7 +1492,32 @@ async function handleWebRequest(request) {
           </div>
         </div>
     </div>
+    <script>
+          fetch('https://sub.gpj.us.kg/geo-ip?ip=${config.ip}:${config.port}')
+            .then(response => response.json())
+            .then(data => {
+              const statusElement = document.getElementById('status-${config.ip}-${config.port}');
+              const { proxyStatus, ip, asn, isp, country, city, port } = data;
+              
+              if (proxyStatus === 'ACTIVE') {
+    statusElement.textContent = 'ACTIVE';
+    statusElement.style.color = '#00FF00'; /* Warna hijau terang */
+    statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
+    statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
+} else if (proxyStatus === 'DEAD') {
+    statusElement.textContent = 'DEAD';
+    statusElement.style.color = '#FF3333'; /* Warna merah terang */
+    statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
+    statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
+}
 
+            })
+            .catch(error => {
+              const statusElement = document.getElementById('status-20.233.68.69-2053');
+              statusElement.textContent = 'Error';
+              statusElement.style.color = 'cyan';
+            });
+        </script>
     <script>
         const updateURL = (params) => {
           const url = new URL(window.location.href);
