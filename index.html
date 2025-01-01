@@ -694,8 +694,7 @@ body {
       <tbody id="proxy-list"></tbody>  
     </table>
         </div>
-    <div class="total-proxy" id="total-proxy"></div>
-    <div class="filtered-proxy" id="filtered-proxy"></div>
+   <div class="filtered-proxy" id="filtered-proxy"></div>
 
     <div class="pagination" id="pagination"></div>
   </div> 
@@ -1125,7 +1124,7 @@ function uuidv4() {
 
     // Fungsi untuk memperbarui jumlah proxy yang difilter
     const updateFilteredProxies = () => {
-      filteredProxyElement.innerHTML = `<strong>Filtered Proxies:</strong> ${filteredProxies.length}`;
+      filteredProxyElement.innerHTML = `<strong>Total Proxy ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span>:</strong> ${filteredProxies.length}`;
     };
 
       updateFilteredProxies();
