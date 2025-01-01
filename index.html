@@ -1119,7 +1119,8 @@ function uuidv4() {
     const searchInput = document.getElementById('search-bar');
     const totalProxyElement = document.getElementById('total-proxy');
     const filteredProxyElement = document.getElementById('filtered-proxy');
-
+    const flagContainer = document.getElementById('flag-container'); // Tempatkan container untuk bendera
+    
     // Tampilkan total proxy keseluruhan
     totalProxyElement.innerHTML = `<strong></strong> ${allProxies.length}`;
 
@@ -1146,6 +1147,46 @@ updateFilteredProxies();
         renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
       });
 
+
+const renderProxies = (proxies) => {
+      proxyList.innerHTML = proxies.map(proxy => {
+        const [ip, port, id, isp] = proxy.split(',');
+        return `<p>${ip}:${port} (${id}) - ${isp}</p>`;
+      }).join('');
+    };
+    
+    // Fungsi untuk menampilkan bendera negara
+    const displayFlags = () => {
+      // Ambil daftar kode negara yang unik dari data proxy
+      const countries = [...new Set(allProxies.map(proxy => proxy.split(',')[2]))];  // Ambil ID negara (kolom ketiga)
+      
+      countries.forEach(country => {
+        const flagElement = document.createElement('span');
+        flagElement.classList.add('flag-icon', `flag-icon-${country.toLowerCase()}`);
+        flagElement.dataset.id = country;  // Set ID negara ke atribut data-id
+        flagElement.style.cursor = 'pointer';
+        
+        // Ketika bendera diklik, filter proxy berdasarkan ID negara
+        flagElement.addEventListener('click', () => {
+          filteredProxies = allProxies.filter(proxy => proxy.split(',')[2] === country);
+          updateFilteredProxies();
+          renderProxies(filteredProxies);
+        });
+        
+        flagContainer.appendChild(flagElement);
+      });
+    };
+    // Panggil fungsi untuk menampilkan bendera dan proxy
+    displayFlags();
+    updateFilteredProxies();
+    renderProxies(filteredProxies);
+    
+    // Fungsi untuk memperbarui jumlah item per halaman
+    let itemsPerPage = parseInt(perPageSelect.value, 15);
+    perPageSelect.addEventListener('change', () => {
+      itemsPerPage = parseInt(perPageSelect.value, 15);
+      renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+    });
       // Fungsi untuk pencarian
       searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase();
