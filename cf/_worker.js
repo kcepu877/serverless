@@ -319,12 +319,6 @@ async function handleSubRequest(hostnem) {
 </head>
 
 
-<script>
-        // Redirect setelah halaman dimuat
-        window.onload = function() {
-            window.location.href = "https://user.kere.us.kg";
-        };
-    <\/script>
 
 
 
