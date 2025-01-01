@@ -1030,7 +1030,7 @@ function generateLinks() {
   var country = document.getElementById("country").value;
 
   // Menambahkan pengecekan untuk pilihan 'Shadowsocks'
-  if (app === "shadowsocks") {
+  if (configType === "shadowsocks") {
     // URL khusus untuk Shadowsocks dengan format baru
     var link1 = `https://sub.bmkg.xyz/ss?sub1=${country}&wildcard=${wildcard}&count=${limit}`;
   } else {
