@@ -1123,11 +1123,17 @@ function uuidv4() {
     totalProxyElement.innerHTML = `<strong>Total Proxies:</strong> ${allProxies.length}`;
 
     // Fungsi untuk memperbarui jumlah proxy yang difilter
-    const updateFilteredProxies = () => {
-      filteredProxyElement.innerHTML = `<strong>Total Proxy ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span>:</strong> ${filteredProxies.length}`;
-    };
+    // Fungsi untuk memperbarui jumlah proxy yang difilter dan menampilkan ID serta bendera
+const updateFilteredProxies = () => {
+  const id = filteredProxies.length > 0 ? filteredProxies[0].split(',')[2] : ''; // Ambil ID dari proxy pertama, asumsikan format 'ip,port,id,isp'
+  filteredProxyElement.innerHTML = `
+    <strong>Total Proxy ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span>:</strong> ${filteredProxies.length}
+  `;
+};
 
-      updateFilteredProxies();
+// Panggil fungsi untuk memperbarui setiap kali data difilter
+updateFilteredProxies();
+
       // Set default items per page
       let itemsPerPage = parseInt(perPageSelect.value, 15);
 
