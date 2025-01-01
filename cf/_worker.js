@@ -18,33 +18,29 @@ const wildcards = [
   'api.midtrans.com'
 ];
 
-          fetch('https://sub.gpj.us.kg/geo-ip?ip=${config.ip}:${config.port}')
-            .then(response => response.json())
-            .then(data => {
-              const statusElement = document.getElementById('status-${config.ip}-${config.port}');
-              const { proxyStatus, config, ip, asn, isp, country, city, port } = data;
-              
-              if (proxyStatus === 'ACTIVE') {
-    statusElement.textContent = 'ACTIVE';
-    statusElement.style.color = '#00FF00'; /* Warna hijau terang */
-    statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
-    statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
-} else if (proxyStatus === 'DEAD') {
-    statusElement.textContent = 'DEAD';
-    statusElement.style.color = '#FF3333'; /* Warna merah terang */
-    statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
-    statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
-}
+          fetch(`https://sub.gpj.us.kg/geo-ip?ip=${config.ip}:${config.port}`)
+    .then(response => response.json())
+    .then(data => {
+      const statusElement = document.getElementById(`status-${config.ip}-${config.port}`);
+      const { proxyStatus } = data;
 
-            })
-            .catch(error => {
-              const statusElement = document.getElementById('status-20.233.68.69-2053');
-              statusElement.textContent = 'Error';
-              statusElement.style.color = 'cyan';
-            });
-        
-
-                       
+      if (proxyStatus === 'ACTIVE') {
+        statusElement.textContent = 'ACTIVE';
+        statusElement.style.color = '#00FF00'; /* Warna hijau terang */
+        statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
+        statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
+      } else if (proxyStatus === 'DEAD') {
+        statusElement.textContent = 'DEAD';
+        statusElement.style.color = '#FF3333'; /* Warna merah terang */
+        statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
+        statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
+      }
+    })
+    .catch(error => {
+      const statusElement = document.getElementById('status-20.233.68.69-2053');
+      statusElement.textContent = 'Error';
+      statusElement.style.color = 'cyan';
+    });
 
 
 // Global Variables
@@ -915,11 +911,8 @@ async function handleWebRequest(request) {
         if (configType === 'tls') {
             return `
                 <tr class="config-row">
-
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-<td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
-
-                    
+                    <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
                              VLESS
@@ -940,9 +933,7 @@ async function handleWebRequest(request) {
             return `
                 <tr class="config-row">
                    <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
-
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
                              VLESS
