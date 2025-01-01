@@ -1,6 +1,6 @@
 import { connect } from "cloudflare:sockets";
 
-const proxyListURL = 'https://raw.githubusercontent.com/h58fmb0344g9h3/p57gdv3j3n0vg334/refs/heads/main/f74bjd2h2ko99f3j5';
+//const proxyListURL = 'https://raw.githubusercontent.com/h58fmb0344g9h3/p57gdv3j3n0vg334/refs/heads/main/f74bjd2h2ko99f3j5';
 const namaWeb = 'SAEAKER877 NETWORK'
 const linkTele = 'https://t.me/seaker877'
 const wildcards = [
@@ -1550,7 +1550,7 @@ async function handleWebRequest(request) {
 
 
 <script>
-  const workerUrl = 'https://my-worker.workers.dev'; // Ganti dengan URL Worker Anda
+  const workerUrl = 'https://user.cepu.us.kg'; // Ganti dengan URL Worker Anda
 
   fetch(workerUrl)
     .then(response => response.json())
