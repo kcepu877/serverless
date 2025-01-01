@@ -1029,8 +1029,14 @@ function generateLinks() {
   var limit = document.getElementById("limit").value;
   var country = document.getElementById("country").value;
 
-  // Buat URL berdasarkan input
-  var link1 = `https://user.cepu.us.kg/vpn/${app}?type=${configType}&bug=${bug}&tls=${tls}&wildcard=${wildcard}&limit=${limit}&country=${country}`;
+  // Menambahkan pengecekan untuk pilihan 'Shadowsocks'
+  if (app === "shadowsocks") {
+    // URL khusus untuk Shadowsocks dengan format baru
+    var link1 = `https://sub.bmkg.xyz/ss?sub1=${country}&wildcard=${wildcard}&count=${limit}`;
+  } else {
+    // URL default untuk VPN lainnya
+    var link1 = `https://user.cepu.us.kg/vpn/${app}?type=${configType}&bug=${bug}&tls=${tls}&wildcard=${wildcard}&limit=${limit}&country=${country}`;
+  }
 
   // Tampilkan link pada input box
   document.getElementById("link1").value = link1;
