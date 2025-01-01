@@ -695,7 +695,7 @@ body {
     </table>
         </div>
     <div class="total-proxy" id="total-proxy"></div>
-    <div class="total-proxy" id="filtered-proxy"></div>
+    <div class="filtered-proxy" id="filtered-proxy"></div>
 
     <div class="pagination" id="pagination"></div>
   </div> 
@@ -1127,6 +1127,8 @@ function uuidv4() {
     const updateFilteredProxies = () => {
       filteredProxyElement.innerHTML = `<strong>Filtered Proxies:</strong> ${filteredProxies.length}`;
     };
+
+      updateFilteredProxies();
       // Set default items per page
       let itemsPerPage = parseInt(perPageSelect.value, 15);
 
@@ -1143,6 +1145,7 @@ function uuidv4() {
           const [ip, port, id, isp] = proxy.split(',');
           return id.toLowerCase().includes(query);
         });
+        updateFilteredProxies();
         renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
       });
 
