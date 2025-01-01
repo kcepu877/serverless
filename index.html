@@ -1137,7 +1137,7 @@ function uuidv4() {
 
     // Fungsi untuk merender proxy
     const renderProxies = (proxies) => {
-      proxyList.innerHTML = proxies.map(proxy => {
+      proxyListt.innerHTML = proxies.map(proxy => {
         const [ip, port, id, isp] = proxy.split(',');
         return `<p>${ip}:${port} (${id}) - ${isp}</p>`;
       }).join('');
