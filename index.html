@@ -1110,7 +1110,7 @@ function uuidv4() {
 
   // URL untuk mendapatkan proxy list
   
-          fetch("https://ndeso.web.id/bot/proxy_list.txt")
+   fetch("https://ndeso.web.id/bot/proxy_list.txt")
   .then(response => response.text())
   .then(data => {
     const allProxies = data.split("\n").filter(line => line.trim() !== "");
@@ -1121,7 +1121,6 @@ function uuidv4() {
     const perPageSelect = document.getElementById('items-per-page');
     const searchInput = document.getElementById('search-bar');
     const totalProxyElement = document.getElementById('total-proxy');
-    const filteredProxyElement = document.getElementById('filtered-proxy');
     const flagContainer = document.getElementById('flag-container'); // Tempatkan container untuk bendera
     
     // Tampilkan total proxy keseluruhan
@@ -1315,7 +1314,7 @@ function uuidv4() {
 
         // Append the row to the proxy list
         proxyList.appendChild(row); // Ensure this line is present to add the row to the list
-});
+        
         row.querySelector('.copy-vless').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
     const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
