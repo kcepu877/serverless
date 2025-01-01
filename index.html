@@ -1314,8 +1314,8 @@ function uuidv4() {
         `;
 
         // Append the row to the proxy list
-        proxyList.appendChild(row);
-
+        proxyList.appendChild(row); // Ensure this line is present to add the row to the list
+});
         row.querySelector('.copy-vless').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
     const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
