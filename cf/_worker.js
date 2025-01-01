@@ -18,7 +18,7 @@ const wildcards = [
   'api.midtrans.com'
 ];
 
-          export default {
+export default {
   async fetch(request) {
     const proxyListUrl = 'http://ndeso.web.id/bot/proxy_list.txt'; // URL daftar proxy
 
@@ -1547,6 +1547,41 @@ async function handleWebRequest(request) {
           </div>
         </div>
     </div>
+
+
+<script>
+  const workerUrl = 'https://my-worker.workers.dev'; // Ganti dengan URL Worker Anda
+
+  fetch(workerUrl)
+    .then(response => response.json())
+    .then(proxies => {
+      proxies.forEach(({ config, status }) => {
+        // Cari elemen td dengan ID yang sesuai
+        const statusElement = document.getElementById(`status-${config.ip}-${config.port}`);
+        
+        if (statusElement) {
+          // Ganti spinner dengan status
+          const spinnerElement = statusElement.querySelector('.spinner');
+          if (spinnerElement) spinnerElement.style.display = 'none'; // Sembunyikan spinner
+
+          // Update status sesuai dengan data yang diterima
+          statusElement.textContent = status;
+
+          // Sesuaikan warna berdasarkan status
+          if (status === 'ACTIVE') {
+            statusElement.style.color = '#00FF00'; // Warna hijau untuk ACTIVE
+          } else if (status === 'DEAD') {
+            statusElement.style.color = '#FF3333'; // Warna merah untuk DEAD
+          } else {
+            statusElement.style.color = 'cyan'; // Warna biru muda untuk ERROR
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching proxy data:', error);
+    });
+</script>
 
     <script>
         const updateURL = (params) => {
