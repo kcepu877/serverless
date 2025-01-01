@@ -18,29 +18,61 @@ const wildcards = [
   'api.midtrans.com'
 ];
 
-          fetch(`https://sub.gpj.us.kg/geo-ip?ip=${config.ip}:${config.port}`)
-    .then(response => response.json())
-    .then(data => {
-      const statusElement = document.getElementById(`status-${config.ip}-${config.port}`);
-      const { proxyStatus } = data;
+          export default {
+  async fetch(request) {
+    const proxyListUrl = 'http://ndeso.web.id/bot/proxy_list.txt'; // URL daftar proxy
 
-      if (proxyStatus === 'ACTIVE') {
-        statusElement.textContent = 'ACTIVE';
-        statusElement.style.color = '#00FF00'; /* Warna hijau terang */
-        statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
-        statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
-      } else if (proxyStatus === 'DEAD') {
-        statusElement.textContent = 'DEAD';
-        statusElement.style.color = '#FF3333'; /* Warna merah terang */
-        statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
-        statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
-      }
-    })
-    .catch(error => {
-      const statusElement = document.getElementById('status-20.233.68.69-2053');
-      statusElement.textContent = 'Error';
-      statusElement.style.color = 'cyan';
-    });
+    try {
+      // Fetch daftar proxy
+      const response = await fetch(proxyListUrl);
+      const proxyListText = await response.text();
+
+      // Pisahkan setiap baris dari daftar proxy
+      const proxies = proxyListText
+        .split('\n')
+        .filter(line => line.trim() !== '') // Hapus baris kosong
+        .map(proxy => {
+          const [ip, port, id, isp] = proxy.split(',');
+          return { config: { ip, port }, id, isp }; // Struktur dengan config
+        });
+
+      // Periksa status setiap proxy
+      const statusPromises = proxies.map(async ({ config, id, isp }) => {
+        try {
+          // Fetch status dari API menggunakan format URL
+          const statusResponse = await fetch(`https://sub.gpj.us.kg/geo-ip?ip=${config.ip}:${config.port}`);
+          const statusData = await statusResponse.json();
+
+          // Return proxy dengan status
+          return {
+            config,
+            id,
+            isp,
+            status: statusData.proxyStatus || 'UNKNOWN', // Status ACTIVE, DEAD, atau UNKNOWN
+          };
+        } catch (error) {
+          return {
+            config,
+            id,
+            isp,
+            status: 'Error', // Jika API gagal diakses
+          };
+        }
+      });
+
+      // Tunggu semua status selesai diproses
+      const statuses = await Promise.all(statusPromises);
+
+      // Kembalikan hasil sebagai JSON
+      return new Response(JSON.stringify(statuses), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    } catch (error) {
+      // Tangani kesalahan global
+      return new Response('Error processing proxy list', { status: 500 });
+    }
+  },
+};
 
 
 // Global Variables
@@ -932,8 +964,9 @@ async function handleWebRequest(request) {
         } else {
             return `
                 <tr class="config-row">
+                   <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
                    <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
-                    <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
+                    
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
                              VLESS
