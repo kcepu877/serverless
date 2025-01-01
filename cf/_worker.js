@@ -1497,7 +1497,7 @@ async function handleWebRequest(request) {
             .then(response => response.json())
             .then(data => {
               const statusElement = document.getElementById('status-${config.ip}-${config.port}');
-              const { proxyStatus, ip, asn, isp, country, city, port } = data;
+              const { proxyStatus, config, ip, asn, isp, country, city, port } = data;
               
               if (proxyStatus === 'ACTIVE') {
     statusElement.textContent = 'ACTIVE';
