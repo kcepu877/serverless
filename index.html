@@ -1146,11 +1146,18 @@ function uuidv4() {
     // Panggil fungsi untuk menampilkan bendera dan proxy
     // Fungsi untuk pencarian
     searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase();
-      filteredProxies = allProxies.filter(proxy => {
-        const [ip, port, id, isp] = proxy.split(',');
-        return id.toLowerCase().includes(query);
-      });
+  const query = searchInput.value;
+  const newUrl = `${window.location.origin}?page=1&search=${query}`;
+  window.history.pushState({}, '', newUrl); // Memperbarui URL tanpa memuat ulang halaman
+  
+  filteredProxies = allProxies.filter(proxy => {
+    const [ip, port, id, isp] = proxy.split(',');
+    return id.toLowerCase().includes(query.toLowerCase());
+  });
+  updateFilteredProxies(); // Memperbarui jumlah proxy setelah pencarian
+  renderProxies(filteredProxies, proxyList, pagination, itemsPerPage); // Render proxy yang difilter
+});
+
 
       // Update URL dengan query search dan page
       const urlParams = new URLSearchParams(window.location.search);
