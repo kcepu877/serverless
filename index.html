@@ -1111,9 +1111,9 @@ function uuidv4() {
   // URL untuk mendapatkan proxy list
   
           fetch("https://ndeso.web.id/bot/proxy_list.txt")
-    .then(response => response.text())
-    .then(data => {
-      const allProxies = data.split("\n").filter(line => line.trim() !== "");
+  .then(response => response.text())
+  .then(data => {
+    const allProxies = data.split("\n").filter(line => line.trim() !== "");
     let filteredProxies = [...allProxies]; // Salin array asli untuk filtering
     const proxyList = document.getElementById('proxy-list');
     const pagination = document.getElementById('pagination');
@@ -1137,14 +1137,13 @@ function uuidv4() {
     updateFilteredProxies();
     let itemsPerPage = parseInt(perPageSelect.value, 15);
 
-      // Fungsi untuk memperbarui jumlah item per halaman
-      perPageSelect.addEventListener('change', () => {
-        itemsPerPage = parseInt(perPageSelect.value, 15);
-        renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
-      });
+    // Fungsi untuk memperbarui jumlah item per halaman
+    perPageSelect.addEventListener('change', () => {
+      itemsPerPage = parseInt(perPageSelect.value, 15);
+      renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+    });
+
     // Panggil fungsi untuk menampilkan bendera dan proxy
-    
-    
     // Fungsi untuk pencarian
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase();
@@ -1152,85 +1151,88 @@ function uuidv4() {
         const [ip, port, id, isp] = proxy.split(',');
         return id.toLowerCase().includes(query);
       });
+
+      // Update URL dengan query search dan page
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.set('search', query); // Set parameter search dengan query pencarian
+      history.pushState(null, '', `${window.location.pathname}?${urlParams.toString()}`); // Update URL tanpa memuat ulang halaman
+
       updateFilteredProxies(); // Update jumlah proxy setelah pencarian
-      renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
- // Render proxy yang telah difilter
+      renderProxies(filteredProxies, proxyList, pagination, itemsPerPage); // Render proxy yang telah difilter
     });
 
     // Render proxies dengan pagination
     renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
 
-  })
-  .catch(error => console.error("Error fetching proxy data:", error));
+    // Fungsi untuk mengecek status proxy
+    function checkProxyStatus(ip, port, statusElement) {
+      // Menampilkan indikator loading saat memeriksa status
+      statusElement.innerHTML = '<div class="loading-icon"></div>';
 
-  // Fungsi untuk mengecek status proxy
-  function checkProxyStatus(ip, port, statusElement) {
-  // Menampilkan indikator loading saat memeriksa status
-  statusElement.innerHTML = '<div class="loading-icon"></div>';
+      const startTime = performance.now(); // Mencatat waktu awal
+      const StatusURL = `https://tp1.bmkg.xyz/check?target=${ip}:${port}`;
 
-  const startTime = performance.now(); // Mencatat waktu awal
-  const StatusURL = `https://tp1.bmkg.xyz/check?target=${ip}:${port}`;
+      // Mengambil data dari API untuk memeriksa status proxy
+      fetch(StatusURL)
+        .then(response => response.json())
+        .then(data => {
+          const endTime = performance.now(); // Mencatat waktu akhir
+          const latency = (endTime - startTime).toFixed(2); // Menghitung latency dalam ms
 
-  // Mengambil data dari API untuk memeriksa status proxy
-  fetch(StatusURL)
-    .then(response => response.json())
-    .then(data => {
-      const endTime = performance.now(); // Mencatat waktu akhir
-      const latency = (endTime - startTime).toFixed(2); // Menghitung latency dalam ms
+          // Memeriksa status proxy dan menampilkannya sesuai dengan status
+          if (data.proxyip) {
+            // Proxy status aktif
+            statusElement.innerHTML = `
+              <span class="check-icon">&#10004;</span>(${latency} ms)
+            `;
+            statusElement.style.color = 'green';
+          } else {
+            // Proxy status mati
+            statusElement.innerHTML = `
+              <span class="error-icon">&#10006;</span> DEAD
+            `;
+            statusElement.style.color = 'red';
+          }
+        })
+        .catch(() => {
+          // Menangani kesalahan jika API tidak merespon atau terjadi masalah jaringan
+          statusElement.innerHTML = `
+            <span class="error-icon">&#10006;</span> Error
+          `;
+          statusElement.style.color = 'cyan';
+        });
+    }
 
-      // Memeriksa status proxy dan menampilkannya sesuai dengan status
-      if (data.proxyip) {
-        // Proxy status aktif
-        statusElement.innerHTML = `
-          <span class="check-icon">&#10004;</span>(${latency} ms)
-        `;
-        statusElement.style.color = 'green';
-      } else {
-        // Proxy status mati
-        statusElement.innerHTML = `
-          <span class="error-icon">&#10006;</span> DEAD
-        `;
-        statusElement.style.color = 'red';
-      }
-    })
-    .catch(() => {
-      // Menangani kesalahan jika API tidak merespon atau terjadi masalah jaringan
-      statusElement.innerHTML = `
-        <span class="error-icon">&#10006;</span> Error
-      `;
-      statusElement.style.color = 'cyan';
-    });
-}
-  // Fungsi untuk render proxies dengan pagination
-  function renderProxies(proxies, proxyList, pagination, itemsPerPage) {
-    const totalPages = Math.ceil(proxies.length / itemsPerPage);
-    let currentPage = 1;
+    // Fungsi untuk render proxies dengan pagination
+    function renderProxies(proxies, proxyList, pagination, itemsPerPage) {
+      const totalPages = Math.ceil(proxies.length / itemsPerPage);
+      let currentPage = 1;
 
-    function updatePage(page) {
-      if (page < 1 || page > totalPages) return;
-      currentPage = page;
+      function updatePage(page) {
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
 
-      const start = (currentPage - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      const pageProxies = proxies.slice(start, end);
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageProxies = proxies.slice(start, end);
 
-      // Clear existing proxy list
-      proxyList.innerHTML = '';
+        // Clear existing proxy list
+        proxyList.innerHTML = '';
 
-      // Render proxies for the current page
-      pageProxies.forEach(proxy => {
-        const [ip, port, id, isp] = proxy.split(','); // Split the proxy data into individual parts
-        
-        // Set placeholder values (you can modify this to extract from proxy data if available)
-        const wildcard = '';
-        const vlessTls = '';
-        const troranTls = '';
-        const shadowsocks = '';
+        // Render proxies for the current page
+        pageProxies.forEach(proxy => {
+          const [ip, port, id, isp] = proxy.split(','); // Split the proxy data into individual parts
+          
+          // Set placeholder values (you can modify this to extract from proxy data if available)
+          const wildcard = '';
+          const vlessTls = '';
+          const troranTls = '';
+          const shadowsocks = '';
 
-        // Create a row with innerHTML to make it more manageable
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>
+          // Create a row with innerHTML to make it more manageable
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>
             <span>${isp} | ${id}</span>
             <span class="flag-icon flag-icon-${id.toLowerCase()}"></span> <!-- Display the flag -->
             </td>
@@ -1290,9 +1292,9 @@ function uuidv4() {
      <hr/> <button class="button8" onclick="hidePopup('ss${ip}:${port}')">Close</button> 
     </div>
     </div></td>
-        `;
+          `;
 
-        // Append the row to the proxy list
+            // Append the row to the proxy list
         proxyList.appendChild(row); // Ensure this line is present to add the row to the list
         
         row.querySelector('.copy-vless').addEventListener('click', () => {
@@ -1428,58 +1430,69 @@ row.querySelector('.copy-ss1').addEventListener('click', () => {
 });
         
         
-        // Update status as per your logic
-        checkProxyStatus(ip, port, document.getElementById(`status-${ip}-${port}`));
-      });
 
-      // Update pagination buttons
-      updatePagination();
-    }
+          // Update proxy status
+          checkProxyStatus(ip, port, document.getElementById(`status-${ip}-${port}`));
+        });
 
-    // Update pagination buttons
-    function updatePagination() {
-      pagination.innerHTML = ''; // Clear existing pagination
-
-      // Create previous button
-      const prevButton = document.createElement('button');
-      prevButton.textContent = '◁';
-      prevButton.onclick = () => updatePage(currentPage - 1);
-      pagination.appendChild(prevButton);
-
-      // Create first page button (<<<)
-      const firstButton = document.createElement('button');
-      firstButton.textContent = 'first';
-      firstButton.onclick = () => updatePage(1);
-      pagination.appendChild(firstButton);
-
-      // Create page number buttons (limited to 5 pages)
-      const startPage = Math.max(1, currentPage - 2);
-      const endPage = Math.min(totalPages, currentPage + 2);
-      for (let i = startPage; i <= endPage; i++) {
-        const pageButton = document.createElement('button');
-        pageButton.textContent = i;
-        pageButton.onclick = () => updatePage(i);
-        if (i === currentPage) pageButton.style.fontWeight = 'bold'; // Highlight current page
-        pagination.appendChild(pageButton);
+        // Update pagination buttons
+        updatePagination();
       }
 
-      // Create last page button (>>>)
-      const lastButton = document.createElement('button');
-      lastButton.textContent = 'last';
-      lastButton.onclick = () => updatePage(totalPages);
-      pagination.appendChild(lastButton);
+      // Update pagination buttons
+      function updatePagination() {
+        pagination.innerHTML = ''; // Clear existing pagination
 
-      // Create next button
-      const nextButton = document.createElement('button');
-      nextButton.textContent = '▷';
-      nextButton.onclick = () => updatePage(currentPage + 1);
-      pagination.appendChild(nextButton);
+        // Create previous button
+        const prevButton = document.createElement('button');
+        prevButton.textContent = '◁';
+        prevButton.onclick = () => updatePage(currentPage - 1);
+        pagination.appendChild(prevButton);
+
+        // Create first page button (<<<)
+        const firstButton = document.createElement('button');
+        firstButton.textContent = 'first';
+        firstButton.onclick = () => updatePage(1);
+        pagination.appendChild(firstButton);
+
+        // Create page number buttons (limited to 5 pages)
+        const startPage = Math.max(1, currentPage - 2);
+        const endPage = Math.min(totalPages, currentPage + 2);
+        for (let i = startPage; i <= endPage; i++) {
+          const pageButton = document.createElement('button');
+          pageButton.textContent = i;
+          pageButton.onclick = () => updatePage(i);
+          if (i === currentPage) pageButton.style.fontWeight = 'bold'; // Highlight current page
+          pagination.appendChild(pageButton);
+        }
+
+        // Create last page button (>>>)
+        const lastButton = document.createElement('button');
+        lastButton.textContent = 'last';
+        lastButton.onclick = () => updatePage(totalPages);
+        pagination.appendChild(lastButton);
+
+        // Create next button
+        const nextButton = document.createElement('button');
+        nextButton.textContent = '▷';
+        nextButton.onclick = () => updatePage(currentPage + 1);
+        pagination.appendChild(nextButton);
+      }
+
+      // Initialize the page with the first set of proxies
+      updatePage(1);
     }
+  })
+  .catch(error => console.error("Error fetching proxy data:", error));
 
-    // Initialize the page with the first set of proxies
-    updatePage(1);
-  }
 
+
+
+
+          
+        
+
+   
 
 </script>
 
