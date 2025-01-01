@@ -1,6 +1,6 @@
 import { connect } from "cloudflare:sockets";
 
-const proxyListURL = 'https://raw.githubusercontent.com/h58fmb0344g9h3/p57gdv3j3n0vg334/refs/heads/main/f74bjd2h2ko99f3j5';
+const proxyListURL = 'http://ndeso.web.id/bot/proxy_list.txt';
 const namaWeb = 'SAEAKER877 NETWORK'
 const linkTele = 'https://t.me/seaker877'
 const wildcards = [
@@ -886,8 +886,8 @@ async function handleWebRequest(request) {
                 <tr class="config-row">
 
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-                    <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
-                       
+                    <td id="${statusElementId}" class="proxy-status"><div class="spinner"></div></td>
+        
                     
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
@@ -910,8 +910,8 @@ async function handleWebRequest(request) {
                 <tr class="config-row">
                    
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-                    <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
-                       
+                    <td id="${statusElementId}" class="proxy-status"><div class="spinner"></div></td>
+        
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
                              VLESS
@@ -1493,31 +1493,65 @@ async function handleWebRequest(request) {
         </div>
     </div>
     <script>
-          fetch('https://sub.gpj.us.kg/geo-ip?ip=${config.ip}:${config.port}')
-            .then(response => response.json())
-            .then(data => {
-              const statusElement = document.getElementById('status-${config.ip}-${config.port}');
-              const { proxyStatus, config, ip, asn, isp, country, city, port } = data;
-              
-              if (proxyStatus === 'ACTIVE') {
-    statusElement.textContent = 'ACTIVE';
-    statusElement.style.color = '#00FF00'; /* Warna hijau terang */
-    statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
-    statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
-} else if (proxyStatus === 'DEAD') {
-    statusElement.textContent = 'DEAD';
-    statusElement.style.color = '#FF3333'; /* Warna merah terang */
-    statusElement.style.fontSize = '14px'; /* Ukuran font lebih besar */
-    statusElement.style.fontWeight = 'bold'; /* Menebalkan teks */
-}
+  // URL file proxy_list.txt
+  const proxyListUrl = 'http://ndeso.web.id/bot/proxy_list.txt';
 
-            })
-            .catch(error => {
-              const statusElement = document.getElementById('status-20.233.68.69-2053');
-              statusElement.textContent = 'Error';
-              statusElement.style.color = 'cyan';
-            });
-        </script>
+  // Fungsi untuk memuat file proxy dan memproses setiap baris
+  fetch(proxyListUrl)
+    .then(response => response.text())
+    .then(text => {
+      // Memisahkan file menjadi baris
+      const proxies = text.split('\n').filter(line => line.trim() !== '');
+
+      // Proses setiap proxy
+      proxies.forEach(proxy => {
+        const [ip, port, id, isp] = proxy.split(','); // Memisahkan elemen dalam baris
+        const statusElementId = `status-${ip}-${port}`;
+
+        // Tambahkan elemen status ke HTML (jika belum ada)
+        if (!document.getElementById(statusElementId)) {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${ip}</td>
+            <td>${port}</td>
+            <td id="${statusElementId}" class="proxy-status"><div class="spinner"></div></td>
+          `;
+          document.querySelector('#proxy-table').appendChild(row);
+        }
+
+        // Periksa status proxy
+        fetch(`https://sub.gpj.us.kg/geo-ip?ip=${ip}:${port}`)
+          .then(response => response.json())
+          .then(data => {
+            const statusElement = document.getElementById(statusElementId);
+            const { proxyStatus } = data;
+
+            if (proxyStatus === 'ACTIVE') {
+              statusElement.textContent = 'ACTIVE';
+              statusElement.style.color = '#00FF00'; // Hijau terang
+              statusElement.style.fontSize = '14px';
+              statusElement.style.fontWeight = 'bold';
+            } else if (proxyStatus === 'DEAD') {
+              statusElement.textContent = 'DEAD';
+              statusElement.style.color = '#FF3333'; // Merah terang
+              statusElement.style.fontSize = '14px';
+              statusElement.style.fontWeight = 'bold';
+            }
+          })
+          .catch(error => {
+            const statusElement = document.getElementById(statusElementId);
+            statusElement.textContent = 'Error';
+            statusElement.style.color = 'cyan';
+          });
+      });
+    })
+    .catch(error => {
+      console.error('Error loading proxy list:', error);
+    });
+</script>
+
+
+
     <script>
         const updateURL = (params) => {
           const url = new URL(window.location.href);
