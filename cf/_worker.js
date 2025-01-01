@@ -1494,8 +1494,7 @@ async function handleWebRequest(request) {
     </div>
     <script>
   // URL file proxy_list.txt
-  const proxyListUrl = 'http://ndeso.web.id/bot/proxy_list.txt';
-
+  
   // Fungsi untuk memuat file proxy dan memproses setiap baris
   fetch(proxyListUrl)
     .then(response => response.text())
