@@ -1150,13 +1150,12 @@ function uuidv4() {
     .catch(error => console.error("Error fetching proxy data:", error));
 
   // Fungsi untuk mengecek status proxy
-  // Fungsi untuk mengecek status proxy
   function checkProxyStatus(ip, port, statusElement) {
   // Menampilkan indikator loading saat memeriksa status
   statusElement.innerHTML = '<div class="loading-icon"></div>';
 
   const startTime = performance.now(); // Mencatat waktu awal
-  const StatusURL = 'https://tp1.bmkg.xyz/check?target=${ip}:${port}';
+  const StatusURL = `https://tp1.bmkg.xyz/check?target=${ip}:${port}`;
 
   // Mengambil data dari API untuk memeriksa status proxy
   fetch(StatusURL)
@@ -1168,27 +1167,26 @@ function uuidv4() {
       // Memeriksa status proxy dan menampilkannya sesuai dengan status
       if (data.proxyip) {
         // Proxy status aktif
-        statusElement.innerHTML = 
+        statusElement.innerHTML = `
           <span class="check-icon">&#10004;</span>(${latency} ms)
-        ;
+        `;
         statusElement.style.color = 'green';
       } else {
         // Proxy status mati
-        statusElement.innerHTML = 
+        statusElement.innerHTML = `
           <span class="error-icon">&#10006;</span> DEAD
-        ;
+        `;
         statusElement.style.color = 'red';
       }
     })
     .catch(() => {
       // Menangani kesalahan jika API tidak merespon atau terjadi masalah jaringan
-      statusElement.innerHTML = 
+      statusElement.innerHTML = `
         <span class="error-icon">&#10006;</span> Error
-      ;
+      `;
       statusElement.style.color = 'cyan';
     });
 }
-
   // Fungsi untuk render proxies dengan pagination
   function renderProxies(proxies, proxyList, pagination, itemsPerPage) {
     const totalPages = Math.ceil(proxies.length / itemsPerPage);
