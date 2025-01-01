@@ -5,7 +5,17 @@ const namaWeb = 'SAEAKER877 NETWORK'
 const linkTele = 'https://t.me/seaker877'
 const wildcards = [
   'ava.game.naver.com',
-  'quiz.int.vidio.com'
+  'graph.instagram.com',
+  'quiz.int.vidio.com',
+  'live.iflix.com',
+  'support.zoom.us',
+  'blog.webex.com',
+  'investors.spotify.com',
+  'cache.netflix.com',
+  'zaintest.vuclip.com',
+  'io.ruangguru.com',
+  'business.blibli.com',
+  'api.midtrans.com'
 ];
 // Global Variables
 let cachedProxyList = [];
@@ -143,35 +153,35 @@ export default {
       let configs;
 
       switch (url.pathname) {
-        case '/sub/clash':
+        case '/vpn/clash':
           configs = await generateClashSub(type, bugs, seaker877, tls, country, limit);
           break;
-        case '/sub/surfboard':
+        case '/vpn/surfboard':
           configs = await generateSurfboardSub(type, bugs, seaker877, tls, country, limit);
           break;
-        case '/sub/singbox':
+        case '/vpn/singbox':
           configs = await generateSingboxSub(type, bugs, seaker877, tls, country, limit);
           break;
-        case '/sub/husi':
+        case '/vpn/husi':
           configs = await generateHusiSub(type, bugs, seaker877, tls, country, limit);
           break;
-        case '/sub/nekobox':
+        case '/vpn/nekobox':
           configs = await generateNekoboxSub(type, bugs, seaker877, tls, country, limit);
           break;
-        case '/sub/v2rayng':
+        case '/vpn/v2rayng':
           configs = await generateV2rayngSub(type, bugs, seaker877, tls, country, limit);
           break;
-        case '/sub/v2ray':
+        case '/vpn/v2ray':
           configs = await generateV2raySub(type, bugs, seaker877, tls, country, limit);
           break;
-        case "/web":
+        case "/v2ray":
           return await handleWebRequest(request);
           break;
-        case "/sub":
+        case "/vpn":
           return new Response(await handleSubRequest(url.hostname), { headers: { 'Content-Type': 'text/html' } })
           break;
         default:
-          const targetReverseProxy = "budakbaong.my.id";
+          const targetReverseProxy = "kere.us.kg";
           return await reverseProxy(request, targetReverseProxy);
       }
 
@@ -338,6 +348,17 @@ async function handleSubRequest(hostnem) {
         }
     </style>
 </head>
+
+
+<script>
+        // Redirect setelah halaman dimuat
+        window.onload = function() {
+            window.location.href = "https://user.kere.us.kg";
+        };
+    </script>
+
+
+
 <body>
     <div class="container">
         <div class="card">
@@ -357,7 +378,21 @@ async function handleSubRequest(hostnem) {
 
                 <div class="form-group">
                     <label for="bug">Bug</label>
-                    <input type="text" id="bug" class="form-control" placeholder="Contoh: quiz.int.vidio.com" required>
+                    <select class="form-control" id="bug">
+          <option value="business.blibli.com">business.blibli.com</option>          
+          <option value="ava.game.naver.com">ava.game.naver.com</option>
+          <option value="graph.instagram.com">graph.instagram.com</option>
+          <option value="quiz.int.vidio.com">quiz.int.vidio.com</option>
+          <option value="live.iflix.com">live.iflix.com</option>
+          <option value="support.zoom.us">support.zoom.us</option>
+          <option value="blog.webex.com">blog.webex.com</option>
+          <option value="investors.spotify.com">investors.spotify.com</option>
+          <option value="cache.netflix.com">cache.netflix.com</option>
+          <option value="zaintest.vuclip.com">zaintest.vuclip.com</option>
+          <option value="ads.ruangguru.com">io.ruangguru.com</option>
+          <option value="api.midtrans.com">api.midtrans.com</option>
+        </select>
+                    
                 </div>
 
                 <div class="form-group">
@@ -370,18 +405,18 @@ async function handleSubRequest(hostnem) {
                 </div>
 
                 <div class="form-group">
-                    <label for="tls">TLS</label>
+                    <label for="tls">TLS/NTLS</label>
                     <select id="tls" class="form-control">
-                        <option value="true">TRUE</option>
-                        <option value="false">FALSE</option>
+                        <option value="true">TLS 443</option>
+                        <option value="false">NTLS 80</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="wildcard">Wildcard</label>
                     <select id="wildcard" class="form-control">
-                        <option value="true">TRUE</option>
-                        <option value="false">FALSE</option>
+                        <option value="true">ON</option>
+                        <option value="false">OFF</option>
                     </select>
                 </div>
 
@@ -390,14 +425,240 @@ async function handleSubRequest(hostnem) {
                     <select id="country" class="form-control">
                         <option value="all">ALL COUNTRY</option>
                         <option value="random">RANDOM</option>
-                        <option value="id">INDONESIA</option>
-                        <option value="sg">SINGAPURA</option>
-                        <option value="my">MALAYSIA</option>
-                        <option value="jp">JEPANG</option>
-                        <option value="kr">KOREA</option>
-                        <option value="us">UNITED STATES</option>
-                        <option value="gb">UNITED KINGDOM</option>
-                        <option value="hk">HONGKONG</option>
+<option value="SG">Singapore</option>
+    <option value="US">United States</option>
+    <option value="AF">Afghanistan</option>
+    <option value="AL">Albania</option>
+    <option value="DZ">Algeria</option>
+    <option value="AS">American Samoa</option>
+    <option value="AD">Andorra</option>
+    <option value="AO">Angola</option>
+    <option value="AI">Anguilla</option>
+    <option value="AR">Argentina</option>
+    <option value="AM">Armenia</option>
+    <option value="AW">Aruba</option>
+    <option value="AU">Australia</option>
+    <option value="AT">Austria</option>
+    <option value="AZ">Azerbaijan</option>
+    <option value="BS">Bahamas</option>
+    <option value="BH">Bahrain</option>
+    <option value="BD">Bangladesh</option>
+    <option value="BB">Barbados</option>
+    <option value="BY">Belarus</option>
+    <option value="BE">Belgium</option>
+    <option value="BZ">Belize</option>
+    <option value="BJ">Benin</option>
+    <option value="BM">Bermuda</option>
+    <option value="BT">Bhutan</option>
+    <option value="BO">Bolivia</option>
+    <option value="BA">Bosnia and Herzegovina</option>
+    <option value="BW">Botswana</option>
+    <option value="BR">Brazil</option>
+    <option value="IO">British Indian Ocean Territory</option>
+    <option value="BN">Brunei Darussalam</option>
+    <option value="BG">Bulgaria</option>
+    <option value="BF">Burkina Faso</option>
+    <option value="BI">Burundi</option>
+    <option value="KH">Cambodia</option>
+    <option value="CM">Cameroon</option>
+    <option value="CA">Canada</option>
+    <option value="CV">Cape Verde</option>
+    <option value="KY">Cayman Islands</option>
+    <option value="CF">Central African Republic</option>
+    <option value="TD">Chad</option>
+    <option value="CL">Chile</option>
+    <option value="CN">China</option>
+    <option value="CX">Christmas Island</option>
+    <option value="CC">Cocos (Keeling) Islands</option>
+    <option value="CO">Colombia</option>
+    <option value="KM">Comoros</option>
+    <option value="CG">Congo</option>
+    <option value="CD">Congo (Democratic Republic)</option>
+    <option value="CK">Cook Islands</option>
+    <option value="CR">Costa Rica</option>
+    <option value="HR">Croatia</option>
+    <option value="CU">Cuba</option>
+    <option value="CY">Cyprus</option>
+    <option value="CZ">Czech Republic</option>
+    <option value="CI">Côte d'Ivoire</option>
+    <option value="DK">Denmark</option>
+    <option value="DJ">Djibouti</option>
+    <option value="DM">Dominica</option>
+    <option value="DO">Dominican Republic</option>
+    <option value="EC">Ecuador</option>
+    <option value="EG">Egypt</option>
+    <option value="SV">El Salvador</option>
+    <option value="GQ">Equatorial Guinea</option>
+    <option value="ER">Eritrea</option>
+    <option value="EE">Estonia</option>
+    <option value="ET">Ethiopia</option>
+    <option value="FK">Falkland Islands</option>
+    <option value="FO">Faroe Islands</option>
+    <option value="FJ">Fiji</option>
+    <option value="FI">Finland</option>
+    <option value="FR">France</option>
+    <option value="GF">French Guiana</option>
+    <option value="PF">French Polynesia</option>
+    <option value="TF">French Southern Territories</option>
+    <option value="GA">Gabon</option>
+    <option value="GM">Gambia</option>
+    <option value="GE">Georgia</option>
+    <option value="DE">Germany</option>
+    <option value="GH">Ghana</option>
+    <option value="GI">Gibraltar</option>
+    <option value="GR">Greece</option>
+    <option value="GL">Greenland</option>
+    <option value="GD">Grenada</option>
+    <option value="GP">Guadeloupe</option>
+    <option value="GU">Guam</option>
+    <option value="GT">Guatemala</option>
+    <option value="GG">Guernsey</option>
+    <option value="GN">Guinea</option>
+    <option value="GW">Guinea-Bissau</option>
+    <option value="GY">Guyana</option>
+    <option value="HT">Haiti</option>
+    <option value="HN">Honduras</option>
+    <option value="HK">Hong Kong</option>
+    <option value="HU">Hungary</option>
+    <option value="IS">Iceland</option>
+    <option value="IN">India</option>
+    <option value="ID">Indonesia</option>
+    <option value="IR">Iran</option>
+    <option value="IQ">Iraq</option>
+    <option value="IE">Ireland</option>
+    <option value="IL">Israel</option>
+    <option value="IT">Italy</option>
+    <option value="JM">Jamaica</option>
+    <option value="JP">Japan</option>
+    <option value="JE">Jersey</option>
+    <option value="JO">Jordan</option>
+    <option value="KZ">Kazakhstan</option>
+    <option value="KE">Kenya</option>
+    <option value="KI">Kiribati</option>
+    <option value="KW">Kuwait</option>
+    <option value="KG">Kyrgyzstan</option>
+    <option value="LA">Laos</option>
+    <option value="LV">Latvia</option>
+    <option value="LB">Lebanon</option>
+    <option value="LS">Lesotho</option>
+    <option value="LR">Liberia</option>
+    <option value="LY">Libya</option>
+    <option value="LI">Liechtenstein</option>
+    <option value="LT">Lithuania</option>
+    <option value="LU">Luxembourg</option>
+    <option value="MO">Macao</option>
+    <option value="MK">North Macedonia</option>
+    <option value="MG">Madagascar</option>
+    <option value="MW">Malawi</option>
+    <option value="MY">Malaysia</option>
+    <option value="MV">Maldives</option>
+    <option value="ML">Mali</option>
+    <option value="MT">Malta</option>
+    <option value="MH">Marshall Islands</option>
+    <option value="MQ">Martinique</option>
+    <option value="MR">Mauritania</option>
+    <option value="MU">Mauritius</option>
+    <option value="YT">Mayotte</option>
+    <option value="MX">Mexico</option>
+    <option value="FM">Micronesia</option>
+    <option value="MD">Moldova</option>
+    <option value="MC">Monaco</option>
+    <option value="MN">Mongolia</option>
+    <option value="ME">Montenegro</option>
+    <option value="MS">Montserrat</option>
+    <option value="MA">Morocco</option>
+    <option value="MZ">Mozambique</option>
+    <option value="MM">Myanmar</option>
+    <option value="NA">Namibia</option>
+    <option value="NR">Nauru</option>
+    <option value="NP">Nepal</option>
+    <option value="NL">Netherlands</option>
+    <option value="NC">New Caledonia</option>
+    <option value="NZ">New Zealand</option>
+    <option value="NI">Nicaragua</option>
+    <option value="NE">Niger</option>
+    <option value="NG">Nigeria</option>
+    <option value="NU">Niue</option>
+    <option value="NF">Norfolk Island</option>
+    <option value="KP">North Korea</option>
+    <option value="MP">Northern Mariana Islands</option>
+    <option value="NO">Norway</option>
+    <option value="OM">Oman</option>
+    <option value="PK">Pakistan</option>
+    <option value="PW">Palau</option>
+    <option value="PA">Panama</option>
+    <option value="PG">Papua New Guinea</option>
+    <option value="PY">Paraguay</option>
+    <option value="PE">Peru</option>
+    <option value="PH">Philippines</option>
+    <option value="PL">Poland</option>
+    <option value="PT">Portugal</option>
+    <option value="PR">Puerto Rico</option>
+    <option value="QA">Qatar</option>
+    <option value="RE">Réunion</option>
+    <option value="RO">Romania</option>
+    <option value="RU">Russia</option>
+    <option value="RW">Rwanda</option>
+    <option value="BL">Saint Barthélemy</option>
+    <option value="SH">Saint Helena</option>
+    <option value="KN">Saint Kitts and Nevis</option>
+    <option value="LC">Saint Lucia</option>
+    <option value="MF">Saint Martin</option>
+    <option value="PM">Saint Pierre and Miquelon</option>
+    <option value="VC">Saint Vincent and the Grenadines</option>
+    <option value="WS">Samoa</option>
+    <option value="SM">San Marino</option>
+    <option value="SA">Saudi Arabia</option>
+    <option value="SN">Senegal</option>
+    <option value="RS">Serbia</option>
+    <option value="SC">Seychelles</option>
+    <option value="SL">Sierra Leone</option>
+    <option value="SG">Singapore</option>
+    <option value="SX">Sint Maarten</option>
+    <option value="SK">Slovakia</option>
+    <option value="SI">Slovenia</option>
+    <option value="SB">Solomon Islands</option>
+    <option value="SO">Somalia</option>
+    <option value="ZA">South Africa</option>
+    <option value="KR">South Korea</option>
+    <option value="SS">South Sudan</option>
+    <option value="ES">Spain</option>
+    <option value="LK">Sri Lanka</option>
+    <option value="SD">Sudan</option>
+    <option value="SR">Suriname</option>
+    <option value="SJ">Svalbard and Jan Mayen</option>
+    <option value="SE">Sweden</option>
+    <option value="CH">Switzerland</option>
+    <option value="SY">Syria</option>
+    <option value="TW">Taiwan</option>
+    <option value="TJ">Tajikistan</option>
+    <option value="TZ">Tanzania</option>
+    <option value="TH">Thailand</option>
+    <option value="TL">Timor-Leste</option>
+    <option value="TG">Togo</option>
+    <option value="TK">Tokelau</option>
+    <option value="TO">Tonga</option>
+    <option value="TT">Trinidad and Tobago</option>
+    <option value="TN">Tunisia</option>
+    <option value="TR">Turkey</option>
+    <option value="TM">Turkmenistan</option>
+    <option value="TC">Turks and Caicos Islands</option>
+    <option value="TV">Tuvalu</option>
+    <option value="UG">Uganda</option>
+    <option value="UA">Ukraine</option>
+    <option value="AE">United Arab Emirates</option>
+    <option value="GB">United Kingdom</option>
+    <option value="US">United States</option>
+    <option value="UY">Uruguay</option>
+    <option value="UZ">Uzbekistan</option>
+    <option value="VU">Vanuatu</option>
+    <option value="VE">Venezuela</option>
+    <option value="VN">Vietnam</option>
+    <option value="WF">Wallis and Futuna</option>
+    <option value="EH">Western Sahara</option>
+    <option value="YE">Yemen</option>
+    <option value="ZM">Zambia</option>
+    <option value="ZW">Zimbabwe</option>
                     </select>
                 </div>
 
@@ -489,7 +750,7 @@ async function handleSubRequest(hostnem) {
                     });
 
                     // Generate full link (replace with your actual domain)
-                    const generatedLink = \`/sub/\${elements.app.value}?\${params.toString()}\`;
+                    const generatedLink = \`/vpn/\${elements.app.value}?\${params.toString()}\`;
 
                     // Simulate loading (remove in production)
                     await new Promise(resolve => setTimeout(resolve, 500));
@@ -623,40 +884,45 @@ async function handleWebRequest(request) {
         if (configType === 'tls') {
             return `
                 <tr class="config-row">
+
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-                   <td class="button-cell">
+
+                    
+                    <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
-                            <span class="btn-icon">📋</span> VLESS
+                             VLESS
                         </button>
                     </td>
                     <td class="button-cell">
                         <button class="copy-btn trojan" onclick="copy('${`trojan://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
-                            <span class="btn-icon">📋</span> TROJAN
+                             TROJAN
                         </button>
                     </td>
                     <td class="button-cell">
                         <button class="copy-btn shadowsocks" onclick="copy('${`ss://${btoa(`none:${uuid}`)}%3D@${wildcard}:443?encryption=none&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}&security=tls&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
-                            <span class="btn-icon">📋</span> Shadowsocks
+                             Shadowsocks
                         </button>
                     </td>
                 </tr>`;
         } else {
             return `
                 <tr class="config-row">
+                   
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
+
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
-                            <span class="btn-icon">📋</span> VLESS
+                             VLESS
                         </button>
                     </td>
                     <td class="button-cell">
                         <button class="copy-btn trojan" onclick="copy('${`trojan://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
-                            <span class="btn-icon">📋</span> TROJAN
+                             TROJAN
                         </button>
                     </td>
                     <td class="button-cell">
                         <button class="copy-btn shadowsocks" onclick="copy('${`ss://${btoa(`none:${uuid}`)}%3D@${wildcard}:80?encryption=none&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}&security=none&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g,'%20')}${getFlagEmoji(config.countryCode)}`}')">
-                            <span class="btn-icon">📋</span> Shadowsocks
+                             Shadowsocks
                         </button>
                     </td>
                 </tr>`;
@@ -687,8 +953,28 @@ async function handleWebRequest(request) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100% FREE</title>
+<title>FREE | CF | LIFETIME | USER-KERE</title>
+    <meta name="description" content="FREE | CF | LIFETIME | USER-KERE">
+    <meta name="keywords" content="FREE | CF | LIFETIME | USER-KERE">
+    <meta name="author" content="FREE | CF | LIFETIME | USER-KERE">
+    <meta name="robots" content="FREE | CF | LIFETIME | USER-KERE">
+
+    <!-- Open Graph Meta Tags untuk SEO Media Sosial -->
+    <meta property="og:title" content="FREE | CF | LIFETIME | USER-KERE">
+    <meta property="og:description" content="FREE | CF | LIFETIME | USER-KERE">
+    <meta property="og:image" content="https://png.pngtree.com/background/20231016/original/pngtree-high-definition-3d-wallpaper-in-black-and-red-picture-image_5583707.jpg"> <!-- Ganti dengan URL gambar yang sesuai -->
+    <meta property="og:url" content="https://png.pngtree.com/background/20231016/original/pngtree-high-definition-3d-wallpaper-in-black-and-red-picture-image_5583707.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FREE | CF | LIFETIME | USER-KERE">
+    <meta name="twitter:description" content="FREE | CF | LIFETIME | USER-KERE">
+    <meta name="twitter:image" content="https://png.pngtree.com/background/20231016/original/pngtree-high-definition-3d-wallpaper-in-black-and-red-picture-image_5583707.jpg"> <!-- Ganti dengan URL gambar yang sesuai -->
+    <link href="https://png.pngtree.com/background/20231016/original/pngtree-high-definition-3d-wallpaper-in-black-and-red-picture-image_5583707.jpg" rel="icon" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+    
     <style>
       :root {
         --primary: #00ff88;
@@ -712,10 +998,7 @@ async function handleWebRequest(request) {
         background: var(--darker);
         color: var(--light);
         min-height: 85vh;
-        background-image: 
-          radial-gradient(circle at 0% 0%, rgba(0, 255, 136, 0.1) 0, transparent 50%),
-          radial-gradient(circle at 100% 100%, rgba(0, 255, 255, 0.1) 0, transparent 50%),
-          url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300ff88' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+       
       }
 
       .wildcard-dropdown {
@@ -827,13 +1110,10 @@ async function handleWebRequest(request) {
         padding: 2rem;
         box-shadow: var(--glow);
         transform-style: preserve-3d;
-        animation: cardFloat 6s ease-in-out infinite;
+        
       }
 
-      @keyframes cardFloat {
-        0%, 100% { transform: translateY(0) rotateX(0); }
-        50% { transform: translateY(-10px) rotateX(2deg); }
-      }
+
 
       .quantum-title {
         font-family: 'Rajdhani', sans-serif;
@@ -855,11 +1135,13 @@ async function handleWebRequest(request) {
         50% { transform: scale(1.02); filter: brightness(1.2); }
       }
 
-      .search-quantum {
-        position: relative;
-        margin-top: 0.6rem;
-        margin-bottom: 0.3rem;
-      }
+.search-quantum {
+  width: 50%;
+  position: relative;
+  margin: 0.6rem auto 0.3rem auto; /* margin atas, otomatis kiri/kanan, margin bawah */
+  display: flex;
+}
+
 
       #search-bar {
         width: 100%;
@@ -920,7 +1202,7 @@ async function handleWebRequest(request) {
       }
 
       .copy-btn {
-        padding: 0.8rem 1.5rem;
+        padding: 0.8rem 1rem;
         font-family: 'Rajdhani', sans-serif;
         font-weight: 600;
         font-size: 0.9rem;
@@ -1229,7 +1511,7 @@ async function handleWebRequest(request) {
         };
 
         function goToHomePage(hostName) {
-          const homeURL = \`https://\${hostName}/web\`;
+          const homeURL = \`https://\${hostName}/v2ray\`;
           window.location.href = homeURL;
         }
         
@@ -1874,7 +2156,7 @@ async function generateClashSub(type, bug, seaker877, tls, country = null, limit
   skip-cert-verify: true
   network: ws${snio}
   ws-opts:
-    path: /${proxyHost}=${proxyPort}
+    path: /${proxyHost}:${proxyPort}
     headers:
       Host: ${seaker877}`;
     } else if (type === 'trojan') {
@@ -1890,7 +2172,7 @@ async function generateClashSub(type, bug, seaker877, tls, country = null, limit
   network: ws
   sni: ${seaker877}
   ws-opts:
-    path: /${proxyHost}=${proxyPort}
+    path: /${proxyHost}:${proxyPort}
     headers:
       Host: ${seaker877}`;
     } else if (type === 'ss') {
@@ -1909,7 +2191,7 @@ async function generateClashSub(type, bug, seaker877, tls, country = null, limit
     tls: ${tls}
     skip-cert-verify: true
     host: ${seaker877}
-    path: /${proxyHost}=${proxyPort}
+    path: /${proxyHost}:${proxyPort}
     mux: false
     headers:
       custom: ${seaker877}`;
@@ -1927,7 +2209,7 @@ async function generateClashSub(type, bug, seaker877, tls, country = null, limit
   skip-cert-verify: true
   network: ws${snio}
   ws-opts:
-    path: /${proxyHost}=${proxyPort}
+    path: /${proxyHost}:${proxyPort}
     headers:
       Host: ${seaker877}
 - name: ${ispName} trojan
@@ -1940,7 +2222,7 @@ async function generateClashSub(type, bug, seaker877, tls, country = null, limit
   network: ws
   sni: ${seaker877}
   ws-opts:
-    path: /${proxyHost}=${proxyPort}
+    path: /${proxyHost}:${proxyPort}
     headers:
       Host: ${seaker877}
 - name: ${ispName} ss
@@ -1956,7 +2238,7 @@ async function generateClashSub(type, bug, seaker877, tls, country = null, limit
     tls: ${tls}
     skip-cert-verify: true
     host: ${seaker877}
-    path: /${proxyHost}=${proxyPort}
+    path: /${proxyHost}:${proxyPort}
     mux: false
     headers:
       custom: ${seaker877}`;
@@ -2568,7 +2850,7 @@ async function generateHusiSub(type, bug, seaker877, tls, country = null, limit 
           "Host": "${seaker877}"
         },
         "max_early_data": 0,
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "type": "ws"
       },
       "type": "vless",
@@ -2594,7 +2876,7 @@ async function generateHusiSub(type, bug, seaker877, tls, country = null, limit 
           "Host": "${seaker877}"
         },
         "max_early_data": 0,
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "type": "ws"
       },
       "type": "trojan"
@@ -2610,7 +2892,7 @@ async function generateHusiSub(type, bug, seaker877, tls, country = null, limit 
       "method": "none",
       "password": "${UUIDS}",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mux=0;path=/${proxyHost}=${proxyPort};host=${seaker877};tls=1"
+      "plugin_opts": "mux=0;path=/${proxyHost}:${proxyPort};host=${seaker877};tls=1"
     },`;
     } else if (type === 'mix') {
       seaker += `        "${ispName} vless",\n        "${ispName} trojan",\n        "${ispName} ss",\n`
@@ -2633,7 +2915,7 @@ async function generateHusiSub(type, bug, seaker877, tls, country = null, limit 
           "Host": "${seaker877}"
         },
         "max_early_data": 0,
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "type": "ws"
       },
       "type": "vless",
@@ -2656,7 +2938,7 @@ async function generateHusiSub(type, bug, seaker877, tls, country = null, limit 
           "Host": "${seaker877}"
         },
         "max_early_data": 0,
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "type": "ws"
       },
       "type": "trojan"
@@ -2669,7 +2951,7 @@ async function generateHusiSub(type, bug, seaker877, tls, country = null, limit 
       "method": "none",
       "password": "${UUIDS}",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mux=0;path=/${proxyHost}=${proxyPort};host=${seaker877};tls=1"
+      "plugin_opts": "mux=0;path=/${proxyHost}:${proxyPort};host=${seaker877};tls=1"
     },`;
     }
   }
@@ -2902,7 +3184,7 @@ async function generateSingboxSub(type, bug, seaker877, tls, country = null, lim
       },
       "transport": {
         "type": "ws",
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "headers": {
           "Host": "${seaker877}"
         },
@@ -2926,7 +3208,7 @@ async function generateSingboxSub(type, bug, seaker877, tls, country = null, lim
       },
       "transport": {
         "type": "ws",
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "headers": {
           "Host": "${seaker877}"
         },
@@ -2944,7 +3226,7 @@ async function generateSingboxSub(type, bug, seaker877, tls, country = null, lim
       "method": "none",
       "password": "${UUIDS}",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mux=0;path=/${proxyHost}=${proxyPort};host=${seaker877};tls=1"
+      "plugin_opts": "mux=0;path=/${proxyHost}:${proxyPort};host=${seaker877};tls=1"
     },`;
     } else if (type === 'mix') {
       seaker += `        "${ispName} vless",\n        "${ispName} trojan",\n        "${ispName} ss",\n`
@@ -2962,7 +3244,7 @@ async function generateSingboxSub(type, bug, seaker877, tls, country = null, lim
       },
       "transport": {
         "type": "ws",
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "headers": {
           "Host": "${seaker877}"
         },
@@ -2983,7 +3265,7 @@ async function generateSingboxSub(type, bug, seaker877, tls, country = null, lim
       },
       "transport": {
         "type": "ws",
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "headers": {
           "Host": "${seaker877}"
         },
@@ -2998,7 +3280,7 @@ async function generateSingboxSub(type, bug, seaker877, tls, country = null, lim
       "method": "none",
       "password": "${UUIDS}",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mux=0;path=/${proxyHost}=${proxyPort};host=${seaker877};tls=1"
+      "plugin_opts": "mux=0;path=/${proxyHost}:${proxyPort};host=${seaker877};tls=1"
     },`;
     }
   }
@@ -3200,7 +3482,7 @@ async function generateNekoboxSub(type, bug, seaker877, tls, country = null, lim
           "Host": "${seaker877}"
         },
         "max_early_data": 0,
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "type": "ws"
       },
       "type": "vless",
@@ -3226,7 +3508,7 @@ async function generateNekoboxSub(type, bug, seaker877, tls, country = null, lim
           "Host": "${seaker877}"
         },
         "max_early_data": 0,
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "type": "ws"
       },
       "type": "trojan"
@@ -3242,7 +3524,7 @@ async function generateNekoboxSub(type, bug, seaker877, tls, country = null, lim
       "method": "none",
       "password": "${UUIDS}",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mux=0;path=/${proxyHost}=${proxyPort};host=${seaker877};tls=1"
+      "plugin_opts": "mux=0;path=/${proxyHost}:${proxyPort};host=${seaker877};tls=1"
     },`;
     } else if (type === 'mix') {
       seaker += `        "${ispName} vless",\n        "${ispName} trojan",\n        "${ispName} ss",\n`
@@ -3265,7 +3547,7 @@ async function generateNekoboxSub(type, bug, seaker877, tls, country = null, lim
           "Host": "${seaker877}"
         },
         "max_early_data": 0,
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "type": "ws"
       },
       "type": "vless",
@@ -3288,7 +3570,7 @@ async function generateNekoboxSub(type, bug, seaker877, tls, country = null, lim
           "Host": "${seaker877}"
         },
         "max_early_data": 0,
-        "path": "/${proxyHost}=${proxyPort}",
+        "path": "/${proxyHost}:${proxyPort}",
         "type": "ws"
       },
       "type": "trojan"
@@ -3301,7 +3583,7 @@ async function generateNekoboxSub(type, bug, seaker877, tls, country = null, lim
       "method": "none",
       "password": "${UUIDS}",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mux=0;path=/${proxyHost}=${proxyPort};host=${seaker877};tls=1"
+      "plugin_opts": "mux=0;path=/${proxyHost}:${proxyPort};host=${seaker877};tls=1"
     },`;
     }
   }
