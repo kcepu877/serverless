@@ -717,7 +717,24 @@ body {
       <div>
 <span class="filter-label">Search:</span>
 <input type="text" id="search-bar" placeholder="Search ID" />
-      </div></div>
+      </div><div id="selectContainer">
+  <label for="wildcard">Select Service:</label>
+  <select class="service-selector" id="wildcard">
+    <option value="">NO WILDCARD</option>
+    <option value="business.blibli.com">business.blibli.com</option>
+    <option value="ava.game.naver.com">ava.game.naver.com</option>
+    <option value="graph.instagram.com">graph.instagram.com</option>
+    <option value="quiz.int.vidio.com">quiz.int.vidio.com</option>
+    <option value="live.iflix.com.com">live.iflix.com</option>
+    <option value="support.zoom.us">support.zoom.us</option>
+    <option value="blog.webex.com">blog.webex.com</option>
+    <option value="investors.spotify.com">investors.spotify.com</option>
+    <option value="cache.netflix.com">cache.netflix.com</option>
+    <option value="zaintest.vuclip.com">zaintest.vuclip.com</option>
+    <option value="ads.ruangguru.com">io.ruangguru.com</option>
+    <option value="api.midtrans.com">api.midtrans.com</option>
+  </select>
+</div></div>
     <div id="flag-container"></div>
 
       <div class="table-container">
@@ -726,7 +743,7 @@ body {
         <tr>          
           <th>ISP || COUNTRY</th>
           <th>STATUS</th>
-          <th>WILDCARD</th>
+          
           <th>VLESS TLS 443</th>
           <th>TRORAN TLS 443</th>
           <th>SHADOWSOCKS</th>
@@ -1283,21 +1300,7 @@ function uuidv4() {
           <td>
             <span id="status-${ip}-${port}">Loading...</span>
           </td>
-          <td><select class="service-selector" id="wildcard">
-          <option value="">NO WILDCARD</option>
-          <option value="business.blibli.com">business.blibli.com</option>          
-          <option value="ava.game.naver.com">ava.game.naver.com</option>
-          <option value="graph.instagram.com">graph.instagram.com</option>
-          <option value="quiz.int.vidio.com">quiz.int.vidio.com</option>
-          <option value="live.iflix.com.com">live.iflix.com</option>
-          <option value="support.zoom.us">support.zoom.us</option>
-          <option value="blog.webex.com">blog.webex.com</option>
-          <option value="investors.spotify.com">investors.spotify.com</option>
-          <option value="cache.netflix.com">cache.netflix.com</option>
-          <option value="zaintest.vuclip.com">zaintest.vuclip.com</option>
-          <option value="ads.ruangguru.com">io.ruangguru.com</option>
-          <option value="api.midtrans.com">api.midtrans.com</option>
-        </select></td>
+          
           <td><button class="button" onclick="showPopup('vtls${ip}:${port}')">VLESS TLS 443</button>
       <div class="popup" id="vtls${ip}:${port}">
       <div class="popup-content"><hr/><br>
