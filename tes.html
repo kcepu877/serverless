@@ -477,271 +477,147 @@
 </head>
 <body>
     <div class="quantum-container">
-        <div class="quantum-card">
-            <h1 class="quantum-title">
-              <a href="${linkTele}" target="_blank" rel="noopener noreferrer" style="font-family: 'Rajdhani', sans-serif;">
-                ${namaWeb}
-              </a>
-            </h1>
-            
-            <div class="search-quantum" style="display: flex; align-items: center; flex-direction: column;">
-              <div style="display: flex; width: 100%;">
-                <input type="text" 
-                  id="search-bar" 
-                  placeholder="Search by IP, CountryCode, or ISP"
-                  value="${searchQuery}" 
-                  style="flex: 1; padding: 8px;"/>
-                <button id="search-button" class="button-style">Search</button>
-              </div>
-              ${searchQuery ? `<button id="home-button" class="button-style" style="margin-top: 0.4rem;" onclick="goToHomePage('${hostName}')">
-                  Home Page
-                </button>` : ""}
-            </div>
-            
-            <div class="wildcard-dropdown">
-              <select id="wildcard" name="wildcard" onchange="onWildcardChange(event)">
-                <option value="" ${!selectedWildcard ? "selected" : ""}>No Wildcard</option>
-                ${wildcards.map((w) => `<option value="${w}" ${selectedWildcard === w ? "selected" : ""}>${w}</option>`).join("")}
-              </select>
+  <div class="quantum-card">
+    <h1 class="quantum-title">
+      <a href="${linkTele}" target="_blank" rel="noopener noreferrer" style="font-family: 'Rajdhani', sans-serif;">
+        ${namaWeb}
+      </a>
+    </h1>
 
-              <select id="configType" name="configType" onchange="onConfigTypeChange(event)">
-                <option value="tls" ${selectedConfigType === "tls" ? "selected" : ""}>TLS</option>
-                <option value="non-tls" ${selectedConfigType === "non-tls" ? "selected" : ""}>NON TLS</option>
-              </select>
-            </div>
-
-            <div class="table-wrapper">
-              <table class="quantum-table">
-                <thead>
-                    <tr>
-                        <th>ISP || COUNTRY</th>
-                        <th>STATUS</th>
-                        <th>VLESS</th>
-                        <th>TROJAN</th>
-                        <th>SHADOWSOCKS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${tableRows}
-                </tbody>
-              </table>
-            </div>
-
-            <div class="quantum-pagination">
-                ${prevPage}
-                ${paginationButtons.join("")}
-                ${nextPage}
-            </div>
-          <!-- Showing X to Y of Z Proxies message -->
-          <div style="text-align: center; margin-top: 16px; color: var(--primary); font-family: 'Rajdhani', sans-serif;">
-            Showing ${startIndex + 1} to ${endIndex} of ${totalFilteredConfigs} Proxies
-          </div>
-        </div>
+    <div class="search-quantum" style="display: flex; align-items: center; flex-direction: column;">
+      <div style="display: flex; width: 100%;">
+        <input 
+          type="text" 
+          id="search-bar" 
+          placeholder="Search by IP, CountryCode, or ISP" 
+          value="${searchQuery}" 
+          style="flex: 1; padding: 8px;" 
+        />
+        <button id="search-button" class="button-style">Search</button>
+      </div>
+      ${searchQuery ? `
+        <button 
+          id="home-button" 
+          class="button-style" 
+          style="margin-top: 0.4rem;" 
+          onclick="goToHomePage('${hostName}')"
+        >
+          Home Page
+        </button>` : ""}
     </div>
-  <script>
-return html;
-}
-__name(handleSubRequest, "handleSubRequest");
-async function handleWebRequest(request) {
-  const apiUrl = proxyListURL;
-  const fetchConfigs = /* @__PURE__ */ __name(async () => {
-    try {
-      const response = await fetch(apiUrl);
-      const text = await response.text();
-      let pathCounters = {};
-      const configs2 = text.trim().split("\n").map((line) => {
-        const [ip, port, countryCode, isp] = line.split(",");
-        if (!pathCounters[countryCode]) {
-          pathCounters[countryCode] = 1;
-        }
-        const path = `/${countryCode}${pathCounters[countryCode]}`;
-        pathCounters[countryCode]++;
-        return { ip, port, countryCode, isp, path };
-      });
-      return configs2;
-    } catch (error) {
-      console.error("Error fetching configurations:", error);
-      return [];
-    }
-  }, "fetchConfigs");
-  const generateUUIDv42 = /* @__PURE__ */ __name(() => {
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-      const r = Math.random() * 16 | 0;
-      const v = c === "x" ? r : r & 3 | 8;
-      return v.toString(16);
+
+    <div class="wildcard-dropdown" style="display: flex; gap: 10px; margin-top: 10px;">
+      <select id="wildcard" name="wildcard" onchange="onWildcardChange(event)">
+        <option value="" ${!selectedWildcard ? "selected" : ""}>No Wildcard</option>
+        ${wildcards.map((w) => `
+          <option value="${w}" ${selectedWildcard === w ? "selected" : ""}>
+            ${w}
+          </option>`).join("")}
+      </select>
+
+      <select id="configType" name="configType" onchange="onConfigTypeChange(event)">
+        <option value="tls" ${selectedConfigType === "tls" ? "selected" : ""}>TLS</option>
+        <option value="non-tls" ${selectedConfigType === "non-tls" ? "selected" : ""}>NON TLS</option>
+      </select>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="quantum-table">
+        <thead>
+          <tr>
+            <th>ISP || COUNTRY</th>
+            <th>STATUS</th>
+            <th>VLESS</th>
+            <th>TROJAN</th>
+            <th>SHADOWSOCKS</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="quantum-pagination">
+      ${prevPage}
+      ${paginationButtons.join("")}
+      ${nextPage}
+    </div>
+
+    <div style="text-align: center; margin-top: 16px; color: var(--primary); font-family: 'Rajdhani', sans-serif;">
+      Showing ${startIndex + 1} to ${endIndex} of ${totalFilteredConfigs} Proxies
+    </div>
+  </div>
+</div>
+
+<script>
+  const updateURL = (params) => {
+    const url = new URL(window.location.href);
+
+    params.forEach(({ key, value }) => {
+      if (key === 'search' && value) {
+        url.searchParams.set('page', '1');
+      }
+      if (value) {
+        url.searchParams.set(key, value);
+      } else {
+        url.searchParams.delete(key);
+      }
     });
-  }, "generateUUIDv4");
-  const getFlagEmoji = /* @__PURE__ */ __name((countryCode) => {
-    if (!countryCode)
-      return "\u{1F3F3}\uFE0F";
-    return countryCode.toUpperCase().split("").map((char) => String.fromCodePoint(127462 - 65 + char.charCodeAt(0))).join("");
-  }, "getFlagEmoji");
-  const url = new URL(request.url);
-  const hostName = url.hostname;
-  const page = parseInt(url.searchParams.get("page")) || 1;
-  const searchQuery = url.searchParams.get("search") || "";
-  const selectedWildcard = url.searchParams.get("wildcard") || null;
-  const selectedConfigType = url.searchParams.get("configType") || "tls";
-  const configsPerPage = 20;
-  const configs = await fetchConfigs();
-  const totalConfigs = configs.length;
-  let filteredConfigs = configs;
-  if (searchQuery.includes(":")) {
-    filteredConfigs = configs.filter(
-      (config) => `${config.ip}:${config.port}`.includes(searchQuery)
-    );
-  } else if (searchQuery.length === 2) {
-    filteredConfigs = configs.filter(
-      (config) => config.countryCode.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  } else if (searchQuery.length > 2) {
-    filteredConfigs = configs.filter(
-      (config) => config.ip.toLowerCase().includes(searchQuery.toLowerCase()) || `${config.ip}:${config.port}`.includes(searchQuery.toLowerCase()) || config.isp.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+
+    window.location.href = url.toString();
+  };
+
+  function goToHomePage(hostName) {
+    const homeURL = \`https://\${hostName}/v2ray\`;
+    window.location.href = homeURL;
   }
-  const totalFilteredConfigs = filteredConfigs.length;
-  const totalPages = Math.ceil(totalFilteredConfigs / configsPerPage);
-  const startIndex = (page - 1) * configsPerPage;
-  const endIndex = Math.min(startIndex + configsPerPage, totalFilteredConfigs);
-  const visibleConfigs = filteredConfigs.slice(startIndex, endIndex);
-  const configType = url.searchParams.get("configType") || "tls";
-  const tableRows = visibleConfigs.map((config) => {
-    const uuid = generateUUIDv42();
-    const wildcard = selectedWildcard || hostName;
-    const modifiedHostName = selectedWildcard ? `${selectedWildcard}.${hostName}` : hostName;
-    if (configType === "tls") {
-      return `
-                <tr class="config-row">
 
-                    <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-<td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
+  function onWildcardChange(event) {
+    updateURL([{ key: 'wildcard', value: event.target.value }]);
+  }
 
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('${`trojan://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('${`ss://${btoa(`none:${uuid}`)}%3D@${wildcard}:443?encryption=none&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}&security=tls&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>`;
+  function onConfigTypeChange(event) {
+    updateURL([{ key: 'configType', value: event.target.value }]);
+  }
+
+  function copy(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => showToast('Configuration copied successfully! 🚀'))
+      .catch(() => showToast('Failed to copy configuration ❌', true));
+  }
+
+  function showToast(message, isError = false) {
+    const toast = document.createElement('div');
+    toast.className = 'quantum-toast';
+    toast.textContent = message;
+    toast.style.background = isError ? '#ff3366' : '#4caf50';
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(100%)';
+      setTimeout(() => toast.remove(), 300);
+    }, 2000);
+  }
+
+  function executeSearch() {
+    const query = document.getElementById('search-bar').value.trim();
+    if (query) {
+      updateURL([{ key: 'search', value: query }]);
     } else {
-      return `
-                <tr class="config-row">
-                   <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
-
-                    <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('${`trojan://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('${`ss://${btoa(`none:${uuid}`)}%3D@${wildcard}:80?encryption=none&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}&security=none&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>`;
+      alert('Please enter a search term.');
     }
-  }).join("");
-  const paginationButtons = [];
-  const pageRange = 2;
-  for (let i = Math.max(1, page - pageRange); i <= Math.min(totalPages, page + pageRange); i++) {
-    paginationButtons.push(
-      `<a href="?page=${i}&wildcard=${encodeURIComponent(selectedWildcard)}&configType=${encodeURIComponent(selectedConfigType)}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""}" class="pagination-number ${i === page ? "active" : ""}">${i}</a>`
-    );
   }
-  const prevPage = page > 1 ? `<a href="?page=${page - 1}&wildcard=${encodeURIComponent(selectedWildcard)}&configType=${encodeURIComponent(selectedConfigType)}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""}" class="pagination-arrow">\u25C1</a>` : "";
-  const nextPage = page < totalPages ? `<a href="?page=${page + 1}&wildcard=${encodeURIComponent(selectedWildcard)}&configType=${encodeURIComponent(selectedConfigType)}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""}" class="pagination-arrow">\u25B7</a>` : "";
-  
 
-      
-  </script>
-    <script>
-        const updateURL = (params) => {
-          const url = new URL(window.location.href);
+  document.getElementById('search-bar').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      executeSearch();
+    }
+  });
 
-          params.forEach(({ key, value }) => {
-            if (key === 'search' && value) {
-              // Reset ke halaman 1 jika parameter pencarian diperbarui
-              url.searchParams.set('page', '1');
-            }
-            if (value) {
-              url.searchParams.set(key, value);
-            } else {
-              url.searchParams.delete(key);
-            }
-          });
+  document.getElementById('search-button').addEventListener('click', executeSearch);
+</script>
 
-          // Redirect ke URL yang telah diperbarui
-          window.location.href = url.toString();
-        };
-
-        function goToHomePage(hostName) {
-          const homeURL = \`https://\${hostName}/v2ray\`;
-          window.location.href = homeURL;
-        }
-        
-        function onWildcardChange(event) {
-          updateURL([{ key: 'wildcard', value: event.target.value }]);
-        }
-
-        function onConfigTypeChange(event) {
-          updateURL([{ key: 'configType', value: event.target.value }]);
-        }
-
-        function copy(text) {
-            navigator.clipboard.writeText(text)
-                .then(() => showToast('Configuration copied successfully! \u{1F680}'))
-                .catch(() => showToast('Failed to copy configuration \u274C', true));
-        }
-
-        function showToast(message, isError = false) {
-            const toast = document.createElement('div');
-            toast.className = 'quantum-toast';
-            toast.textContent = message;
-            if (isError) {
-                toast.style.background = '#ff3366';
-            }
-            document.body.appendChild(toast);
-
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateY(100%)';
-                setTimeout(() => toast.remove(), 300);
-            }, 2000);
-        }
-
-        function executeSearch() {
-          const query = document.getElementById('search-bar').value.trim();
-          if (query) {
-            updateURL([{ key: 'search', value: query }]);
-          } else {
-            alert('Please enter a search term.');
-          }
-        }
-
-        document.getElementById('search-bar').addEventListener('keydown', (event) => {
-          if (event.key === 'Enter') {
-            executeSearch();
-          }
-        });
-
-        document.getElementById('search-button').addEventListener('click', executeSearch);
-    <\/script>
 </body>
 </html>
