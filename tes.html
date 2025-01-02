@@ -717,7 +717,7 @@ body {
       <div>
 <span class="filter-label">Search:</span>
 <input type="text" id="search-bar" placeholder="Search ID" />
-      </div><div id="selectContainer">
+      </div><div id="service-selector-container">
   <label for="wildcard">Select Service:</label>
   <select class="service-selector" id="wildcard">
     <option value="">NO WILDCARD</option>
@@ -1184,7 +1184,9 @@ function uuidv4() {
     const searchInput = document.getElementById('search-bar');
     const totalProxyElement = document.getElementById('total-proxy');
     const filteredProxyElement = document.getElementById('filtered-proxy');
-
+    const serviceSelector = document.getElementById("service-selector");
+  
+      
     // Tampilkan total proxy keseluruhan
     totalProxyElement.innerHTML = `<strong>${allProxies.length}</strong> `;
 
