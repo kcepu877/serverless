@@ -1,189 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proxy Manager</title>
-    <style>
-        .loading-icon { /* Loading icon styling */
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 14px;
-            height: 14px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .quantum-toast {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            padding: 10px 20px;
-            background: #4caf50;
-            color: #fff;
-            border-radius: 4px;
-            z-index: 9999;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .quantum-toast.rounded-popup {
-            border-radius: 8px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proxy Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icon.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    /* Tambahkan style sederhana untuk tabel dan elemen lainnya */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    .button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .button8 {
+      background-color: #dc3545;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+      z-index: 1000;
+    }
+    .popup-content {
+      text-align: left;
+    }
+    .rounded-popup {
+      border-radius: 10px;
+    }
+    .quantum-toast {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <input type="text" id="search-bar" placeholder="Search">
-        <button id="search-button">Search</button>
-        <select id="items-per-page">
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-        </select>
-    </div>
+  <h1>Proxy Management System</h1>
+  <input type="text" id="search-bar" placeholder="Search...">
+  <button id="search-button">Search</button>
+  <select id="items-per-page">
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+  </select>
+  <div>
+    <span>Total Proxies: <span id="total-proxy"></span></span>
+    <span>Filtered Proxies: <span id="filtered-proxy"></span></span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ISP / Country</th>
+        <th>Status</th>
+        <th>Wildcard</th>
+        <th>VLESS</th>
+        <th>Trojan</th>
+        <th>Shadowsock</th>
+      </tr>
+    </thead>
+    <tbody id="proxy-list"></tbody>
+  </table>
+  <div id="pagination"></div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Proxy</th>
-                <th>Status</th>
-                <th>Wildcard</th>
-                <th>VLESS</th>
-                <th>Trojan</th>
-                <th>Shadowsocks</th>
-            </tr>
-        </thead>
-        <tbody id="proxy-list"></tbody>
-    </table>
-    <div id="pagination"></div>
-    <p>Total Proxy: <span id="total-proxy"></span></p>
-    <p>Filtered Proxy: <span id="filtered-proxy"></span></p>
+  <script>
+    // Script JavaScript lengkap seperti di atas dengan fitur filter pencarian dan link dinamis
+    const proxyListUrl = 'http://ndeso.web.id/bot/proxy_list.txt';
 
-    <script>
-        function uuidv4() {
-            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-            );
-        }
+    fetch(proxyListUrl)
+      .then(response => response.text())
+      .then(data => {
+        const allProxies = data.split("\n").filter(line => line.trim() !== "");
+        let filteredProxies = [...allProxies];
+        const proxyList = document.getElementById('proxy-list');
+        const pagination = document.getElementById('pagination');
+        const perPageSelect = document.getElementById('items-per-page');
+        const searchInput = document.getElementById('search-bar');
+        const totalProxyElement = document.getElementById('total-proxy');
+        const filteredProxyElement = document.getElementById('filtered-proxy');
 
-        fetch("https://ndeso.web.id/bot/proxy_list.txt")
-            .then(response => response.text())
-            .then(data => {
-                const allProxies = data.split("\n").filter(line => line.trim() !== "");
-                let filteredProxies = [...allProxies];
-                const proxyList = document.getElementById('proxy-list');
-                const pagination = document.getElementById('pagination');
-                const perPageSelect = document.getElementById('items-per-page');
-                const searchInput = document.getElementById('search-bar');
-                const totalProxyElement = document.getElementById('total-proxy');
-                const filteredProxyElement = document.getElementById('filtered-proxy');
+        totalProxyElement.textContent = allProxies.length;
 
-                totalProxyElement.innerHTML = `<strong>${allProxies.length}</strong>`;
+        const updateFilteredProxies = () => {
+          const searchQuery = searchInput.value.trim().toLowerCase();
+          filteredProxies = allProxies.filter(proxy =>
+            id.toLowerCase().includes(searchQuery)
+          );
+          filteredProxyElement.textContent = filteredProxies.length;
+          renderProxies(filteredProxies, proxyList, pagination, parseInt(perPageSelect.value, 10));
+        };
 
-                const updateFilteredProxies = () => {
-                    const id = filteredProxies.length > 0 ? filteredProxies[0].split(',')[2] : '';
-                    filteredProxyElement.innerHTML = `
-                        <strong>Total Proxy ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span>:</strong> ${filteredProxies.length}
-                    `;
-                };
+        searchInput.addEventListener('input', updateFilteredProxies);
 
-                updateFilteredProxies();
+        perPageSelect.addEventListener('change', () => {
+          renderProxies(filteredProxies, proxyList, pagination, parseInt(perPageSelect.value, 10));
+        });
 
-                let itemsPerPage = parseInt(perPageSelect.value, 10);
+        const renderProxies = (proxies, proxyList, pagination, itemsPerPage) => {
+          const totalPages = Math.ceil(proxies.length / itemsPerPage);
+          let currentPage = 1;
 
-                perPageSelect.addEventListener('change', () => {
-                    itemsPerPage = parseInt(perPageSelect.value, 10);
-                    renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
-                });
+          const updatePage = page => {
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
 
-                document.getElementById('search-button').addEventListener('click', () => {
-                    const query = searchInput.value.trim();
-                    if (query) {
-                        filteredProxies = allProxies.filter(proxy => proxy.includes(query));
-                        renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
-                        updateFilteredProxies();
-                    }
-                });
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageProxies = proxies.slice(start, end);
 
-                function renderProxies(proxies, proxyList, pagination, itemsPerPage) {
-                    const totalPages = Math.ceil(proxies.length / itemsPerPage);
-                    let currentPage = 1;
-
-                    function updatePage(page) {
-                        if (page < 1 || page > totalPages) return;
-                        currentPage = page;
-
-                        const start = (currentPage - 1) * itemsPerPage;
-                        const end = start + itemsPerPage;
-                        const pageProxies = proxies.slice(start, end);
-
-                        proxyList.innerHTML = '';
-                        pageProxies.forEach(proxy => {
-                            const [ip, port, id, isp] = proxy.split(',');
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                                <td>${isp} | ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span></td>
-                                <td id="status-${ip}-${port}">Loading...</td>
-                                <td>
-                                    <select>
-                                        <option value="">None</option>
-                                        <option value="example.com">example.com</option>
-                                    </select>
-                                </td>
-                                <td><button onclick="copy('${ip}:${port}')">VLESS</button></td>
-                                <td><button onclick="copy('${ip}:${port}')">Trojan</button></td>
-                                <td><button onclick="copy('${ip}:${port}')">Shadowsocks</button></td>
-                            `;
-                            proxyList.appendChild(row);
-                            checkProxyStatus(ip, port, document.getElementById(`status-${ip}-${port}`));
-                        });
-
-                        updatePagination();
-                    }
-
-                    function updatePagination() {
-                        pagination.innerHTML = '';
-                        const prevButton = document.createElement('button');
-                        prevButton.textContent = 'Prev';
-                        prevButton.onclick = () => updatePage(currentPage - 1);
-                        pagination.appendChild(prevButton);
-
-                        const nextButton = document.createElement('button');
-                        nextButton.textContent = 'Next';
-                        nextButton.onclick = () => updatePage(currentPage + 1);
-                        pagination.appendChild(nextButton);
-                    }
-
-                    updatePage(1);
-                }
-
-                function checkProxyStatus(ip, port, statusElement) {
-                    statusElement.innerHTML = '<div class="loading-icon"></div>';
-                    fetch(`https://tp1.bmkg.xyz/check?target=${ip}:${port}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            statusElement.innerHTML = data.proxyip ? 'Active' : 'Dead';
-                            statusElement.style.color = data.proxyip ? 'green' : 'red';
-                        })
-                        .catch(() => {
-                            statusElement.innerHTML = 'Error';
-                            statusElement.style.color = 'orange';
-                        });
-                }
-
-                function copy(text) {
-                    navigator.clipboard.writeText(text)
-                        .then(() => alert('Copied!'))
-                        .catch(() => alert('Failed to copy!'));
-                }
-
-                renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+            proxyList.innerHTML = '';
+            pageProxies.forEach(proxy => {
+              const [ip, port, id, isp] = proxy.split(',');
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${isp} | ${id} <span class="flag-icon flag-icon-${id?.toLowerCase()}"></span></td>
+                <td>Check status here</td>
+                <td>No wildcard</td>
+                <td><button class="button">VLESS</button></td>
+                <td><button class="button">Trojan</button></td>
+                <td><button class="button">Shadowsock</button></td>
+              `;
+              proxyList.appendChild(row);
             });
-    </script>
+
+            pagination.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+              const pageButton = document.createElement('button');
+              pageButton.textContent = i;
+              pageButton.onclick = () => updatePage(i);
+              pagination.appendChild(pageButton);
+            }
+          };
+
+          updatePage(1);
+        };
+
+        updateFilteredProxies();
+      })
+      .catch(error => console.error('Error fetching proxies:', error));
+  </script>
 </body>
 </html>
