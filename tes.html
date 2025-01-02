@@ -3,168 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proxy Management</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icon.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Proxy List</title>
   <style>
-    /* Tambahkan style sederhana untuk tabel dan elemen lainnya */
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      padding: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
-    .button {
-      padding: 5px 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .button8 {
-      background-color: #dc3545;
-    }
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      border: 1px solid #ccc;
-      z-index: 1000;
-    }
-    .popup-content {
-      text-align: left;
-    }
-    .rounded-popup {
-      border-radius: 10px;
-    }
-    .quantum-toast {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #333;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      z-index: 1000;
-    }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f9;
+}
+
+a#dynamicUrl {
+  display: block;
+  margin-bottom: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+a#dynamicUrl:hover {
+  text-decoration: underline;
+}
+
   </style>
+
+
 </head>
 <body>
-  <h1>Proxy Management System</h1>
-  <input type="text" id="search-bar" placeholder="Search...">
-  <button id="search-button">Search</button>
-  <select id="items-per-page">
-    <option value="10">10</option>
-    <option value="20">20</option>
-    <option value="50">50</option>
-  </select>
-  <div>
-    <span>Total Proxies: <span id="total-proxy"></span></span>
-    <span>Filtered Proxies: <span id="filtered-proxy"></span></span>
+  <div class="container">
+    <h1>Proxy List Viewer</h1>
+    <input type="text" id="search" placeholder="Search by country code (e.g., SG)" />
+    <a id="dynamicUrl" href="#" target="_blank"></a>
+    <table>
+      <thead>
+        <tr>
+          <th>IP</th>
+          <th>Port</th>
+          <th>Country</th>
+          <th>ISP</th>
+        </tr>
+      </thead>
+      <tbody id="proxyTable"></tbody>
+    </table>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>ISP / Country</th>
-        <th>Status</th>
-        <th>Wildcard</th>
-        <th>VLESS</th>
-        <th>Trojan</th>
-        <th>Shadowsock</th>
-      </tr>
-    </thead>
-    <tbody id="proxy-list"></tbody>
-  </table>
-  <div id="pagination"></div>
-
   <script>
-    // Script JavaScript lengkap seperti di atas dengan fitur filter pencarian dan link dinamis
-    const proxyListUrl = 'http://ndeso.web.id/bot/proxy_list.txt';
 
-    fetch(proxyListUrl)
-      .then(response => response.text())
-      .then(data => {
-        const allProxies = data.split("\n").filter(line => line.trim() !== "");
-        let filteredProxies = [...allProxies];
-        const proxyList = document.getElementById('proxy-list');
-        const pagination = document.getElementById('pagination');
-        const perPageSelect = document.getElementById('items-per-page');
-        const searchInput = document.getElementById('search-bar');
-        const totalProxyElement = document.getElementById('total-proxy');
-        const filteredProxyElement = document.getElementById('filtered-proxy');
 
-        totalProxyElement.textContent = allProxies.length;
+    document.addEventListener("DOMContentLoaded", () => {
+  const proxyListUrl = "http://ndeso.web.id/bot/proxy_list.txt";
+  const searchInput = document.getElementById("search");
+  const proxyTable = document.getElementById("proxyTable");
+  const dynamicUrl = document.getElementById("dynamicUrl");
 
-        const updateFilteredProxies = () => {
-          const searchQuery = searchInput.value.trim().toLowerCase();
-          filteredProxies = allProxies.filter(proxy =>
-            proxy.toLowerCase().includes(searchQuery)
-          );
-          filteredProxyElement.textContent = filteredProxies.length;
-          renderProxies(filteredProxies, proxyList, pagination, parseInt(perPageSelect.value, 10));
-        };
+  fetch(proxyListUrl)
+    .then(response => response.text())
+    .then(data => {
+      const allProxies = data.split("\n").filter(line => line.trim() !== "");
+      let filteredProxies = [...allProxies];
 
-        searchInput.addEventListener('input', updateFilteredProxies);
-
-        perPageSelect.addEventListener('change', () => {
-          renderProxies(filteredProxies, proxyList, pagination, parseInt(perPageSelect.value, 10));
+      const renderTable = () => {
+        proxyTable.innerHTML = "";
+        filteredProxies.forEach(proxy => {
+          const [ip, port, id, isp] = proxy.split(",");
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${ip}</td><td>${port}</td><td>${id}</td><td>${isp}</td>`;
+          proxyTable.appendChild(row);
         });
 
-        const renderProxies = (proxies, proxyList, pagination, itemsPerPage) => {
-          const totalPages = Math.ceil(proxies.length / itemsPerPage);
-          let currentPage = 1;
+        // Generate dynamic URL if country code filter is applied
+        const countryCode = searchInput.value.trim().toUpperCase();
+        if (countryCode) {
+          const pages = [...Array(Math.ceil(filteredProxies.length / 10)).keys()]
+            .map(i => i + 1) // Generate page numbers
+            .join(",");
+          const url = `https://example.com/?page=${pages}&country=${countryCode}`;
+          dynamicUrl.textContent = url;
+          dynamicUrl.href = url;
+        } else {
+          dynamicUrl.textContent = "";
+          dynamicUrl.href = "#";
+        }
+      };
 
-          const updatePage = page => {
-            if (page < 1 || page > totalPages) return;
-            currentPage = page;
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim().toUpperCase();
+        filteredProxies = allProxies.filter(proxy =>
+          proxy.toUpperCase().includes(query)
+        );
+        renderTable();
+      });
 
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageProxies = proxies.slice(start, end);
+      renderTable();
+    })
+    .catch(error => console.error("Error fetching proxies:", error));
+});
 
-            proxyList.innerHTML = '';
-            pageProxies.forEach(proxy => {
-              const [ip, port, id, isp] = proxy.split(',');
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                <td>${isp} | ${id} <span class="flag-icon flag-icon-${id?.toLowerCase()}"></span></td>
-                <td>Check status here</td>
-                <td>No wildcard</td>
-                <td><button class="button">VLESS</button></td>
-                <td><button class="button">Trojan</button></td>
-                <td><button class="button">Shadowsock</button></td>
-              `;
-              proxyList.appendChild(row);
-            });
-
-            pagination.innerHTML = '';
-            for (let i = 1; i <= totalPages; i++) {
-              const pageButton = document.createElement('button');
-              pageButton.textContent = i;
-              pageButton.onclick = () => updatePage(i);
-              pagination.appendChild(pageButton);
-            }
-          };
-
-          updatePage(1);
-        };
-
-        updateFilteredProxies();
-      })
-      .catch(error => console.error('Error fetching proxies:', error));
   </script>
 </body>
 </html>
