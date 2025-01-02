@@ -245,7 +245,24 @@ body {
        }
 
       
+.quantum-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+        perspective: 1000px;
+      }
 
+      .quantum-card {
+        max-width: 100%;
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--glow);
+        transform-style: preserve-3d;
+        
+      }
      
       
      
@@ -660,9 +677,11 @@ body {
 </head>
 <body>
   <header>
-  <h1>FREE CF USER-CEPU-US-KG</h1>
+  
     </header>
-  <main class="content">
+  <div class="quantum-container">
+        <div class="quantum-card">
+          <h1>FREE CF USER-CEPU-US-KG</h1>
     <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
 <div class="filters">
       <div><span class="filter-label">Items page:</span>
@@ -696,10 +715,10 @@ body {
     </table>
         </div>
    <div class="total-proxy" id="total-proxy"></div>
-   <div class="filtered-proxy" id="filtered-proxy"></div>
+   <div class="filtered-proxy" id="filtered-proxy"></div><br>
 
     <div class="pagination" id="pagination"></div>
-  </div> 
+  </div> </div> 
 <div class="popup" id="sub-link">
 <div class="popup-content">
   <div class="table-container">
