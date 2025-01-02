@@ -111,7 +111,7 @@
         const updateFilteredProxies = () => {
           const searchQuery = searchInput.value.trim().toLowerCase();
           filteredProxies = allProxies.filter(proxy =>
-            id.toLowerCase().includes(searchQuery)
+            proxy.toLowerCase().includes(searchQuery)
           );
           filteredProxyElement.textContent = filteredProxies.length;
           renderProxies(filteredProxies, proxyList, pagination, parseInt(perPageSelect.value, 10));
