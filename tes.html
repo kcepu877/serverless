@@ -228,7 +228,18 @@ body {
         padding: 10px;
     }  
     .container, .content {
-      
+      max-width: 100%;
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        border-radius: 20px;
+        padding: 2px;
+        box-shadow: var(--glow);
+        transform-style: preserve-3d;
+
+
+    }
+    .tedjo
       flex: 1;
       padding-top: 80px; /* To avoid content being hidden under the header */
       padding-bottom: 50px;
@@ -677,11 +688,11 @@ body {
 </head>
 <body>
   <header>
+  <h1>FREE CF USER-CEPU-US-KG</h1>
   
     </header>
   <main class="content">
-         <h1>FREE CF USER-CEPU-US-KG</h1>
-    <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
+           <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
 <div class="filters">
       <div><span class="filter-label">Items page:</span>
 <select class="service-selector" id="items-per-page">
