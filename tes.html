@@ -1,1056 +1,189 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FREE | CF | LIFETIME | USER-KERE</title>
-    <meta name="description" content="FREE | CF | LIFETIME | USER-KERE">
-    <meta name="keywords" content="FREE | CF | LIFETIME | USER-KERE">
-    <meta name="author" content="FREE | CF | LIFETIME | USER-KERE">
-    <meta name="robots" content="FREE | CF | LIFETIME | USER-KERE">
-
-    <!-- Open Graph Meta Tags untuk SEO Media Sosial -->
-    <meta property="og:title" content="FREE | CF | LIFETIME | USER-KERE">
-    <meta property="og:description" content="FREE | CF | LIFETIME | USER-KERE">
-    <meta property="og:image" content="https://png.pngtree.com/background/20231016/original/pngtree-high-definition-3d-wallpaper-in-black-and-red-picture-image_5583707.jpg"> <!-- Ganti dengan URL gambar yang sesuai -->
-    <meta property="og:url" content="https://png.pngtree.com/background/20231016/original/pngtree-high-definition-3d-wallpaper-in-black-and-red-picture-image_5583707.jpg">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="FREE | CF | LIFETIME | USER-KERE">
-    <meta name="twitter:description" content="FREE | CF | LIFETIME | USER-KERE">
-    <meta name="twitter:image" content="https://png.pngtree.com/background/20231016/original/pngtree-high-definition-3d-wallpaper-in-black-and-red-picture-image_5583707.jpg"> <!-- Ganti dengan URL gambar yang sesuai -->
-    <link href="https://png.pngtree.com/background/20231016/original/pngtree-high-definition-3d-wallpaper-in-black-and-red-picture-image_5583707.jpg" rel="icon" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
-    
+    <title>Proxy Manager</title>
     <style>
-      :root {
-        --primary: #00ff88;
-        --secondary: #00ffff;
-        --accent: #ff00ff;
-        --dark: #080c14;
-        --darker: #040608;
-        --light: #e0ffff;
-        --card-bg: rgba(8, 12, 20, 0.95);
-        --glow: 0 0 20px rgba(0, 255, 136, 0.3);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Space Grotesk', sans-serif;
-      }
-
-      body {
-        background: var(--darker);
-        color: var(--light);
-        min-height: 85vh;
-       
-      }
-
-      .wildcard-dropdown {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 0.5rem auto;
-      }
-
-      select {
-        width: 100%;
-        max-width: 200px; /* Lebar box lebih kecil */
-        padding: 0.4rem 0.6rem; /* Sesuaikan padding */
-        font-size: 0.8rem; /* Ukuran teks lebih kecil */
-        color: var(--light);
-        background: rgba(0, 255, 136, 0.05);
-        border: 2px solid rgba(0, 255, 136, 0.3);
-        border-radius: 10px;
-        box-shadow: var(--glow);
-        outline: none;
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        appearance: none; /* Hilangkan panah default */
-        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23e0ffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M6 9l6 6 6-6"%3E%3C/path%3E%3C/svg%3E');
-        background-position: right 10px center;
-        background-repeat: no-repeat;
-        background-size: 1rem;
-        transition: all 0.3s ease;
-      }
-
-      select:hover {
-        border-color: var(--primary);
-        box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-      }
-
-      select:focus {
-        border-color: var(--secondary);
-        background: rgba(0, 255, 136, 0.1);
-        box-shadow: 0 0 20px var(--secondary);
-      }
-
-      .button-style {
-        padding: 0.6rem 1rem; /* Ukuran padding */
-        font-family: 'Rajdhani', sans-serif; /* Font */
-        font-weight: 600; /* Ketebalan font */
-        font-size: 0.6rem; /* Ukuran font */
-        color: var(--dark); /* Warna teks */
-        background: var(--primary); /* Warna background */
-        border: none; /* Hilangkan border */
-        border-radius: 12px; /* Radius untuk efek bulat */
-        cursor: pointer; /* Ubah kursor saat hover */
-        transition: all 0.3s ease; /* Efek transisi */
-        text-transform: uppercase; /* Teks kapitalisasi */
-        letter-spacing: 1px; /* Jarak antar huruf */
-        position: relative; /* Relatif untuk animasi */
-        overflow: hidden; /* Sembunyikan elemen overflow */
-        display: flex; /* Flexbox */
-        align-items: center; /* Ratakan secara vertikal */
-        justify-content: center; /* Ratakan secara horizontal */
-        gap: 0.5rem; /* Jarak antar elemen */
-      }
-
-      .button-style::before {
-        content: ''; /* Pseudo-element */
-        position: absolute; /* Posisi absolut */
-        top: 0;
-        left: -100%; /* Mulai dari luar */
-        width: 100%; /* Lebar penuh */
-        height: 100%; /* Tinggi penuh */
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        ); /* Efek gradient */
-        transition: 0.5s; /* Durasi transisi */
-      }
-
-      .button-style:hover::before {
-        left: 100%; /* Gerakkan gradient ke kanan */
-       }
-
-      .button-style:hover {
-        transform: translateY(-2px); /* Efek hover */
-        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3); /* Bayangan */
-      }
-
-      .button-style:active {
-        transform: translateY(1px); /* Efek klik */
-        box-shadow: 0 3px 10px rgba(0, 255, 136, 0.2); /* Reduksi bayangan */
-      }
-
-      .quantum-container {
-        max-width: 1200px;
-        margin: 2rem auto;
-        padding: 2rem;
-        perspective: 1000px;
-      }
-
-      .quantum-card {
-        max-width: 100%;
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(0, 255, 136, 0.2);
-        border-radius: 20px;
-        padding: 2rem;
-        box-shadow: var(--glow);
-        transform-style: preserve-3d;
-        
-      }
-
-
-
-      .quantum-title {
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 4rem;
-        font-weight: 700;
-        text-align: center;
-        margin-top: 1rem;
-        margin-bottom: 2rem;
-        background: linear-gradient(45deg, var(--primary), var(--secondary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-        position: relative;
-        animation: titlePulse 3s ease-in-out infinite;
-      }
-
-      @keyframes titlePulse {
-        0%, 100% { transform: scale(1); filter: brightness(1); }
-        50% { transform: scale(1.02); filter: brightness(1.2); }
-      }
-
-.search-quantum {
-  width: 50%;
-  position: relative;
-  margin: 0.6rem auto 0.3rem auto; /* margin atas, otomatis kiri/kanan, margin bawah */
-  display: flex;
-}
-
-
-      #search-bar {
-        width: 100%;
-        padding: 0.6rem 1rem;
-        font-size: 0.6rem;
-        color: var(--light);
-        background: rgba(0, 255, 136, 0.05);
-        border: 2px solid rgba(0, 255, 136, 0.3);
-        border-radius: 15px;
-        transition: all 0.3s ease;
-      }
-
-      #search-bar:focus {
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-        background: rgba(0, 255, 136, 0.1);
-      }
-
-      .quantum-table {
-        width: 100%;
-        min-width: 800px;
-        border-collapse: separate;
-        border-spacing: 0 8px;
-      }
-
-      .quantum-table th {
-        background: rgba(0, 255, 136, 0.1);
-        color: var(--primary);
-        padding: 1.2rem;
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 600;
-        font-size: 1.1rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        border-bottom: 2px solid var(--primary);
-        white-space: nowrap;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-      }
-
-      .quantum-table td {
-        padding: 1rem;
-        background: rgba(0, 255, 136, 0.03);
-        border: none;
-        transition: all 0.3s ease;
-      }
-
-      .quantum-table tr {
-        transition: all 0.3s ease;
-      }
-
-      .quantum-table tr:hover td {
-        background: rgba(0, 255, 136, 0.08);
-        transform: scale(1.01);
-        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
-      }
-
-      .copy-btn {
-        padding: 0.8rem 1rem;
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: var(--dark);
-        background: var(--primary);
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-
-      .copy-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: 0.5s;
-      }
-
-      .copy-btn:hover::before {
-        left: 100%;
-      }
-
-      .copy-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
-      }
-
-      .btn-icon {
-        font-size: 1.2rem;
-      }
-
-      .quantum-pagination {
-        display: flex;
-        justify-content: center;
-        gap: 0.8rem;
-        margin-top: 2rem;
-        flex-wrap: wrap;
-      }
-
-      .quantum-pagination a {
-        padding: 0.8rem 1.5rem;
-        background: rgba(0, 255, 136, 0.1);
-        color: var(--primary);
-        text-decoration: none;
-        border-radius: 12px;
-        border: 1px solid rgba(0, 255, 136, 0.3);
-        transition: all 0.3s ease;
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 600;
-        min-width: 45px;
-        text-align: center;
-      }
-
-      .quantum-pagination a:hover,
-      .quantum-pagination a.active {
-        background: var(--primary);
-        color: var(--dark);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-      }
-
-      .quantum-toast {
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        padding: 1rem 2rem;
-        background: var(--primary);
-        color: var(--dark);
-        border-radius: 12px;
-        font-family: 'Rajdhani', sans-serif;
-        font-weight: 600;
-        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
-        transform: translateY(100%);
-        opacity: 0;
-        animation: toastSlide 0.3s forwards;
-        z-index: 1000;
-      }
-
-      @keyframes toastSlide {
-        to {
-          transform: translateY(0);
-          opacity: 1;
+        .loading-icon { /* Loading icon styling */
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            animation: spin 1s linear infinite;
         }
-      }
 
-      /* Mobile Responsiveness */
-      @media (max-width: 768px) {
-        .quantum-container {
-          padding: 0.5rem;
-          margin: 0.5rem;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        
-        .quantum-card {
-          padding: 1rem;
-          margin: 0;
-          width: 100%;
-          border-radius: 10px;
-          max-width: 100%;
-        }
-    
-        .quantum-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-    
-        #search-bar {
-          padding: 0.6rem 1rem;
-          font-size: 0.6rem;
-        }
-    
-        .table-wrapper {
-          margin: 0.5rem 0;
-          padding: 0;
-          border-radius: 10px;
-          max-height: 60vh; /* Restrict the height of the table */
-          overflow-y: auto; /* Allow scrolling within the table */
-          background: rgba(0, 255, 136, 0.02);
-        }
-    
-        .quantum-table th,
-        .quantum-table td {
-          padding: 0.8rem 0.5rem;
-          font-size: 0.9rem;
-        }
-    
-        .copy-btn {
-          padding: 0.6rem 1rem;
-          font-size: 0.8rem;
-        }
-     
-        .quantum-pagination {
-          gap: 0.5rem;
-          flex-wrap: wrap;
-        }
-    
-        .quantum-pagination a {
-          padding: 0.5rem 0.7rem;
-          font-size: 0.7rem;
-          min-width: 30px;
-        }
-    
+
         .quantum-toast {
-          left: 1rem;
-          right: 1rem;
-          bottom: 1rem;
-          text-align: center;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: #fff;
+            border-radius: 4px;
+            z-index: 9999;
+            transition: all 0.3s ease-in-out;
         }
-      }
 
-      @media (max-width: 480px) {
-        .quantum-card {
-          padding: 0.5rem;
-          max-width: 100%;
+        .quantum-toast.rounded-popup {
+            border-radius: 8px;
         }
-    
-        .quantum-title {
-          font-size: 1.5rem;
-        }
-    
-        .table-wrapper {
-          margin: 0.5rem -0.5rem;
-          padding: 0 0.5rem;
-        }
-    
-        .quantum-table {
-          font-size: 0.8rem;
-        }
-    
-        .copy-btn {
-          padding: 0.5rem 0.8rem;
-          font-size: 0.7rem;
-        }
-      }
-
-      .table-wrapper {
-        width: 100%;
-        max-height: calc(80vh - 200px); /* Atur tinggi maksimal untuk scroll */
-        overflow-y: auto; /* Aktifkan scroll vertikal */
-        -webkit-overflow-scrolling: touch; /* Lancar di perangkat touch */
-        margin: 1rem 0;
-        border-radius: 10px;
-        background: rgba(0, 255, 136, 0.02);
-      }
-
-      .table-wrapper:hover {
-        pointer-events: auto; /* Izinkan scroll pada hover */
-      }
-
-      /* Perbaikan pada scrollbar */
-      .table-wrapper::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-
-      .table-wrapper::-webkit-scrollbar-track {
-        background: rgba(0, 255, 136, 0.1);
-        border-radius: 4px;
-      }
-
-      .table-wrapper::-webkit-scrollbar-thumb {
-        background: var(--primary);
-        border-radius: 4px;
-      }
-
-      .table-wrapper::-webkit-scrollbar-thumb:hover {
-        background: var(--secondary);
-      }
     </style>
 </head>
 <body>
-    <div class="quantum-container">
-        <div class="quantum-card">
-            <h1 class="quantum-title">
-              <a href="https://t.me/seaker877" target="_blank" rel="noopener noreferrer" style="font-family: 'Rajdhani', sans-serif;">
-                SAEAKER877 NETWORK
-              </a>
-            </h1>
-            
-            <div class="search-quantum" style="display: flex; align-items: center; flex-direction: column;">
-              <div style="display: flex; width: 100%;">
-                <input type="text" 
-                  id="search-bar" 
-                  placeholder="Search by IP, CountryCode, or ISP"
-                  value="" 
-                  style="flex: 1; padding: 8px;"/>
-                <button id="search-button" class="button-style">Search</button>
-              </div>
-              
-            </div>
-            
-            <div class="wildcard-dropdown">
-              <select id="wildcard" name="wildcard" onchange="onWildcardChange(event)">
-                <option value="" selected>No Wildcard</option>
-                <option value="ava.game.naver.com" >ava.game.naver.com</option><option value="graph.instagram.com" >graph.instagram.com</option><option value="quiz.int.vidio.com" >quiz.int.vidio.com</option><option value="live.iflix.com" >live.iflix.com</option><option value="support.zoom.us" >support.zoom.us</option><option value="blog.webex.com" >blog.webex.com</option><option value="investors.spotify.com" >investors.spotify.com</option><option value="cache.netflix.com" >cache.netflix.com</option><option value="zaintest.vuclip.com" >zaintest.vuclip.com</option><option value="io.ruangguru.com" >io.ruangguru.com</option><option value="business.blibli.com" >business.blibli.com</option><option value="api.midtrans.com" >api.midtrans.com</option>
-              </select>
-
-              <select id="configType" name="configType" onchange="onConfigTypeChange(event)">
-                <option value="tls" selected>TLS</option>
-                <option value="non-tls" >NON TLS</option>
-              </select>
-            </div>
-
-            <div class="table-wrapper">
-              <table class="quantum-table">
-                <thead>
-                    <tr>
-                        <th>ISP || COUNTRY</th>
-                        <th>STATUS</th>
-                        <th>VLESS</th>
-                        <th>TROJAN</th>
-                        <th>SHADOWSOCKS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                <tr class="config-row">
-
-                    <td class="country-cell">Alibaba || ID 🇮🇩</td>
-<td class="proxy-status" id="status-8.215.59.6-443"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://cc78d88c-0592-444e-a259-7e17ff0d08e7@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID1#(ID)%20Alibaba🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://cc78d88c-0592-444e-a259-7e17ff0d08e7@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID1#(ID)%20Alibaba🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTpjYzc4ZDg4Yy0wNTkyLTQ0NGUtYTI1OS03ZTE3ZmYwZDA4ZTc=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID1&security=tls&sni=user.cepu.us.kg#(ID)%20Alibaba🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">PT+Herza+Digital+Indonesia || ID 🇮🇩</td>
-<td class="proxy-status" id="status-103.168.146.169-20132"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://95762478-0c31-483e-97a6-b71b81c19c62@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID2#(ID)%20PT+Herza+Digital+Indonesia🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://95762478-0c31-483e-97a6-b71b81c19c62@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID2#(ID)%20PT+Herza+Digital+Indonesia🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTo5NTc2MjQ3OC0wYzMxLTQ4M2UtOTdhNi1iNzFiODFjMTljNjI=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID2&security=tls&sni=user.cepu.us.kg#(ID)%20PT+Herza+Digital+Indonesia🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">PT+Pusat+Media+Indonesia || ID 🇮🇩</td>
-<td class="proxy-status" id="status-103.6.207.108-8080"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://bf33f137-8854-4d4b-a753-afe6e897ee9b@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID3#(ID)%20PT+Pusat+Media+Indonesia🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://bf33f137-8854-4d4b-a753-afe6e897ee9b@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID3#(ID)%20PT+Pusat+Media+Indonesia🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTpiZjMzZjEzNy04ODU0LTRkNGItYTc1My1hZmU2ZTg5N2VlOWI=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID3&security=tls&sni=user.cepu.us.kg#(ID)%20PT+Pusat+Media+Indonesia🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">PT+Cloud+Hosting+Indonesia || ID 🇮🇩</td>
-<td class="proxy-status" id="status-103.186.1.209-8443"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://b0578975-803c-46a5-9d2c-5a804495b887@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID4#(ID)%20PT+Cloud+Hosting+Indonesia🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://b0578975-803c-46a5-9d2c-5a804495b887@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID4#(ID)%20PT+Cloud+Hosting+Indonesia🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTpiMDU3ODk3NS04MDNjLTQ2YTUtOWQyYy01YTgwNDQ5NWI4ODc=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID4&security=tls&sni=user.cepu.us.kg#(ID)%20PT+Cloud+Hosting+Indonesia🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">PT+Cloud+Hosting+Indonesia || ID 🇮🇩</td>
-<td class="proxy-status" id="status-103.186.1.209-2053"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://fa7904f7-e94b-44f5-99fe-3e0774672edb@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID5#(ID)%20PT+Cloud+Hosting+Indonesia🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://fa7904f7-e94b-44f5-99fe-3e0774672edb@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID5#(ID)%20PT+Cloud+Hosting+Indonesia🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTpmYTc5MDRmNy1lOTRiLTQ0ZjUtOTlmZS0zZTA3NzQ2NzJlZGI=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID5&security=tls&sni=user.cepu.us.kg#(ID)%20PT+Cloud+Hosting+Indonesia🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Cloud+Teknologi+Nusantara || ID 🇮🇩</td>
-<td class="proxy-status" id="status-103.133.223.50-2096"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://e534feec-595f-480c-8b65-26a340460bfa@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID6#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://e534feec-595f-480c-8b65-26a340460bfa@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID6#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTplNTM0ZmVlYy01OTVmLTQ4MGMtOGI2NS0yNmEzNDA0NjBiZmE=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID6&security=tls&sni=user.cepu.us.kg#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Cloud+Teknologi+Nusantara || ID 🇮🇩</td>
-<td class="proxy-status" id="status-103.133.223.52-2096"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://ab924c48-942d-4b8f-9e85-a819976a9a20@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID7#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://ab924c48-942d-4b8f-9e85-a819976a9a20@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID7#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTphYjkyNGM0OC05NDJkLTRiOGYtOWU4NS1hODE5OTc2YTlhMjA=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID7&security=tls&sni=user.cepu.us.kg#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Cloud+Teknologi+Nusantara || ID 🇮🇩</td>
-<td class="proxy-status" id="status-103.133.223.51-2096"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://9d9af4ca-68d7-46cf-8804-16ec395f5138@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID8#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://9d9af4ca-68d7-46cf-8804-16ec395f5138@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID8#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTo5ZDlhZjRjYS02OGQ3LTQ2Y2YtODgwNC0xNmVjMzk1ZjUxMzg=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID8&security=tls&sni=user.cepu.us.kg#(ID)%20Cloud+Teknologi+Nusantara🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Alibaba || ID 🇮🇩</td>
-<td class="proxy-status" id="status-147.139.245.56-443"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://3e3d3ec5-bebd-4ca4-9dc0-7d89cd94e20b@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID9#(ID)%20Alibaba🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://3e3d3ec5-bebd-4ca4-9dc0-7d89cd94e20b@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID9#(ID)%20Alibaba🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTozZTNkM2VjNS1iZWJkLTRjYTQtOWRjMC03ZDg5Y2Q5NGUyMGI=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID9&security=tls&sni=user.cepu.us.kg#(ID)%20Alibaba🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Alibaba || ID 🇮🇩</td>
-<td class="proxy-status" id="status-147.139.243.188-587"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://a4a806d0-fce2-44e8-bb94-f1388acdb426@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID10#(ID)%20Alibaba🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://a4a806d0-fce2-44e8-bb94-f1388acdb426@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID10#(ID)%20Alibaba🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTphNGE4MDZkMC1mY2UyLTQ0ZTgtYmI5NC1mMTM4OGFjZGI0MjY=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID10&security=tls&sni=user.cepu.us.kg#(ID)%20Alibaba🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Akamai+Connected+Cloud || ID 🇮🇩</td>
-<td class="proxy-status" id="status-172.232.239.151-587"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://e875294c-7351-47ca-ad8b-4bd67a425cb8@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID11#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://e875294c-7351-47ca-ad8b-4bd67a425cb8@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID11#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTplODc1Mjk0Yy03MzUxLTQ3Y2EtYWQ4Yi00YmQ2N2E0MjVjYjg=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID11&security=tls&sni=user.cepu.us.kg#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Akamai+Connected+Cloud || ID 🇮🇩</td>
-<td class="proxy-status" id="status-172.232.239.249-587"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://c8662034-df63-45cd-abfd-b3d6f59ae526@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID12#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://c8662034-df63-45cd-abfd-b3d6f59ae526@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID12#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTpjODY2MjAzNC1kZjYzLTQ1Y2QtYWJmZC1iM2Q2ZjU5YWU1MjY=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID12&security=tls&sni=user.cepu.us.kg#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Akamai+Connected+Cloud || ID 🇮🇩</td>
-<td class="proxy-status" id="status-172.232.239.175-587"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://f3b6a716-ced1-40c1-9606-de124d6b294a@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID13#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://f3b6a716-ced1-40c1-9606-de124d6b294a@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID13#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTpmM2I2YTcxNi1jZWQxLTQwYzEtOTYwNi1kZTEyNGQ2YjI5NGE=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID13&security=tls&sni=user.cepu.us.kg#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Akamai+Connected+Cloud || ID 🇮🇩</td>
-<td class="proxy-status" id="status-172.232.239.134-587"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://272d35db-8efe-4e80-b8dc-a00b92481d08@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID14#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://272d35db-8efe-4e80-b8dc-a00b92481d08@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID14#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZToyNzJkMzVkYi04ZWZlLTRlODAtYjhkYy1hMDBiOTI0ODFkMDg=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID14&security=tls&sni=user.cepu.us.kg#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Akamai+Connected+Cloud || ID 🇮🇩</td>
-<td class="proxy-status" id="status-172.232.239.147-587"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://25f58ef2-7410-43af-8d4d-e85d49006e1f@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID15#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://25f58ef2-7410-43af-8d4d-e85d49006e1f@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID15#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZToyNWY1OGVmMi03NDEwLTQzYWYtOGQ0ZC1lODVkNDkwMDZlMWY=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID15&security=tls&sni=user.cepu.us.kg#(ID)%20Akamai+Connected+Cloud🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Linknet+Fastnet || ID 🇮🇩</td>
-<td class="proxy-status" id="status-111.95.40.14-32414"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://48a0efe1-ecd9-4b62-a8b5-5fb7e2b48fd9@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID16#(ID)%20Linknet+Fastnet🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://48a0efe1-ecd9-4b62-a8b5-5fb7e2b48fd9@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID16#(ID)%20Linknet+Fastnet🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTo0OGEwZWZlMS1lY2Q5LTRiNjItYThiNS01ZmI3ZTJiNDhmZDk=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID16&security=tls&sni=user.cepu.us.kg#(ID)%20Linknet+Fastnet🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Kaopu+Cloud || ID 🇮🇩</td>
-<td class="proxy-status" id="status-38.60.171.111-587"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://7dc75d37-2a24-446f-a3de-2a0a0ef4682a@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID17#(ID)%20Kaopu+Cloud🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://7dc75d37-2a24-446f-a3de-2a0a0ef4682a@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID17#(ID)%20Kaopu+Cloud🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTo3ZGM3NWQzNy0yYTI0LTQ0NmYtYTNkZS0yYTBhMGVmNDY4MmE=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID17&security=tls&sni=user.cepu.us.kg#(ID)%20Kaopu+Cloud🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Tencent+cloud+computing || ID 🇮🇩</td>
-<td class="proxy-status" id="status-43.133.145.156-53136"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://da488bdd-a633-48a7-bbb3-e998ba5dd21a@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID18#(ID)%20Tencent+cloud+computing🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://da488bdd-a633-48a7-bbb3-e998ba5dd21a@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID18#(ID)%20Tencent+cloud+computing🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTpkYTQ4OGJkZC1hNjMzLTQ4YTctYmJiMy1lOTk4YmE1ZGQyMWE=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID18&security=tls&sni=user.cepu.us.kg#(ID)%20Tencent+cloud+computing🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">PT+Beon+Multimedia || ID 🇮🇩</td>
-<td class="proxy-status" id="status-101.50.0.114-8443"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://6b1b57eb-27ab-4fb9-84dd-c51ed2038afa@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID19#(ID)%20PT+Beon+Multimedia🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://6b1b57eb-27ab-4fb9-84dd-c51ed2038afa@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID19#(ID)%20PT+Beon+Multimedia🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTo2YjFiNTdlYi0yN2FiLTRmYjktODRkZC1jNTFlZDIwMzhhZmE=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID19&security=tls&sni=user.cepu.us.kg#(ID)%20PT+Beon+Multimedia🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                <tr class="config-row">
-
-                    <td class="country-cell">Rumahweb || ID 🇮🇩</td>
-<td class="proxy-status" id="status-203.194.112.119-2053"><div class="spinner"></div></td>
-
-                    
-                    <td class="button-cell">
-                        <button class="copy-btn vless" onclick="copy('vless://04236979-1cd9-4fb1-88cb-a806ed5988d8@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID20#(ID)%20Rumahweb🇮🇩')">
-                             VLESS
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn trojan" onclick="copy('trojan://04236979-1cd9-4fb1-88cb-a806ed5988d8@user.cepu.us.kg:443?encryption=none&security=tls&sni=user.cepu.us.kg&fp=randomized&type=ws&host=user.cepu.us.kg&path=%2FID20#(ID)%20Rumahweb🇮🇩')">
-                             TROJAN
-                        </button>
-                    </td>
-                    <td class="button-cell">
-                        <button class="copy-btn shadowsocks" onclick="copy('ss://bm9uZTowNDIzNjk3OS0xY2Q5LTRmYjEtODhjYi1hODA2ZWQ1OTg4ZDg=%3D@user.cepu.us.kg:443?encryption=none&type=ws&host=user.cepu.us.kg&path=%2FID20&security=tls&sni=user.cepu.us.kg#(ID)%20Rumahweb🇮🇩')">
-                             Shadowsocks
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="quantum-pagination">
-                
-                <a href="?page=1&wildcard=null&configType=tls" class="pagination-number active">1</a><a href="?page=2&wildcard=null&configType=tls" class="pagination-number ">2</a><a href="?page=3&wildcard=null&configType=tls" class="pagination-number ">3</a>
-                <a href="?page=2&wildcard=null&configType=tls" class="pagination-arrow">▷</a>
-            </div>
-          <!-- Showing X to Y of Z Proxies message -->
-          <div style="text-align: center; margin-top: 16px; color: var(--primary); font-family: 'Rajdhani', sans-serif;">
-            Showing 1 to 20 of 36951 Proxies
-          </div>
-        </div>
+    <div>
+        <input type="text" id="search-bar" placeholder="Search">
+        <button id="search-button">Search</button>
+        <select id="items-per-page">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+        </select>
     </div>
 
+    <table>
+        <thead>
+            <tr>
+                <th>Proxy</th>
+                <th>Status</th>
+                <th>Wildcard</th>
+                <th>VLESS</th>
+                <th>Trojan</th>
+                <th>Shadowsocks</th>
+            </tr>
+        </thead>
+        <tbody id="proxy-list"></tbody>
+    </table>
+    <div id="pagination"></div>
+    <p>Total Proxy: <span id="total-proxy"></span></p>
+    <p>Filtered Proxy: <span id="filtered-proxy"></span></p>
+
     <script>
-        const updateURL = (params) => {
-          const url = new URL(window.location.href);
-
-          params.forEach(({ key, value }) => {
-            if (key === 'search' && value) {
-              // Reset ke halaman 1 jika parameter pencarian diperbarui
-              url.searchParams.set('page', '1');
-            }
-            if (value) {
-              url.searchParams.set(key, value);
-            } else {
-              url.searchParams.delete(key);
-            }
-          });
-
-          // Redirect ke URL yang telah diperbarui
-          window.location.href = url.toString();
-        };
-
-        function goToHomePage(hostName) {
-          const homeURL = `https://${hostName}/v2ray`;
-          window.location.href = homeURL;
-        }
-        
-        function onWildcardChange(event) {
-          updateURL([{ key: 'wildcard', value: event.target.value }]);
+        function uuidv4() {
+            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
         }
 
-        function onConfigTypeChange(event) {
-          updateURL([{ key: 'configType', value: event.target.value }]);
-        }
+        fetch("https://ndeso.web.id/bot/proxy_list.txt")
+            .then(response => response.text())
+            .then(data => {
+                const allProxies = data.split("\n").filter(line => line.trim() !== "");
+                let filteredProxies = [...allProxies];
+                const proxyList = document.getElementById('proxy-list');
+                const pagination = document.getElementById('pagination');
+                const perPageSelect = document.getElementById('items-per-page');
+                const searchInput = document.getElementById('search-bar');
+                const totalProxyElement = document.getElementById('total-proxy');
+                const filteredProxyElement = document.getElementById('filtered-proxy');
 
-        function copy(text) {
-            navigator.clipboard.writeText(text)
-                .then(() => showToast('Configuration copied successfully! 🚀'))
-                .catch(() => showToast('Failed to copy configuration ❌', true));
-        }
+                totalProxyElement.innerHTML = `<strong>${allProxies.length}</strong>`;
 
-        function showToast(message, isError = false) {
-            const toast = document.createElement('div');
-            toast.className = 'quantum-toast';
-            toast.textContent = message;
-            if (isError) {
-                toast.style.background = '#ff3366';
-            }
-            document.body.appendChild(toast);
+                const updateFilteredProxies = () => {
+                    const id = filteredProxies.length > 0 ? filteredProxies[0].split(',')[2] : '';
+                    filteredProxyElement.innerHTML = `
+                        <strong>Total Proxy ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span>:</strong> ${filteredProxies.length}
+                    `;
+                };
 
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateY(100%)';
-                setTimeout(() => toast.remove(), 300);
-            }, 2000);
-        }
+                updateFilteredProxies();
 
-        function executeSearch() {
-          const query = document.getElementById('search-bar').value.trim();
-          if (query) {
-            updateURL([{ key: 'search', value: query }]);
-          } else {
-            alert('Please enter a search term.');
-          }
-        }
+                let itemsPerPage = parseInt(perPageSelect.value, 10);
 
-        document.getElementById('search-bar').addEventListener('keydown', (event) => {
-          if (event.key === 'Enter') {
-            executeSearch();
-          }
-        });
+                perPageSelect.addEventListener('change', () => {
+                    itemsPerPage = parseInt(perPageSelect.value, 10);
+                    renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+                });
 
-        document.getElementById('search-button').addEventListener('click', executeSearch);
+                document.getElementById('search-button').addEventListener('click', () => {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        filteredProxies = allProxies.filter(proxy => proxy.includes(query));
+                        renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+                        updateFilteredProxies();
+                    }
+                });
+
+                function renderProxies(proxies, proxyList, pagination, itemsPerPage) {
+                    const totalPages = Math.ceil(proxies.length / itemsPerPage);
+                    let currentPage = 1;
+
+                    function updatePage(page) {
+                        if (page < 1 || page > totalPages) return;
+                        currentPage = page;
+
+                        const start = (currentPage - 1) * itemsPerPage;
+                        const end = start + itemsPerPage;
+                        const pageProxies = proxies.slice(start, end);
+
+                        proxyList.innerHTML = '';
+                        pageProxies.forEach(proxy => {
+                            const [ip, port, id, isp] = proxy.split(',');
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${isp} | ${id} <span class="flag-icon flag-icon-${id.toLowerCase()}"></span></td>
+                                <td id="status-${ip}-${port}">Loading...</td>
+                                <td>
+                                    <select>
+                                        <option value="">None</option>
+                                        <option value="example.com">example.com</option>
+                                    </select>
+                                </td>
+                                <td><button onclick="copy('${ip}:${port}')">VLESS</button></td>
+                                <td><button onclick="copy('${ip}:${port}')">Trojan</button></td>
+                                <td><button onclick="copy('${ip}:${port}')">Shadowsocks</button></td>
+                            `;
+                            proxyList.appendChild(row);
+                            checkProxyStatus(ip, port, document.getElementById(`status-${ip}-${port}`));
+                        });
+
+                        updatePagination();
+                    }
+
+                    function updatePagination() {
+                        pagination.innerHTML = '';
+                        const prevButton = document.createElement('button');
+                        prevButton.textContent = 'Prev';
+                        prevButton.onclick = () => updatePage(currentPage - 1);
+                        pagination.appendChild(prevButton);
+
+                        const nextButton = document.createElement('button');
+                        nextButton.textContent = 'Next';
+                        nextButton.onclick = () => updatePage(currentPage + 1);
+                        pagination.appendChild(nextButton);
+                    }
+
+                    updatePage(1);
+                }
+
+                function checkProxyStatus(ip, port, statusElement) {
+                    statusElement.innerHTML = '<div class="loading-icon"></div>';
+                    fetch(`https://tp1.bmkg.xyz/check?target=${ip}:${port}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            statusElement.innerHTML = data.proxyip ? 'Active' : 'Dead';
+                            statusElement.style.color = data.proxyip ? 'green' : 'red';
+                        })
+                        .catch(() => {
+                            statusElement.innerHTML = 'Error';
+                            statusElement.style.color = 'orange';
+                        });
+                }
+
+                function copy(text) {
+                    navigator.clipboard.writeText(text)
+                        .then(() => alert('Copied!'))
+                        .catch(() => alert('Failed to copy!'));
+                }
+
+                renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
+            });
     </script>
 </body>
 </html>
-  
