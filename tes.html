@@ -538,7 +538,139 @@
           </div>
         </div>
     </div>
+  <script>
+return html;
+}
+__name(handleSubRequest, "handleSubRequest");
+async function handleWebRequest(request) {
+  const apiUrl = proxyListURL;
+  const fetchConfigs = /* @__PURE__ */ __name(async () => {
+    try {
+      const response = await fetch(apiUrl);
+      const text = await response.text();
+      let pathCounters = {};
+      const configs2 = text.trim().split("\n").map((line) => {
+        const [ip, port, countryCode, isp] = line.split(",");
+        if (!pathCounters[countryCode]) {
+          pathCounters[countryCode] = 1;
+        }
+        const path = `/${countryCode}${pathCounters[countryCode]}`;
+        pathCounters[countryCode]++;
+        return { ip, port, countryCode, isp, path };
+      });
+      return configs2;
+    } catch (error) {
+      console.error("Error fetching configurations:", error);
+      return [];
+    }
+  }, "fetchConfigs");
+  const generateUUIDv42 = /* @__PURE__ */ __name(() => {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+      const r = Math.random() * 16 | 0;
+      const v = c === "x" ? r : r & 3 | 8;
+      return v.toString(16);
+    });
+  }, "generateUUIDv4");
+  const getFlagEmoji = /* @__PURE__ */ __name((countryCode) => {
+    if (!countryCode)
+      return "\u{1F3F3}\uFE0F";
+    return countryCode.toUpperCase().split("").map((char) => String.fromCodePoint(127462 - 65 + char.charCodeAt(0))).join("");
+  }, "getFlagEmoji");
+  const url = new URL(request.url);
+  const hostName = url.hostname;
+  const page = parseInt(url.searchParams.get("page")) || 1;
+  const searchQuery = url.searchParams.get("search") || "";
+  const selectedWildcard = url.searchParams.get("wildcard") || null;
+  const selectedConfigType = url.searchParams.get("configType") || "tls";
+  const configsPerPage = 20;
+  const configs = await fetchConfigs();
+  const totalConfigs = configs.length;
+  let filteredConfigs = configs;
+  if (searchQuery.includes(":")) {
+    filteredConfigs = configs.filter(
+      (config) => `${config.ip}:${config.port}`.includes(searchQuery)
+    );
+  } else if (searchQuery.length === 2) {
+    filteredConfigs = configs.filter(
+      (config) => config.countryCode.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  } else if (searchQuery.length > 2) {
+    filteredConfigs = configs.filter(
+      (config) => config.ip.toLowerCase().includes(searchQuery.toLowerCase()) || `${config.ip}:${config.port}`.includes(searchQuery.toLowerCase()) || config.isp.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+  const totalFilteredConfigs = filteredConfigs.length;
+  const totalPages = Math.ceil(totalFilteredConfigs / configsPerPage);
+  const startIndex = (page - 1) * configsPerPage;
+  const endIndex = Math.min(startIndex + configsPerPage, totalFilteredConfigs);
+  const visibleConfigs = filteredConfigs.slice(startIndex, endIndex);
+  const configType = url.searchParams.get("configType") || "tls";
+  const tableRows = visibleConfigs.map((config) => {
+    const uuid = generateUUIDv42();
+    const wildcard = selectedWildcard || hostName;
+    const modifiedHostName = selectedWildcard ? `${selectedWildcard}.${hostName}` : hostName;
+    if (configType === "tls") {
+      return `
+                <tr class="config-row">
 
+                    <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
+<td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
+
+                    
+                    <td class="button-cell">
+                        <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
+                             VLESS
+                        </button>
+                    </td>
+                    <td class="button-cell">
+                        <button class="copy-btn trojan" onclick="copy('${`trojan://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
+                             TROJAN
+                        </button>
+                    </td>
+                    <td class="button-cell">
+                        <button class="copy-btn shadowsocks" onclick="copy('${`ss://${btoa(`none:${uuid}`)}%3D@${wildcard}:443?encryption=none&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}&security=tls&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
+                             Shadowsocks
+                        </button>
+                    </td>
+                </tr>`;
+    } else {
+      return `
+                <tr class="config-row">
+                   <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
+
+                    <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
+
+                    <td class="button-cell">
+                        <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
+                             VLESS
+                        </button>
+                    </td>
+                    <td class="button-cell">
+                        <button class="copy-btn trojan" onclick="copy('${`trojan://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
+                             TROJAN
+                        </button>
+                    </td>
+                    <td class="button-cell">
+                        <button class="copy-btn shadowsocks" onclick="copy('${`ss://${btoa(`none:${uuid}`)}%3D@${wildcard}:80?encryption=none&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}&security=none&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
+                             Shadowsocks
+                        </button>
+                    </td>
+                </tr>`;
+    }
+  }).join("");
+  const paginationButtons = [];
+  const pageRange = 2;
+  for (let i = Math.max(1, page - pageRange); i <= Math.min(totalPages, page + pageRange); i++) {
+    paginationButtons.push(
+      `<a href="?page=${i}&wildcard=${encodeURIComponent(selectedWildcard)}&configType=${encodeURIComponent(selectedConfigType)}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""}" class="pagination-number ${i === page ? "active" : ""}">${i}</a>`
+    );
+  }
+  const prevPage = page > 1 ? `<a href="?page=${page - 1}&wildcard=${encodeURIComponent(selectedWildcard)}&configType=${encodeURIComponent(selectedConfigType)}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""}" class="pagination-arrow">\u25C1</a>` : "";
+  const nextPage = page < totalPages ? `<a href="?page=${page + 1}&wildcard=${encodeURIComponent(selectedWildcard)}&configType=${encodeURIComponent(selectedConfigType)}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""}" class="pagination-arrow">\u25B7</a>` : "";
+  
+
+      
+  </script>
     <script>
         const updateURL = (params) => {
           const url = new URL(window.location.href);
