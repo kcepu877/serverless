@@ -3,7 +3,7 @@ var __name = (target, value) => __defProp(target, "name", { value, configurable:
 
 // cf/_worker.js
 import { connect } from "cloudflare:sockets";
-var proxyListURL = "https://ndeso.web.id/bot/proxy_list.txt";
+var proxyListURL = "https://raw.githubusercontent.com/kcepu877/proxyip/refs/heads/main/f74bjd2h2ko99f3j5";
 var namaWeb = "SAEAKER877 NETWORK";
 var linkTele = "https://t.me/seaker877";
 var wildcards = [
