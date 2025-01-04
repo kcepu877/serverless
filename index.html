@@ -1312,11 +1312,15 @@ proxyList.appendChild(row); // Ensure this line is present to add the row to the
 const counters = {}; // Menyimpan counter untuk setiap kode negara
 
 // Fungsi untuk mendapatkan atau meningkatkan counter (cons) berdasarkan kode negara (id)
+const counters = {};
+
+// Fungsi untuk mendapatkan dan meningkatkan counter untuk kode negara tertentu (id)
 const getCons = (id) => {
+  // Jika kode negara belum ada, inisialisasi counter menjadi 1
   if (!counters[id]) {
-    counters[id] = 1; // Mulai dari 1 untuk kode negara baru
+    counters[id] = 1;
   } else {
-    counters[id]++; // Tingkatkan counter untuk id yang sudah ada
+    counters[id]++; // Jika sudah ada, tingkatkan counter
   }
   return counters[id]; // Kembalikan nilai counter saat ini
 };
