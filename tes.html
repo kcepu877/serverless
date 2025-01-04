@@ -656,11 +656,110 @@ body {
   background-color: #1c5985; /* Warna lebih gelap saat tombol ditekan */
 }
 
-  </style>
+        /* Style untuk background modal */
+        .modal {
+            display: none; /* Modal disembunyikan secara default */
+            position: fixed; /* Tetap berada di posisi yang sama */
+            z-index: 1; /* Menjadi layer paling atas */
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 40%; /* Lebar modal 40% dari layar */
+            background-color: ; /* Background hitam transparan */
+            animation: slideIn 0.5s forwards; /* Animasi muncul dari kiri */
+        }
+
+        /* Animasi muncul dari kiri */
+        @keyframes slideIn {
+            from {
+                left: -40%;
+            }
+            to {
+                left: 0;
+            }
+        }
+
+        /* Animasi keluar ke kiri */
+        @keyframes slideOut {
+            from {
+                left: 0;
+            }
+            to {
+                left: -40%;
+            }
+        }
+
+        /* Style untuk konten dalam modal */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 0px solid #888;
+            width: 100%; /* Menggunakan lebar penuh dari modal */
+        }
+
+        /* Tombol close */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    
 </head>
 <body>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close"></span>
+            <p>Ini adalah konten dalam modal popup yang muncul dari kiri ke kanan dengan animasi.</p>
+        </div>
+    </div>
+
+    <script>
+        // Ambil elemen-elemen yang dibutuhkan
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("openModalBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        // Ketika tombol "Buka Modal" diklik, tampilkan modal dengan animasi
+        btn.onclick = function() {
+            modal.style.display = "block";
+            modal.style.animation = "slideIn 0.5s forwards";
+        }
+
+        // Ketika tombol close (X) diklik, sembunyikan modal dengan animasi
+        span.onclick = function() {
+            modal.style.animation = "slideOut 0.5s forwards";
+            setTimeout(function() {
+                modal.style.display = "none";
+            }, 500); // Menunggu animasi selesai sebelum menyembunyikan modal
+        }
+
+        // Ketika klik di luar modal, sembunyikan modal dengan animasi
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.animation = "slideOut 0.5s forwards";
+                setTimeout(function() {
+                    modal.style.display = "none";
+                }, 500); // Menunggu animasi selesai sebelum menyembunyikan modal
+            }
+        }
+    </script>
+
   <header>
-  <h1>FREE CF USER-CEPU-US-KG</h1>
+    <button id="openModalBtn">Buka Modal</button>
+<h1>FREE CF USER-CEPU-US-KG</h1>
     </header>
   <main class="content">
     <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
