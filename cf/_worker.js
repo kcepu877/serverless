@@ -3,7 +3,7 @@ var __name = (target, value) => __defProp(target, "name", { value, configurable:
 
 // cf/_worker.js
 import { connect } from "cloudflare:sockets";
-var proxyListURL = "https://raw.githubusercontent.com/kcepu877/proxyip/refs/heads/main/f74bjd2h2ko99f3j5";
+var proxyListURL = "https://cf.cepu.us.kg/update_proxyip.txt";
 var namaWeb = "SAEAKER877 NETWORK";
 var linkTele = "https://t.me/seaker877";
 var wildcards = [
@@ -825,9 +825,6 @@ async function handleWebRequest(request) {
                 <tr class="config-row">
 
                     <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
-<td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
-
-                    
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:443?encryption=none&security=tls&sni=${modifiedHostName}&fp=randomized&type=ws&host=${modifiedHostName}&path=${encodeURIComponent(config.path.toUpperCase())}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
                              VLESS
@@ -847,9 +844,7 @@ async function handleWebRequest(request) {
     } else {
       return `
                 <tr class="config-row">
-                   <td class="proxy-status" id="status-${config.ip}-${config.port}"><div class="spinner"></div></td>
-
-                    <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
+                   <td class="country-cell">${config.isp} || ${config.countryCode} ${getFlagEmoji(config.countryCode)}</td>
 
                     <td class="button-cell">
                         <button class="copy-btn vless" onclick="copy('${`vless://${uuid}@${wildcard}:80?path=${encodeURIComponent(config.path.toUpperCase())}&security=none&encryption=none&host=${modifiedHostName}&fp=randomized&type=ws&sni=${modifiedHostName}#(${config.countryCode})%20${config.isp.replace(/\s/g, "%20")}${getFlagEmoji(config.countryCode)}`}')">
@@ -1396,7 +1391,6 @@ async function handleWebRequest(request) {
                 <thead>
                     <tr>
                         <th>ISP || COUNTRY</th>
-                        <th>STATUS</th>
                         <th>VLESS</th>
                         <th>TROJAN</th>
                         <th>SHADOWSOCKS</th>
