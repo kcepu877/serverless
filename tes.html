@@ -1259,9 +1259,9 @@ function uuidv4() {
       » IP:PORT      : ${ip}:${port}<br>
       <hr/>VLESS PATH SIMPLE<br>
       PATH: /${id}${cons}<br>
-      <button class="copy-vless">COPY VLESS 443</button>
+      <button class="copy-vless">COPY VLESS SIMPLE</button>
       <br><hr/>VLESS PATH RIBET<br>
-      PATH: /${ip}:${port}<br><button class="copy-vless-clash">COPY CLASH 443</button>
+      PATH: /${ip}:${port}<br><button class="copy-vless-clash">COPY VLESS RIBET</button>
       <hr/>
       <button class="button8" onclick="hidePopup('vtls${ip}:${port}')">Close</button> 
 </div>
@@ -1274,9 +1274,9 @@ function uuidv4() {
       » IP:PORT      : ${ip}:${port}<br>
       <hr/>TROJAN PATH SIMPLE<br>
       PATH: /${id}${cons}<br>
-      <button class="copy-trojan">COPY TROJAN 443</button>
+      <button class="copy-trojan">COPY TROJAN SIMPLE</button>
       <br><hr/>TROJAN PATH RIBET<br>
-      PATH: /${ip}:${port}<br><button class="copy-trojan-clash877">COPY CLASH 443</button> 
+      PATH: /${ip}:${port}<br><button class="copy-trojan-clash877">COPY RIBET RIBET</button> 
       <hr/>
       <button class="button8" onclick="hidePopup('trojan${ip}:${port}')">Close</button> 
     </div>
@@ -1289,10 +1289,10 @@ function uuidv4() {
       » IP:PORT      : ${ip}:${port}<br>
       <hr/>SHADOWSOCK PATH SIMPLE<br>
       PATH: /${id}${cons}<br>
-      <button class="copy-ss">COPY SHADOWSOCK</button>
+      <button class="copy-ss">COPY SHADOWSOCK SIMPLE</button>
       <br><hr/>SHADOWSOCK PATH RIBET<br>
       PATH: /${ip}:${port}<br>
-      <button class="copy-ss1">COPY CLASH</button>
+      <button class="copy-ss1">COPY SHADOWSOCK RIBET</button>
      <hr/> <button class="button8" onclick="hidePopup('ss${ip}:${port}')">Close</button> 
     </div>
     </div></td>
@@ -1309,7 +1309,7 @@ const domain = selectedService === host ? host : `${selectedService}.${host}`;
     navigator.clipboard.writeText(VLESS);
     Swal.fire({
       title: 'Berhasil!',
-      text: 'COPY VLESS 443 SUKSES!',
+      text: 'COPY VLESS SIMPLE SUKSES!',
       icon: 'success',
       background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
       color: 'red', // Warna teks
@@ -1328,7 +1328,7 @@ const domain = selectedService === host ? host : `${selectedService}.${host}`;
   navigator.clipboard.writeText(VLESSC);
     Swal.fire({
       title: 'Berhasil!',
-      text: 'COPY VLESS CLASH 443 SUKSES!',
+      text: 'COPY VLESS RIBET SUKSES!',
       icon: 'success',
       background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
       color: 'red', // Warna teks
@@ -1347,7 +1347,7 @@ const domain = selectedService === host ? host : `${selectedService}.${host}`;
     navigator.clipboard.writeText(TROJAN);
     Swal.fire({
       title: 'Berhasil!',
-      text: 'COPY TROJAN SUKSES!',
+      text: 'COPY TROJAN SIMPLE SUKSES!',
       icon: 'success',
       background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
       color: 'red', // Warna teks
@@ -1367,7 +1367,7 @@ row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
     navigator.clipboard.writeText(TROJANC877);
     Swal.fire({
       title: 'Berhasil!',
-      text: 'COPY TROJAN CLASH SUKSES!',
+      text: 'COPY TROJAN RIBET SUKSES!',
       icon: 'success',
       background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
       color: 'red', // Warna teks
@@ -1386,7 +1386,7 @@ const domain = selectedService === host ? host : `${selectedService}.${host}`;
     navigator.clipboard.writeText(SS);
     Swal.fire({
       title: 'Berhasil!',
-      text: 'COPY SHADOWSOCK SUKSES!',
+      text: 'COPY SHADOWSOCK SIMPLE SUKSES!',
       icon: 'success',
       background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
       color: 'red', // Warna teks
@@ -1405,7 +1405,7 @@ const domain = selectedService === host ? host : `${selectedService}.${host}`;
     navigator.clipboard.writeText(SS1);
     Swal.fire({
       title: 'Berhasil!',
-      text: 'COPY SHADOWSOCK SUKSES!',
+      text: 'COPY SHADOWSOCK RIBET SUKSES!',
       icon: 'success',
       background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
       color: 'red', // Warna teks
