@@ -524,9 +524,17 @@ body {
       background-color: rgba(0, 15, 123, 0.78);
     }
 
-    #search-bar, #items-per-page {
+    #search-bar {
       padding: 8px;
       width: 100px;
+      max-width: 80px;
+      border: 2px solid #4CAF50;
+      border-radius: 5px; 
+    }
+
+    #items-per-page {
+      padding: 8px;
+      width: 50px;
       max-width: 80px;
       border: 2px solid #4CAF50;
       border-radius: 5px; 
@@ -543,8 +551,15 @@ body {
         margin-bottom: 10px;
       }
 
-      #search-bar, #items-per-page {
+      #search-bar {
         width: 50px;
+        max-width: none;
+        margin-bottom: 7px;
+        border-radius: 3px; 
+      }
+
+      #items-per-page {
+        width: 30px;
         max-width: none;
         margin-bottom: 7px;
         border-radius: 3px; 
@@ -801,7 +816,7 @@ body {
         <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
 <div class="filters">
       <div><button class="button7" onclick="showPopup('menu')">MENU</button>
-<span class="filter-label">Items page:</span>
+<span class="filter-label"></span>
 <select class="service-selector" id="items-per-page">
   <option value="10">10</option>
   <option value="25">25</option>
@@ -810,7 +825,7 @@ body {
 </select>
 </div>
       <div>
-<span class="filter-label">Search:</span>
+<span class="filter-label"></span>
 <input type="text" id="search-bar" placeholder="Search by IP, Port, ID, ISP" />
 </div>
 </div>
