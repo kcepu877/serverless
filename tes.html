@@ -1349,7 +1349,7 @@ function uuidv4() {
         const query = searchInput.value.toLowerCase();
         filteredProxies = allProxies.filter(proxy => {
           const [ip, port, id, isp] = proxy.split(',');
-          return ip.toLowerCase().includes(query) || port.includes(query) || id.toLowerCase().includes(query) || isp.toLowerCase().includes(query);
+          return id.toLowerCase().includes(query);
         });
         renderProxies(filteredProxies, proxyList, pagination, itemsPerPage);
       });
