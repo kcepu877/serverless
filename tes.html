@@ -556,7 +556,33 @@ body {
       }
     }
      
-    
+
+
+    .popupnav {
+    display: none; /* Popup disembunyikan secara default */
+    position: fixed;
+    left: 0; /* Memposisikan popup di sebelah kiri */
+    top: 0;
+    width: 300px; /* Tentukan lebar popup */
+    height: 100%; /* Menjaga tinggi popup penuh */
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: left;
+    align-items: center;
+    z-index: 100;
+    pointer-events: auto;
+    animation: slideInLeft 0.5s forwards; /* Animasi popup muncul dari kiri */
+}
+
+/* Animasi untuk popup masuk dari kiri */
+@keyframes slideInLeft {
+    from {
+        left: -100%; /* Popup dimulai di luar layar di sebelah kiri */
+    }
+    to {
+        left: 0; /* Popup bergerak masuk ke kiri layar */
+    }
+}
+
                 .popup {
       display: none; /* Hidden by default */
       position: fixed;
@@ -624,7 +650,17 @@ body {
   pointer-events: auto; /* Aktifkan interaksi pointer */
 
     }
+    .popupnav-content {
+      background-color: rgba(55, 53, 53, 0.85);
+      padding: 10px;
+      border: 0px solid rgba(197, 51, 6, 0.89); /* Border dengan warna abu-abu */
+      border-radius: 10px;
+      text-align: center;
     
+      position: relative;
+  z-index: 1000; /* Pastikan elemen ini berada di atas */
+  pointer-events: auto;
+    }
     .popup-content {
       background-color: rgba(0, 3, 63, 0.84);
       padding: 20px;
@@ -760,45 +796,12 @@ body {
     </header>
   <main class="content">
 
-    <script>
-        // Ambil elemen-elemen yang dibutuhkan
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("openModalBtn");
-        var span = document.getElementsByClassName("close")[0];
+    
 
-        // Ketika tombol "Buka Modal" diklik, tampilkan modal dengan animasi
-        btn.onclick = function() {
-            modal.style.display = "block";
-            modal.style.animation = "slideIn 0.5s forwards";
-        }
-
-        // Ketika tombol close (X) diklik, sembunyikan modal dengan animasi
-        span.onclick = function() {
-            modal.style.animation = "slideOut 0.5s forwards";
-            setTimeout(function() {
-                modal.style.display = "none";
-            }, 500); // Menunggu animasi selesai sebelum menyembunyikan modal
-        }
-
-        // Ketika klik di luar modal, sembunyikan modal dengan animasi
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.animation = "slideOut 0.5s forwards";
-                setTimeout(function() {
-                    modal.style.display = "none";
-                }, 500); // Menunggu animasi selesai sebelum menyembunyikan modal
-            }
-        }
-    </script>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close"></span>
-            <p>Ini adalah konten dalam modal popup yang muncul dari kiri ke kanan dengan animasi.</p>
-        </div>
-    </div>
         <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
 <div class="filters">
-      <div><span class="filter-label">Items page:</span>
+      <div><button class="button7" onclick="showPopup('menu')">MENU</button>
+<span class="filter-label">Items page:</span>
 <select class="service-selector" id="items-per-page">
   <option value="10">10</option>
   <option value="25">25</option>
@@ -830,6 +833,29 @@ body {
     <div class="total-proxy" id="total-proxy"></div>
     <div class="pagination" id="pagination"></div>
   </div> 
+
+    <div class="popupnav" id="menu">
+<div class="popupvav-content">
+<table>
+  <span>SUB LINK GERETATED</span>
+  <thead><tr>
+       <th></th>
+          <th></th>
+      <th></th>
+      </tr>
+    </thead>
+          <tbody><tr><td>
+            <label for="app">APLIKASI:</label>
+          </td><td><select class="service-selector" id="app" class="form-control" required>
+                    <option value="v2ray">V2RAY</option>
+                    <option value="v2rayng">V2RAYNG</option>
+                    <option value="clash">CLASH</option>
+                    <option value="nekobox">NEKOBOX</option>
+                    <option value="singbox">SINGBOX</option>
+                    <option value="surfboard">SURFBOARD</option>
+                </select></td>
+            <td><button class="button7" id="close" onclick="hidePopup('menu')">Close</button>
+    </td></tr></tbody></table></div></div>
 <div class="popup" id="sub-link">
 <div class="popup-content">
   <div class="table-container">
