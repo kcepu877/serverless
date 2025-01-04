@@ -1236,72 +1236,80 @@ function uuidv4() {
         // Create a row with innerHTML to make it more manageable
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>
-            <span>${isp} | ${id}</span>
-            <span class="flag-icon flag-icon-${id.toLowerCase()}"></span> <!-- Display the flag -->
-            </td>
-          <td>
-            <span id="status-${ip}-${port}">Loading...</span>
-          </td>
-          <td><select class="service-selector">
-          <option value="">NO WILDCARD</option>
-          <option value="business.blibli.com">business.blibli.com</option>          
-          <option value="ava.game.naver.com">ava.game.naver.com</option>
-          <option value="graph.instagram.com">graph.instagram.com</option>
-          <option value="quiz.int.vidio.com">quiz.int.vidio.com</option>
-          <option value="live.iflix.com.com">live.iflix.com</option>
-          <option value="support.zoom.us">support.zoom.us</option>
-          <option value="blog.webex.com">blog.webex.com</option>
-          <option value="investors.spotify.com">investors.spotify.com</option>
-          <option value="cache.netflix.com">cache.netflix.com</option>
-          <option value="zaintest.vuclip.com">zaintest.vuclip.com</option>
-          <option value="ads.ruangguru.com">io.ruangguru.com</option>
-          <option value="api.midtrans.com">api.midtrans.com</option>
-        </select></td>
-          <td><button class="button" onclick="showPopup('vtls${ip}:${port}')">VLESS TLS 443</button>
-      <div class="popup" id="vtls${ip}:${port}">
+  <td>
+    <span>${isp} | ${id}</span>
+    <span class="flag-icon flag-icon-${id.toLowerCase()}"></span> <!-- Display the flag -->
+  </td>
+  <td>
+    <span id="status-${ip}-${port}">Loading...</span>
+  </td>
+  <td>
+    <select class="service-selector">
+      <option value="">NO WILDCARD</option>
+      <option value="business.blibli.com">business.blibli.com</option>
+      <option value="ava.game.naver.com">ava.game.naver.com</option>
+      <option value="graph.instagram.com">graph.instagram.com</option>
+      <option value="quiz.int.vidio.com">quiz.int.vidio.com</option>
+      <option value="live.iflix.com.com">live.iflix.com</option>
+      <option value="support.zoom.us">support.zoom.us</option>
+      <option value="blog.webex.com">blog.webex.com</option>
+      <option value="investors.spotify.com">investors.spotify.com</option>
+      <option value="cache.netflix.com">cache.netflix.com</option>
+      <option value="zaintest.vuclip.com">zaintest.vuclip.com</option>
+      <option value="ads.ruangguru.com">io.ruangguru.com</option>
+      <option value="api.midtrans.com">api.midtrans.com</option>
+    </select>
+  </td>
+  <td>
+    <button class="button" onclick="showPopup('vtls${ip}:${port}')">VLESS TLS 443</button>
+    <div class="popup" id="vtls${ip}:${port}">
       <div class="popup-content"><hr/><br>
-      » ISP         : ${isp}<br>
-      » Country     :${id}&nbsp;<span class="flag-icon flag-icon-${id.toLowerCase()}"></span><br>
-      » IP:PORT      : ${ip}:${port}<br>
-      <hr/>VLESS<br>
-      <button class="copy-vless">COPY VLESS 443</button>
-      <br><button class="copy-vless-clash">COPY CLASH 443</button>
-      <hr/>
-      <button class="button8" onclick="hidePopup('vtls${ip}:${port}')">Close</button> 
-</div>
-</div></td>
-          <td><button class="button" onclick="showPopup('trojan${ip}:${port}')">TROJAN TLS 443</button>
-      <div class="popup" id="trojan${ip}:${port}">
-      <div class="popup-content"><hr/><br>
-      » ISP         : ${isp}<br>
-      » Country     :${id}&nbsp;<span class="flag-icon flag-icon-${id.toLowerCase()}"></span><br>
-      » IP:PORT      : ${ip}:${port}<br>
-      <hr/>TROJAN<br>
-      <button class="copy-trojan">COPY TROJAN 443</button>
-      <br><button class="copy-trojan-clash877">COPY CLASH 443</button> 
-      <hr/>
-      <button class="button8" onclick="hidePopup('trojan${ip}:${port}')">Close</button> 
+        » ISP         : ${isp}<br>
+        » Country     :${id}&nbsp;<span class="flag-icon flag-icon-${id.toLowerCase()}"></span><br>
+        » IP:PORT      : ${ip}:${port}<br>
+        <hr/>VLESS<br>
+        <button class="copy-vless">COPY VLESS 443</button>
+        <br><button class="copy-vless-clash">COPY CLASH 443</button>
+        <hr/>
+        <button class="button8" onclick="hidePopup('vtls${ip}:${port}')">Close</button>
+      </div>
     </div>
-    </div></td>
-          <td><button class="button" onclick="showPopup('ss${ip}:${port}')">SHADOWSOCK</button>
-      <div class="popup" id="ss${ip}:${port}">
+  </td>
+  <td>
+    <button class="button" onclick="showPopup('trojan${ip}:${port}')">TROJAN TLS 443</button>
+    <div class="popup" id="trojan${ip}:${port}">
       <div class="popup-content"><hr/><br>
-      » ISP         : ${isp}<br>
-      » Country     :${id}&nbsp;<span class="flag-icon flag-icon-${id.toLowerCase()}"></span><br>
-      » IP:PORT      : ${ip}:${port}<br>
-      <hr/>SHADOWSOCK<br>
-      <button class="copy-ss">COPY SHADOWSOCK</button>
-      <br><button class="copy-ss1">COPY CLASH</button>
-     <hr/> <button class="button8" onclick="hidePopup('ss${ip}:${port}')">Close</button> 
+        » ISP         : ${isp}<br>
+        » Country     :${id}&nbsp;<span class="flag-icon flag-icon-${id.toLowerCase()}"></span><br>
+        » IP:PORT      : ${ip}:${port}<br>
+        <hr/>TROJAN<br>
+        <button class="copy-trojan">COPY TROJAN 443</button>
+        <br><button class="copy-trojan-clash877">COPY CLASH 443</button>
+        <hr/>
+        <button class="button8" onclick="hidePopup('trojan${ip}:${port}')">Close</button>
+      </div>
     </div>
-    </div></td>
-        `;
+  </td>
+  <td>
+    <button class="button" onclick="showPopup('ss${ip}:${port}')">SHADOWSOCK</button>
+    <div class="popup" id="ss${ip}:${port}">
+      <div class="popup-content"><hr/><br>
+        » ISP         : ${isp}<br>
+        » Country     :${id}&nbsp;<span class="flag-icon flag-icon-${id.toLowerCase()}"></span><br>
+        » IP:PORT      : ${ip}:${port}<br>
+        <hr/>SHADOWSOCK<br>
+        <button class="copy-ss">COPY SHADOWSOCK</button>
+        <br><button class="copy-ss1">COPY CLASH</button>
+        <hr/>
+        <button class="button8" onclick="hidePopup('ss${ip}:${port}')">Close</button>
+      </div>
+    </div>
+  </td>
+`;
 
-        // Append the row to the proxy list
-        proxyList.appendChild(row); // Ensure this line is present to add the row to the list
-        
-        const counters = {}; // Menyimpan counter untuk setiap kode negara
+proxyList.appendChild(row); // Ensure this line is present to add the row to the list
+
+const counters = {}; // Menyimpan counter untuk setiap kode negara
 
 // Fungsi untuk mendapatkan atau meningkatkan counter (cons) berdasarkan kode negara (id)
 const getCons = (id) => {
@@ -1314,31 +1322,29 @@ const getCons = (id) => {
 };
 
 row.querySelector('.copy-vless').addEventListener('click', () => {
-    const id = row.querySelector('.id-selector').value; // Mengambil id negara
-    const cons = getCons(id); // Mengambil nilai cons berdasarkan id
-    const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-    const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
-    const VLESS = `vless://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
-    navigator.clipboard.writeText(VLESS);
-    Swal.fire({
-      title: 'Berhasil!',
-      text: 'COPY VLESS 443 SUKSES!',
-      icon: 'success',
-      background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
-      color: 'red', // Warna teks
-      customClass: {
-        popup: 'rounded-popup',
-      },
-      confirmButtonColor: '#3085d6'
-    });
+  const cons = getCons(id); // Mengambil nilai cons berdasarkan id
+  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
+  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+  const VLESS = `vless://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+  navigator.clipboard.writeText(VLESS);
+  Swal.fire({
+    title: 'Berhasil!',
+    text: 'COPY VLESS 443 SUKSES!',
+    icon: 'success',
+    background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
+    color: 'red', // Warna teks
+    customClass: {
+      popup: 'rounded-popup',
+    },
+    confirmButtonColor: '#3085d6'
+  });
 });
 
 row.querySelector('.copy-vless-clash').addEventListener('click', () => {
-    const id = row.querySelector('.id-selector').value; // Mengambil id negara
-    const cons = getCons(id); // Mengambil nilai cons berdasarkan id
-    const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-    const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
-    const VLESSC = `- name: (${selectedService})+${id}+${isp}
+  const cons = getCons(id); // Mengambil nilai cons berdasarkan id
+  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
+  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+  const VLESSC = `- name: (${selectedService})+${id}+${isp}
     server: ${selectedService}
     port: 443
     type: vless
@@ -1353,46 +1359,44 @@ row.querySelector('.copy-vless-clash').addEventListener('click', () => {
       path: /${id}${cons}
       headers:
         Host: ${domain}`;
-    navigator.clipboard.writeText(VLESSC);
-    Swal.fire({
-      title: 'Berhasil!',
-      text: 'COPY VLESS CLASH 443 SUKSES!',
-      icon: 'success',
-      background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
-      color: 'red', // Warna teks
-      customClass: {
-        popup: 'rounded-popup',
-      },
-      confirmButtonColor: '#3085d6'
-    });
+  navigator.clipboard.writeText(VLESSC);
+  Swal.fire({
+    title: 'Berhasil!',
+    text: 'COPY VLESS CLASH 443 SUKSES!',
+    icon: 'success',
+    background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
+    color: 'red', // Warna teks
+    customClass: {
+      popup: 'rounded-popup',
+    },
+    confirmButtonColor: '#3085d6'
+  });
 });
 
 row.querySelector('.copy-trojan').addEventListener('click', () => {
-    const id = row.querySelector('.id-selector').value; // Mengambil id negara
-    const cons = getCons(id); // Mengambil nilai cons berdasarkan id
-    const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-    const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
-    const TROJAN = `trojan://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
-    navigator.clipboard.writeText(TROJAN);
-    Swal.fire({
-      title: 'Berhasil!',
-      text: 'COPY TROJAN SUKSES!',
-      icon: 'success',
-      background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
-      color: 'red', // Warna teks
-      customClass: {
-        popup: 'rounded-popup',
-      },
-      confirmButtonColor: '#3085d6'
-    });
+  const cons = getCons(id); // Mengambil nilai cons berdasarkan id
+  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
+  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+  const TROJAN = `trojan://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+  navigator.clipboard.writeText(TROJAN);
+  Swal.fire({
+    title: 'Berhasil!',
+    text: 'COPY TROJAN SUKSES!',
+    icon: 'success',
+    background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
+    color: 'red', // Warna teks
+    customClass: {
+      popup: 'rounded-popup',
+    },
+    confirmButtonColor: '#3085d6'
+  });
 });
 
 row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
-    const id = row.querySelector('.id-selector').value; // Mengambil id negara
-    const cons = getCons(id); // Mengambil nilai cons berdasarkan id
-    const selectedService = row.querySelector('.service-selector').value || "xvp.bmkg.xyz";
-    const domain = selectedService === "xvp.bmkg.xyz" ? "xvp.bmkg.xyz" : `${selectedService}.xvp.bmkg.xyz`;
-    const TROJANC877 = `- name: (${selectedService})+${id}+${isp}
+  const cons = getCons(id); // Mengambil nilai cons berdasarkan id
+  const selectedService = row.querySelector('.service-selector').value || "xvp.bmkg.xyz";
+  const domain = selectedService === "xvp.bmkg.xyz" ? "xvp.bmkg.xyz" : `${selectedService}.xvp.bmkg.xyz`;
+  const TROJANC877 = `- name: (${selectedService})+${id}+${isp}
     server: ${selectedService}
     port: 443
     type: trojan
@@ -1405,55 +1409,72 @@ row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
       headers:
         Host: ${domain}
     udp: true `;
-    navigator.clipboard.writeText(TROJANC877);
-    Swal.fire({
-      title: 'Berhasil!',
-      text: 'COPY TROJAN CLASH SUKSES!',
-      icon: 'success',
-      background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
-      color: 'red', // Warna teks
-      customClass: {
-        popup: 'rounded-popup',
-      },
-      confirmButtonColor: '#3085d6'
-    });
+  navigator.clipboard.writeText(TROJANC877);
+  Swal.fire({
+    title: 'Berhasil!',
+    text: 'COPY TROJAN CLASH SUKSES!',
+    icon: 'success',
+    background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
+    color: 'red', // Warna teks
+    customClass: {
+      popup: 'rounded-popup',
+    },
+    confirmButtonColor: '#3085d6'
+  });
 });
 
 row.querySelector('.copy-ss').addEventListener('click', () => {
-    const id = row.querySelector('.id-selector').value; // Mengambil id negara
-    const cons = getCons(id); // Mengambil nilai cons berdasarkan id
-    const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-    const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
-    const SS = `ss://bm9uZTo1ZDJlYmQyYS05Y2I5LTRkMWItYWY1NS04NjE3ZDNlODFmMzk%3D@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
-    navigator.clipboard.writeText(SS);
-    Swal.fire({
-      title: 'Berhasil!',
-      text: 'COPY SHADOWSOCK SUKSES!',
-      icon: 'success',
-      background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
-      color: 'red', // Warna teks
-      customClass: {
-        popup: 'rounded-popup',
-      },
-      confirmButtonColor: '#3085d6'
-    });
+  const cons = getCons(id); // Mengambil nilai cons berdasarkan id
+  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
+  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+  const SS = `ss://bm9uZTo1ZDJlYmQyYS05Y2I5LTRkMWItYWY1NS04NjE3ZDNlODFmMzk%3D@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+  navigator.clipboard.writeText(SS);
+  Swal.fire({
+    title: 'Berhasil!',
+    text: 'COPY SHADOWSOCK SUKSES!',
+    icon: 'success',
+    background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
+    color: 'red', // Warna teks
+    customClass: {
+      popup: 'rounded-popup',
+    },
+    confirmButtonColor: '#3085d6'
+  });
 });
 
 row.querySelector('.copy-ss1').addEventListener('click', () => {
-    const SS1 = `087861167414`;
-    navigator.clipboard.writeText(SS1);
-    Swal.fire({
-      title: 'Perhatian!',
-      text: 'SHADOWSOCK VERSI CLASH BELUM TERSEDIA',
-      icon: 'warning',
-      background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
-      color: 'red', // Warna teks
-      customClass: {
-        popup: 'rounded-popup',
-      },
-      confirmButtonColor: '#f39c12'
-    });
+  const cons = getCons(id); // Mengambil nilai cons berdasarkan id
+  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
+  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+  const SS1 = `- name: (${selectedService})+${id}+${isp}
+    server: ${selectedService}
+    port: 443
+    type: ss
+    cipher: none
+    password: ${uuidv4()}
+    tls: true
+    udp: true
+    skip-cert-verify: true
+    network: ws
+    servername: ${domain}
+    ws-opts:
+      path: /${id}${cons}
+      headers:
+        Host: ${domain}`;
+  navigator.clipboard.writeText(SS1);
+  Swal.fire({
+    title: 'Berhasil!',
+    text: 'COPY SHADOWSOCK CLASH SUKSES!',
+    icon: 'success',
+    background: 'rgba(6, 18, 67, 0.89)', // Warna latar belakang (biru pucat)
+    color: 'red', // Warna teks
+    customClass: {
+      popup: 'rounded-popup',
+    },
+    confirmButtonColor: '#3085d6'
+  });
 });
+
 
         
         
