@@ -527,14 +527,21 @@ body {
     }
 
     
-        #search-bar, #items-per-page {
-      padding: 10px;
-      width: 150px;
+        #search-bar {
+      padding: 15px;
+      width: 100px;
       max-width: 100px;
       border: 2px solid #4CAF50;
       border-radius: 5px; 
     }
 
+    #items-per-page {
+      padding: 10px;
+      width: 60px;
+      max-width: 70px;
+      border: 2px solid #4CAF50;
+      border-radius: 5px; 
+    }
     /* Responsif */
     @media (max-width: 100%) {
       header, footer {
@@ -813,7 +820,7 @@ body {
         <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
 <div class="filters">
       <div><button class="button7" onclick="showPopup('menu')">MENU</button></div><div>
-<span class="filter-label"></span>
+<span class="filter-label">Page:</span>
 <select class="service-selector" id="items-per-page">
   <option value="10">10</option>
   <option value="25">25</option>
@@ -822,7 +829,7 @@ body {
 </select>
 </div>
       <div>
-<span class="filter-label"></span>
+<span class="filter-label">Search:</span>
 <input type="text" id="search-bar" placeholder="Search ID" />
 </div>
 </div>
