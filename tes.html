@@ -277,8 +277,7 @@ body {
       width: 80%;
       margin-bottom: 20px;
     }
-.filters > div,
-.button {
+.filters > .div, .button {
   position: relative; /* Pastikan tombol berada di atas elemen lainnya */
   z-index: 2; /* Tingkatkan prioritas tombol */
   pointer-events: auto; /* Aktifkan interaksi pointer */
@@ -525,7 +524,7 @@ body {
     }
 
     #search-bar {
-      padding: 8px;
+      padding: 10px;
       width: 100px;
       max-width: 80px;
       border: 2px solid #4CAF50;
@@ -533,8 +532,8 @@ body {
     }
 
     #items-per-page {
-      padding: 8px;
-      width: 50px;
+      padding: 10px;
+      width: 100px;
       max-width: 80px;
       border: 2px solid #4CAF50;
       border-radius: 5px; 
@@ -554,14 +553,14 @@ body {
       #search-bar {
         width: 50px;
         max-width: none;
-        margin-bottom: 7px;
+        margin-bottom: 5px;
         border-radius: 3px; 
       }
 
       #items-per-page {
         width: 30px;
         max-width: none;
-        margin-bottom: 7px;
+        margin-bottom: 5px;
         border-radius: 3px; 
       }
 
@@ -815,7 +814,7 @@ body {
 
         <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
 <div class="filters">
-      <div><button class="button7" onclick="showPopup('menu')">MENU</button>
+      <div><button class="button7" onclick="showPopup('menu')">MENU</button></div><div>
 <span class="filter-label"></span>
 <select class="service-selector" id="items-per-page">
   <option value="10">10</option>
@@ -826,7 +825,7 @@ body {
 </div>
       <div>
 <span class="filter-label"></span>
-<input type="text" id="search-bar" placeholder="Search by IP, Port, ID, ISP" />
+<input type="text" id="search-bar" placeholder="Search ID" />
 </div>
 </div>
     
