@@ -640,7 +640,20 @@ body {
         }
 
 
-    
+    .button6 {
+      margin: 0px;
+      padding: 00px 00px;
+      border: 0px solid rgba(183, 43, 0, 0.97); /* Border dengan warna abu-abu */
+      border-radius: 10px;
+      border-radius: 5px;
+      background-color: ;
+      color: #fff;
+      cursor: pointer;
+    position: relative; /* Pastikan tombol berada di atas elemen lainnya */
+  z-index: 2; /* Tingkatkan prioritas tombol */
+  pointer-events: auto; /* Aktifkan interaksi pointer */
+
+    }
   .button7 {
       margin: 10px;
       padding: 10px 10px;
@@ -819,8 +832,9 @@ body {
 
         <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
 <div class="filters">
-      <div><span class="button7" onclick="showPopup('menu')">
-        <img src="https://cf.cepu.us.kg/menu-bar.png" alt="menu" width="23">
+      <div><span class="button6" onclick="showPopup('menu')">
+        <img src="https://cf.cepu.us.kg/img/options.png
+" alt="menu" width="40">
 </span>
 </div><div>
 <span class="filter-label">Page:</span>
