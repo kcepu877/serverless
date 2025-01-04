@@ -571,7 +571,31 @@ body {
       align-items: center;
       z-index: 100;
       pointer-events: auto;
-    }
+    animation: slideInLeft 0.5s forwards; /* Animasi popup muncul dari kiri */
+        }
+
+        /* Animasi untuk popup masuk dari kiri */
+        @keyframes slideInLeft {
+            from {
+                left: -100%;
+            }
+            to {
+                left: 0;
+            }
+        }
+
+        /* Animasi untuk popup keluar dari kanan ke kiri */
+        @keyframes slideOutRightToLeft {
+            from {
+                left: 0;
+            }
+            to {
+                left: -100%;
+            }
+        }
+
+
+    
   .button7 {
       margin: 10px;
       padding: 10px 10px;
@@ -700,17 +724,25 @@ body {
 
         /* Tombol close */
         .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 20px;
             font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
         }
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+        /* Efek tombol close saat dihover */
+        .close:hover {
+            background-color: #e60000;
+            transform: scale(1.1);
         }
     </style>
     
@@ -819,7 +851,7 @@ body {
                     <option value="singbox">SINGBOX</option>
                     <option value="surfboard">SURFBOARD</option>
                 </select></td>
-            <td><button class="button7" onclick="hidePopup('sub-link')">Close</button>
+            <td><button class="button7" id="close" onclick="hidePopup('sub-link')">Close</button>
     </td></tr>
 
             <tr><td><label for="bug">BUG/WILDCARD:</label>
