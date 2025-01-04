@@ -764,8 +764,7 @@ body {
             <p>Ini adalah konten dalam modal popup yang muncul dari kiri ke kanan dengan animasi.</p>
         </div>
     </div>
-        <button id="openModalBtn">Buka Modal</button>
-<center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
+        <center><button class="button7" onclick="showPopup('sub-link')">SHOW LINK SUB</button></center>
 <div class="filters">
       <div><span class="filter-label">Items page:</span>
 <select class="service-selector" id="items-per-page">
@@ -1188,17 +1187,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-  // Function to show a popup
-  function showPopup(popupId) {
-    document.getElementById(popupId).style.display = "flex";
-  }
+    // Function to show a popup
+    function showPopup(popupId) {
+        var popup = document.getElementById(popupId);
+        popup.style.display = "flex";
+        popup.style.animation = "slideInLeft 0.5s forwards"; // Animasi popup muncul dari kiri
+    }
 
-  // Function to hide a popup
-  function hidePopup(popupId) {
-    document.getElementById(popupId).style.display = "none";
-  }
+    // Function to hide a popup
+    function hidePopup(popupId) {
+        var popup = document.getElementById(popupId);
+        
+        // Mulai animasi popup keluar dari kanan ke kiri
+        popup.style.animation = "slideOutRightToLeft 0.5s forwards";
 
-
+        // Menyembunyikan popup setelah animasi selesai
+        setTimeout(function() {
+            popup.style.display = "none"; 
+        }, 500); // Menunggu durasi animasi selesai (500ms)
+    }
 </script>
 <script>
 function uuidv4() {
