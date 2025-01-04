@@ -1296,7 +1296,8 @@ function uuidv4() {
 
         row.querySelector('.copy-vless').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-    const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+    const host = "user.cepu.us.kg";
+    const domain = selectedService === host ? host : `${selectedService}.${host}`;
     const VLESS = `vless://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
     navigator.clipboard.writeText(VLESS);
     Swal.fire({
@@ -1314,7 +1315,8 @@ function uuidv4() {
 
 row.querySelector('.copy-vless-clash').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-    const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+    const host = "user.cepu.us.kg";
+    const domain = selectedService === host ? host : `${selectedService}.${host}`;
     const VLESSC = `- name: (${selectedService})+${id}+${isp}
     server: ${selectedService}
     port: 443
@@ -1346,7 +1348,8 @@ row.querySelector('.copy-vless-clash').addEventListener('click', () => {
 
 row.querySelector('.copy-trojan').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-    const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+    const host = "user.cepu.us.kg";
+    const domain = selectedService === host ? host : `${selectedService}.${host}`;
     const TROJAN = `trojan://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
     navigator.clipboard.writeText(TROJAN);
     Swal.fire({
@@ -1364,7 +1367,8 @@ row.querySelector('.copy-trojan').addEventListener('click', () => {
 
 row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "xvp.bmkg.xyz";
-    const domain = selectedService === "xvp.bmkg.xyz" ? "xvp.bmkg.xyz" : `${selectedService}.xvp.bmkg.xyz`;
+    const host = "user.cepu.us.kg";
+    const domain = selectedService === host ? host : `${selectedService}.${host}`;
     const TROJANC877 = `- name: (${selectedService})+${id}+${isp}
     server: ${selectedService}
     port: 443
@@ -1394,7 +1398,8 @@ row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
 
 row.querySelector('.copy-ss').addEventListener('click', () => {
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-    const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+    const host = "user.cepu.us.kg";
+    const domain = selectedService === host ? host : `${selectedService}.${host}`;
     const SS = `ss://bm9uZTo1ZDJlYmQyYS05Y2I5LTRkMWItYWY1NS04NjE3ZDNlODFmMzk%3D@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
     navigator.clipboard.writeText(SS);
     Swal.fire({
