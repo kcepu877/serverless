@@ -271,21 +271,24 @@ body {
       }
       
       
+          
     .filters {
       display: flex;
       justify-content: space-between;
       width: 80%;
       margin-bottom: 20px;
     }
-.filters > .div, .button {
+.filters > div,
+.button {
   position: relative; /* Pastikan tombol berada di atas elemen lainnya */
   z-index: 2; /* Tingkatkan prioritas tombol */
   pointer-events: auto; /* Aktifkan interaksi pointer */
-  margin-right: 2px;
+  margin-right: 20px;
 }
     .filter-label {
-      margin-right: 2px;
+      margin-right: 10px;
     }
+
 
     /* Memberikan sudut melengkung pada tabel */
     table {
@@ -523,18 +526,11 @@ body {
       background-color: rgba(0, 15, 123, 0.78);
     }
 
-    #search-bar {
+    
+        #search-bar, #items-per-page {
       padding: 10px;
-      width: 100px;
-      max-width: 80px;
-      border: 2px solid #4CAF50;
-      border-radius: 5px; 
-    }
-
-    #items-per-page {
-      padding: 10px;
-      width: 100px;
-      max-width: 80px;
+      width: 150px;
+      max-width: 100px;
       border: 2px solid #4CAF50;
       border-radius: 5px; 
     }
@@ -550,19 +546,13 @@ body {
         margin-bottom: 10px;
       }
 
-      #search-bar {
-        width: 50px;
+      #search-bar, #items-per-page {
+        width: 60px;
         max-width: none;
-        margin-bottom: 5px;
-        border-radius: 3px; 
+        margin-bottom: 10px;
+        border-radius: 5px; 
       }
 
-      #items-per-page {
-        width: 30px;
-        max-width: none;
-        margin-bottom: 5px;
-        border-radius: 3px; 
-      }
 
       .pagination button {
         padding: 12px;
