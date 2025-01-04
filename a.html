@@ -80,7 +80,9 @@
     const popup = document.getElementById('popup');
 
     toggleButton.addEventListener('click', () => {
+      console.log('Button clicked!');
       popup.classList.toggle('hidden');
+      console.log('Popup visibility:', popup.classList.contains('hidden') ? 'hidden' : 'visible');
     });
   </script>
 </body>
