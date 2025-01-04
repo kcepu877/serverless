@@ -1301,23 +1301,20 @@ function uuidv4() {
         // Append the row to the proxy list
         proxyList.appendChild(row); // Ensure this line is present to add the row to the list
         
-        const counters = {}; 
+        const counters = {}; // Menyimpan counter untuk setiap kode negara
 
+// Fungsi untuk mendapatkan atau meningkatkan counter (cons) berdasarkan kode negara (id)
 const getCons = (id) => {
-  if (!cons) {
-    cons = 1; // Mulai dari 1 untuk kode negara baru
+  if (!counters[id]) {
+    counters[id] = 1; // Mulai dari 1 untuk kode negara baru
   } else {
-    cons++; // Tingkatkan counter untuk kode negara tersebut
+    counters[id]++; // Tingkatkan counter untuk id yang sudah ada
   }
-  return cons; // Mengembalikan nilai counter (couns)
+  return counters[id]; // Kembalikan nilai counter saat ini
 };
 
-  
-
-        
-        
-        row.querySelector('.copy-vless').addEventListener('click', () => {
-    const cons = getCons(id); // Mengambil nilai cons berdasarkan id
+row.querySelector('.copy-vless').addEventListener('click', () => {
+    const id = row.querySelector('.id-selector').value; // Mengambil id negara
     const cons = getCons(id); // Mengambil nilai cons berdasarkan id
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
     const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
@@ -1337,6 +1334,7 @@ const getCons = (id) => {
 });
 
 row.querySelector('.copy-vless-clash').addEventListener('click', () => {
+    const id = row.querySelector('.id-selector').value; // Mengambil id negara
     const cons = getCons(id); // Mengambil nilai cons berdasarkan id
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
     const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
@@ -1370,6 +1368,7 @@ row.querySelector('.copy-vless-clash').addEventListener('click', () => {
 });
 
 row.querySelector('.copy-trojan').addEventListener('click', () => {
+    const id = row.querySelector('.id-selector').value; // Mengambil id negara
     const cons = getCons(id); // Mengambil nilai cons berdasarkan id
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
     const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
@@ -1389,6 +1388,7 @@ row.querySelector('.copy-trojan').addEventListener('click', () => {
 });
 
 row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
+    const id = row.querySelector('.id-selector').value; // Mengambil id negara
     const cons = getCons(id); // Mengambil nilai cons berdasarkan id
     const selectedService = row.querySelector('.service-selector').value || "xvp.bmkg.xyz";
     const domain = selectedService === "xvp.bmkg.xyz" ? "xvp.bmkg.xyz" : `${selectedService}.xvp.bmkg.xyz`;
@@ -1420,6 +1420,7 @@ row.querySelector('.copy-trojan-clash877').addEventListener('click', () => {
 });
 
 row.querySelector('.copy-ss').addEventListener('click', () => {
+    const id = row.querySelector('.id-selector').value; // Mengambil id negara
     const cons = getCons(id); // Mengambil nilai cons berdasarkan id
     const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
     const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
@@ -1453,6 +1454,7 @@ row.querySelector('.copy-ss1').addEventListener('click', () => {
       confirmButtonColor: '#f39c12'
     });
 });
+
         
         
         // Update status as per your logic
