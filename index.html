@@ -1309,121 +1309,94 @@ function uuidv4() {
 
 proxyList.appendChild(row); // Ensure this line is present to add the row to the list
 
-const counters = {}; // Menyimpan counter untuk setiap kode negara
+document.addEventListener("DOMContentLoaded", function() {
+  // Pastikan kode dijalankan setelah elemen-elemen dimuat di DOM
 
-// Fungsi untuk mendapatkan atau meningkatkan counter (cons) berdasarkan kode negara (id)
-const getCons = (id) => {
-  if (!counters[id]) {
-    counters[id] = 1; // Mulai dari 1 untuk kode negara baru
-  } else {
-    counters[id]++; // Tingkatkan counter untuk id yang sudah ada
-  }
-  return counters[id]; // Kembalikan nilai counter saat ini
-};
+  // Fungsi untuk mendapatkan atau meningkatkan counter (cons) berdasarkan kode negara (id)
+  const counters = {}; // Menyimpan counter untuk setiap kode negara
 
-// Fungsi untuk menangani tombol copy VLESS
-row.querySelector('.copy-vless').addEventListener('click', () => {
-  const id = row.querySelector('.id-selector').value; // Mengambil id negara
-  const cons = getCons(id); // Mendapatkan nilai counter untuk id negara
-  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+  const getCons = (id) => {
+    if (!counters[id]) {
+      counters[id] = 1; // Mulai dari 1 untuk kode negara baru
+    } else {
+      counters[id]++; // Tingkatkan counter untuk id yang sudah ada
+    }
+    return counters[id]; // Kembalikan nilai counter saat ini
+  };
 
-  // Membuat URL VLESS dengan format yang benar
-  const VLESS = `vless://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
-  navigator.clipboard.writeText(VLESS); // Menyalin ke clipboard
-  Swal.fire({
-    title: 'Berhasil!',
-    text: 'COPY VLESS 443 SUKSES!',
-    icon: 'success',
-    background: 'rgba(6, 18, 67, 0.89)',
-    color: 'red',
-    customClass: {
-      popup: 'rounded-popup',
-    },
-    confirmButtonColor: '#3085d6'
-  });
-});
+  // Ambil semua tombol copy di halaman
+  const copyButtons = document.querySelectorAll('.copy-vless, .copy-vless-clash, .copy-trojan, .copy-ss');
 
-// Fungsi untuk menangani tombol copy VLESS Clash
-row.querySelector('.copy-vless-clash').addEventListener('click', () => {
-  const id = row.querySelector('.id-selector').value; // Mengambil id negara
-  const cons = getCons(id); // Mendapatkan nilai counter untuk id negara
-  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+  copyButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const row = button.closest('.row'); // Mengambil elemen parent untuk mendapatkan data
+      const id = row.querySelector('.id-selector').value; // Mengambil id negara
+      const cons = getCons(id); // Mendapatkan nilai counter untuk id negara
+      const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
+      const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
 
-  // Membuat URL VLESS Clash dengan format yang benar
-  const VLESSC = `- name: (${selectedService})+${id}+${isp}
-    server: ${selectedService}
-    port: 443
-    type: vless
-    uuid: ${uuidv4()}
-    cipher: auto
-    tls: true
-    udp: true
-    skip-cert-verify: true
-    network: ws
-    servername: ${domain}
-    ws-opts:
-      path: /${id}${cons}
-      headers:
-        Host: ${domain}`;
-  navigator.clipboard.writeText(VLESSC); // Menyalin ke clipboard
-  Swal.fire({
-    title: 'Berhasil!',
-    text: 'COPY VLESS CLASH 443 SUKSES!',
-    icon: 'success',
-    background: 'rgba(6, 18, 67, 0.89)',
-    color: 'red',
-    customClass: {
-      popup: 'rounded-popup',
-    },
-    confirmButtonColor: '#3085d6'
-  });
-});
+      let url;
+      let type;
 
-// Fungsi untuk menangani tombol copy Trojan
-row.querySelector('.copy-trojan').addEventListener('click', () => {
-  const id = row.querySelector('.id-selector').value; // Mengambil id negara
-  const cons = getCons(id); // Mendapatkan nilai counter untuk id negara
-  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
+      if (button.classList.contains('copy-vless')) {
+        // Membuat URL VLESS
+        url = `vless://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+        type = 'VLESS';
+      } else if (button.classList.contains('copy-vless-clash')) {
+        // Membuat URL VLESS Clash
+        url = `- name: (${selectedService})+${id}+${isp}
+        server: ${selectedService}
+        port: 443
+        type: vless
+        uuid: ${uuidv4()}
+        cipher: auto
+        tls: true
+        udp: true
+        skip-cert-verify: true
+        network: ws
+        servername: ${domain}
+        ws-opts:
+          path: /${id}${cons}
+          headers:
+            Host: ${domain}`;
+        type = 'VLESS Clash';
+      } else if (button.classList.contains('copy-trojan')) {
+        // Membuat URL Trojan
+        url = `trojan://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+        type = 'Trojan';
+      } else if (button.classList.contains('copy-ss')) {
+        // Membuat URL SS
+        url = `ss://bm9uZTo1ZDJlYmQyYS05Y2I5LTRkMWItYWY1NS04NjE3ZDNlODFmMzk%3D@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
+        type = 'Shadowsocks';
+      }
 
-  // Membuat URL Trojan dengan format yang benar
-  const TROJAN = `trojan://${uuidv4()}@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
-  navigator.clipboard.writeText(TROJAN); // Menyalin ke clipboard
-  Swal.fire({
-    title: 'Berhasil!',
-    text: 'COPY TROJAN SUKSES!',
-    icon: 'success',
-    background: 'rgba(6, 18, 67, 0.89)',
-    color: 'red',
-    customClass: {
-      popup: 'rounded-popup',
-    },
-    confirmButtonColor: '#3085d6'
-  });
-});
-
-// Fungsi untuk menangani tombol copy SS
-row.querySelector('.copy-ss').addEventListener('click', () => {
-  const id = row.querySelector('.id-selector').value; // Mengambil id negara
-  const cons = getCons(id); // Mendapatkan nilai counter untuk id negara
-  const selectedService = row.querySelector('.service-selector').value || "user.cepu.us.kg";
-  const domain = selectedService === "user.cepu.us.kg" ? "user.cepu.us.kg" : `${selectedService}.user.cepu.us.kg`;
-
-  // Membuat URL ShadowSocks dengan format yang benar
-  const SS = `ss://bm9uZTo1ZDJlYmQyYS05Y2I5LTRkMWItYWY1NS04NjE3ZDNlODFmMzk%3D@${selectedService}:443?encryption=none&type=ws&host=${domain}&path=%2F${id}${cons}&security=tls&sni=${domain}#(${selectedService})+${id}+${isp}`;
-  navigator.clipboard.writeText(SS); // Menyalin ke clipboard
-  Swal.fire({
-    title: 'Berhasil!',
-    text: 'COPY SHADOWSOCK SUKSES!',
-    icon: 'success',
-    background: 'rgba(6, 18, 67, 0.89)',
-    color: 'red',
-    customClass: {
-      popup: 'rounded-popup',
-    },
-    confirmButtonColor: '#3085d6'
+      // Salin URL ke clipboard
+      navigator.clipboard.writeText(url).then(() => {
+        Swal.fire({
+          title: 'Berhasil!',
+          text: `COPY ${type} SUKSES!`,
+          icon: 'success',
+          background: 'rgba(6, 18, 67, 0.89)',
+          color: 'red',
+          customClass: {
+            popup: 'rounded-popup',
+          },
+          confirmButtonColor: '#3085d6'
+        });
+      }).catch((err) => {
+        Swal.fire({
+          title: 'Gagal!',
+          text: 'Gagal menyalin ke clipboard!',
+          icon: 'error',
+          background: 'rgba(6, 18, 67, 0.89)',
+          color: 'red',
+          customClass: {
+            popup: 'rounded-popup',
+          },
+          confirmButtonColor: '#3085d6'
+        });
+      });
+    });
   });
 });
 
